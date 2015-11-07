@@ -1,0 +1,18 @@
+{
+  "name": "PDMSys",
+  "homepage": "https://github.com/abarathUCLAN/PDMSys",
+  "authors": [
+    "abarathUCLAN <abarath@uclan.ac.uk>"
+  ],
+  "description": "A project document management system.",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
