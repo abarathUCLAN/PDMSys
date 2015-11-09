@@ -1,0 +1,57 @@
+<div class="container" ng-controller="LoginCtrl">
+
+    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+
+        <div class="panel panel-default" >
+            <div class="panel-heading">
+                <div class="panel-title text-center">Login</div>
+            </div>
+
+            <div class="panel-body" >
+
+                <form novalidate name="form" id="form" class="form-horizontal" >
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input ng-model="login.username" ng-pattern="usernameRegEx" name="username" type="text" class="form-control" value="" placeholder="User" required>
+                    </div>
+                    <div ng-show="form.$submitted || form.username.$touched">
+                        <div class="alert alert-danger fade in" ng-show="form.username.$error.required">
+                          A username is required.
+                        </div>
+                    </div>
+                    <div ng-show="form.username.$error.pattern">
+                        <div class="alert alert-danger fade in">
+                          <li>Username length minimum 5 and maximum 15 characters.</li>
+                          <li>Only letters, numerics and - _ are allowed.</li>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input ng-model="login.password" type="password" ng-pattern="passwordRegEx" class="form-control" name="password" placeholder="Password" required>
+                    </div>
+                    <div ng-show="form.$submitted || form.password.$touched">
+                        <div class="alert alert-danger fade in" ng-show="form.password.$error.required">Please fill in your password.</div>
+                    </div>
+                    <div ng-show="form.password.$error.pattern">
+                        <div class="alert alert-danger fade in">
+                          <li>Username length minimum 5 and maximum 15 characters.</li>
+                          <li>Must contain one uppercase and lowercase character.</li>
+                          <li>Can contain special characters.</li>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- Button -->
+                        <div class="col-sm-12 controls">
+                            <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
