@@ -105,7 +105,7 @@
             stylesheet.media = options.breakpoints[stylesheet.breakpoint];
           }
           delete stylesheet.breakpoints;
-        }
+        } 
       }
 
       /**
