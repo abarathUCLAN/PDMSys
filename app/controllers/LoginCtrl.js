@@ -1,7 +1,11 @@
 'use strict';
 
 pdmsys.controller('LoginCtrl',
-  function LoginCtrl($scope){
-    $scope.usernameRegEx = /^[a-zA-Z0-9_-]{5,15}/; //a-z,
+  function LoginCtrl($scope) {
     $scope.passwordRegEx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,15}/;
+
+
+    $scope.test = function() {
+      console.log("test");
+    }
   });

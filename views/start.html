@@ -1,3 +1,8 @@
-<input type="checkbox" ng-model="checked" aria-label="Toggle ngHide"><br/>
-<div ng-show="checked" ui-view="login"></div>
-<div ng-show="!checked"ui-view="register"></div> 
+<div ng-controller="StartCtrl">
+  <div align="center">
+    <button ng-Disabled="!formButtonValue" ng-click="invertFormButtonValue()" type="button" class="btn btn-success">Login</button>
+    <button ng-Disabled="formButtonValue" ng-click="invertFormButtonValue()" type="button" class="btn btn-success">Register</button>
+  </div>
+  <div ng-show="!formButtonValue" ui-view="login"></div>
+  <div ng-show="formButtonValue"ui-view="register"></div>
+</div>

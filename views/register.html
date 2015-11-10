@@ -1,36 +1,118 @@
 <div class="container" ng-controller="RegisterCtrl">
 
-    <div id="registerbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+  <div id="registerbox" class="mainbox col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
 
-        <div class="panel panel-default" >
-            <div class="panel-heading">
-                <div class="panel-title text-center">Register</div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title text-center">Register</div>
+      </div>
+
+      <div class="panel-body">
+
+        <form name="form" class="form-horizontal" role="form" novalidate>
+
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input ng-model="registration.firstname" ng-pattern="nameRegEx" type="text" class="form-control" name="firstname" placeholder="Firstname" maxlength="20" required>
+          </div>
+
+          <!-- Firstname validation -->
+          <div name="firstnameValidation">
+            <div ng-show="form.$submitted || form.firstname.$touched">
+              <div class="alert alert-danger fade in" ng-show="form.firstname.$error.required">
+                A firstname is required.
+              </div>
             </div>
 
-            <div class="panel-body" >
-
-                <form name="form" id="form" class="form-horizontal" enctype="multipart/form-data" method="POST">
-
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="user" type="text" class="form-control" name="user" value="" placeholder="User">
-                    </div>
-
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input id="password" type="password" class="form-control" name="password" placeholder="Password">
-                    </div>
-
-                    <div class="form-group">
-                        <!-- Button -->
-                        <div class="col-sm-12 controls">
-                            <button type="submit" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
-                        </div>
-                    </div>
-
-                </form>
-
+            <div ng-show="!form.firstname.$error.required">
+              <div class="alert alert-danger fade in" ng-show="form.firstname.$error.pattern">
+                Please fill in a valid firstname.
+              </div>
             </div>
-        </div>
+          </div>
+          <!-- Firstname validation end -->
+
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input ng-model="registration.lastname" ng-pattern="nameRegEx" type="text" class="form-control" name="lastname" placeholder="Lastname" maxlength="20" required>
+          </div>
+
+          <!-- Lastname validation -->
+          <div name="lastnameValidation">
+            <div ng-show="form.$submitted || form.lastname.$touched">
+              <div class="alert alert-danger fade in" ng-show="form.lastname.$error.required">
+                A lastname is required.
+              </div>
+            </div>
+
+            <div ng-show="!form.lastname.$error.required">
+              <div class="alert alert-danger fade in" ng-show="form.lastname.$error.pattern">
+                Please fill in a valid lastname.
+              </div>
+            </div>
+          </div>
+          <!-- Lastname validation end -->
+
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input ng-model="registration.password" type="password" ng-pattern="passwordRegEx" class="form-control" name="password" placeholder="Password" maxlength="15" required>
+          </div>
+
+          <!-- Password validation -->
+          <div name="passwordValidation">
+            <div ng-show="form.$submitted || form.password.$touched">
+              <div class="alert alert-danger fade in" ng-show="form.password.$error.required">
+                A password is required.
+              </div>
+            </div>
+
+            <div ng-show="!form.password.$error.required">
+              <div class="alert alert-danger fade in" ng-show="form.password.$error.pattern">
+                Password is not valid.
+              </div>
+            </div>
+          </div>
+          <!-- Password validation end -->
+
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-repeat"></i></span>
+            <input ng-model="registration.passwordConfirm" match="registration.password" type="password" class="form-control" name="passwordConfirm" placeholder="Password Confirm" maxlength="15" required>
+          </div>
+
+          <div ng-show="form.passwordConfirm.$error.match && form.passwordConfirm.$touched">
+            <div class="alert alert-danger fade in">
+              Password fields do not match!
+            </div>
+          </div>
+
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <input ng-model="registration.email" type="email" class="form-control" name="email" placeholder="E-Mail" maxlength="50" required>
+          </div>
+
+
+          <!--Email Validation -->
+          <div name="emailValidation">
+            <div ng-show="form.$submitted || form.email.$touched">
+              <div class="alert alert-danger fade in" ng-show="form.email.$error.required">
+                An e-mail is required.
+              </div>
+            </div>
+
+            <div class="alert alert-danger fade in" ng-show="form.email.$error.email && form.email.$touched">
+              Please fill in a valid e-mail.
+            </div>
+          </div>
+          <!--Email Validation end-->
+
+          <div class="form-group">
+            <!-- Button -->
+            <div class="col-sm-12 controls">
+              <button type="submit" ng-Disabled="form.$invalid" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Register</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

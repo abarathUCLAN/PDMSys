@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="pdmsys">
-<head>
-    <link href="assets/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="assets/libs/jquery/dist/jquery.js"></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="assets/libs/angular/angular.js"></script>
-    <script src="assets/libs/angular-css/angular-css.js"></script>
-    <script src="assets/libs/angular-route/angular-route.js"></script>
-    <script src="assets/libs/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="app/app.js"></script>
 
-    <title ng-bind="'PDMSys - ' + $root.title">MyApp - Welcome</title>
+<head>
+  <link href="assets/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="assets/libs/angular/angular.min.js"></script>
+  <script src="assets/libs/angular-css/angular-css.min.js"></script>
+  <script src="assets/libs/angular-route/angular-route.min.js"></script>
+  <script src="assets/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="app/app.js"></script>
+  <script src="assets/libs/angular-validation-match/dist/angular-validation-match.min.js"></script>
+
+  <link rel="shortcut icon" href="favicon.ico">
+
+
+  <title ng-bind="'PDMSys - ' + $root.title">MyApp - Welcome</title>
 </head>
+
 <body>
 
   <ng-view></ng-view>
 
+  <script src="app/controllers/StartCtrl.js"></script>
   <script src="app/controllers/LoginCtrl.js"></script>
   <script src="app/controllers/RegisterCtrl.js"></script>
+
 </body>
+
 </html>
