@@ -1,0 +1,15 @@
+<div class="container gap">
+  <ul class="cbp-ig-grid">
+    <li ng-repeat="project in projects">
+      <a href="#">
+        <span class="glyphicon glyphicon-folder-open glyphicon-size"></span>
+        <h3 class="cbp-ig-title">{{ project.name }}</h3>
+        <div class="cbp-ig-info">
+          {{ project.description }}
+          <hr> Completion of the documentation:
+          <strong> {{ project.completion }} % </strong>.
+
+        </div>
+      </a>
+    </li>
+</div>

@@ -3,16 +3,16 @@
 
 <head>
   <link href="assets/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/libs/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="favicon.ico">
+  
   <script src="assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="assets/libs/angular/angular.min.js"></script>
-  <script src="assets/libs/angular-css/angular-css.min.js"></script>
-  <script src="assets/libs/angular-route/angular-route.min.js"></script>
   <script src="assets/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="app/app.js"></script>
   <script src="assets/libs/angular-validation-match/dist/angular-validation-match.min.js"></script>
-
-  <link rel="shortcut icon" href="favicon.ico">
+  <script src="assets/libs/angular-ui-router-styles/ui-router-styles.js"></script>
 
 
   <title ng-bind="'PDMSys - ' + $root.title">MyApp - Welcome</title>
@@ -20,11 +20,12 @@
 
 <body>
 
-  <ng-view></ng-view>
+  <div ui-view></div>
 
   <script src="app/controllers/StartCtrl.js"></script>
   <script src="app/controllers/LoginCtrl.js"></script>
   <script src="app/controllers/RegisterCtrl.js"></script>
+  <script src="app/controllers/ProjectsCtrl.js"></script>
 
 </body>
 
