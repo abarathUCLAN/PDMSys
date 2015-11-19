@@ -50,11 +50,8 @@ pdmsys.run(
       .state('home.projects', {
         url: '',
         views: {
-          "allProjects": {
+          "content": {
             templateUrl: "views/projects.html"
-          },
-          "createProject": {
-            templateUrl: "views/createProject.html"
           }
         },
         data: {
