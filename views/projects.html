@@ -1,14 +1,13 @@
-<div class="container gap">
+<div class="gap container" ui-view ng-controller="ProjectsCtrl">
   <ul class="cbp-ig-grid">
     <li ng-repeat="project in projects">
-      <a href="#">
+      <a ng-href="#projects/{{ project.id }}">
         <span class="glyphicon glyphicon-folder-open glyphicon-size"></span>
         <h3 class="cbp-ig-title">{{ project.name }}</h3>
         <div class="cbp-ig-info">
           {{ project.description }}
           <hr> Completion of the documentation:
           <strong> {{ project.completion }} % </strong>.
-
         </div>
       </a>
     </li>

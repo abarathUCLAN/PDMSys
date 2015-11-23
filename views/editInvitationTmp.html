@@ -1,0 +1,17 @@
+<td>
+  <input type="text" ng-model="invitations.selected.name" />
+</td>
+<td>
+  <input type="text" ng-model="invitations.selected.email" />
+</td>
+<td align="center" colspan="3">
+  <select ng-model="invitations.selected.type">
+    <option value="">Spectator</option>
+    <option value="1">Member</option>
+    <option value="2">Leader</option>
+  </select>
+</td>
+<td>
+  <button class="btn btn-info" ng-click="saveInvitation($index)">Save</button>
+  <button class="btn btn-danger" ng-click="reset()">Cancel</button>
+</td>

@@ -4,8 +4,9 @@
 <head>
   <link href="assets/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/libs/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/css/icons.css" rel="stylesheet">
   <link rel="shortcut icon" href="favicon.ico">
-  
+
   <script src="assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="assets/libs/angular/angular.min.js"></script>
@@ -19,13 +20,17 @@
 </head>
 
 <body>
-
-  <div ui-view></div>
+  <div ui-view name="navbar"></div>
+  <div ui-view name="content"></div>
 
   <script src="app/controllers/StartCtrl.js"></script>
   <script src="app/controllers/LoginCtrl.js"></script>
   <script src="app/controllers/RegisterCtrl.js"></script>
   <script src="app/controllers/ProjectsCtrl.js"></script>
+  <script src="app/controllers/CreateProjectCtrl.js"></script>
+  <script src="app/controllers/ProjectDetailsCtrl.js"></script>
+  <script src="app/controllers/ProjectInvitationsCtrl.js"></script>
+  <script src="app/controllers/ConfirmInformationCtrl.js"></script>
 
 </body>
 

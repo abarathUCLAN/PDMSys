@@ -1,0 +1,15 @@
+<td>{{ invitation.name }} </td>
+<td>{{ invitation.email }} </td>
+<td>
+  <div ng-show="{{ invitation.type == 0 }}">Spectator</div>
+</td>
+<td>
+  <div ng-show="{{ invitation.type == 1 }}">Member</div>
+</td>
+<td>
+  <div ng-show="{{ invitation.type == 2 }}">Leader</div>
+</td>
+<td>
+  <button class="btn btn-info" ng-click="editInvitation(invitation)">Edit</button>
+  <button class="btn btn-danger" ng-click="removeInvitation($index)">Remove</button>
+</td>

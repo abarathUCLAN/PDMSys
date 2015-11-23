@@ -20,7 +20,11 @@ pdmsys.run(
     $stateProvider
       .state('index', {
         url: "/",
-        templateUrl: "views/landingPage.html",
+        views: {
+          "content": {
+            templateUrl: "views/landingPage.html"
+          }
+        },
         data: {
           css: 'assets/css/agency.css'
         }
@@ -28,7 +32,11 @@ pdmsys.run(
       .state('start', {
         abstract: true,
         url: "/start",
-        templateUrl: "views/start.html"
+        views: {
+          "content": {
+            templateUrl: "views/start.html"
+          }
+        },
       })
       .state('start.loginAndRegister', {
         url: '',
@@ -42,20 +50,47 @@ pdmsys.run(
         }
       })
       .state('home', {
-        abstract: true,
         url: "/home",
-        controller: 'ProjectsCtrl',
-        templateUrl: "views/home.html"
-      })
-      .state('home.projects', {
-        url: '',
+        data: {
+          css: 'assets/css/home.css'
+        },
         views: {
+          "navbar": {
+            templateUrl: "views/navbar.html"
+          },
           "content": {
             templateUrl: "views/projects.html"
           }
-        },
+        }
+      })
+      .state('createProject', {
+        abstract: true,
+        url: "/createProject",
+        controller: 'CreateProjectCtrl',
         data: {
-          css: 'assets/css/home.css'
+          css: 'assets/css/createProject.css'
+        },
+        views: {
+          "navbar": {
+            templateUrl: "views/navbar.html"
+          },
+          "content": {
+            templateUrl: "views/createProject.html"
+          }
+        }
+      })
+      .state('createProject.views', {
+        url: '',
+        views: {
+          "information": {
+            templateUrl: "views/projectInformation.html"
+          },
+          "invitation": {
+            templateUrl: "views/projectInvitation.html"
+          },
+          "confirmInformation": {
+            templateUrl: "views/confirmInformation.html"
+          }
         }
       });
   });
