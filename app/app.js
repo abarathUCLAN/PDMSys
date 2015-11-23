@@ -92,6 +92,34 @@ pdmsys.run(
             templateUrl: "views/confirmInformation.html"
           }
         }
+      })
+      .state('projectHome', {
+        url: "/project/{projectId:int}",
+        data: {
+          css: 'assets/css/projectHome.css'
+        },
+        views: {
+          "navbar": {
+            templateUrl: "views/projectNavbar.html"
+          },
+          "content": {
+            templateUrl: "views/projectHome.html"
+          }
+        }
+      })
+      .state('preliminaryStudy', {
+        url: "/project/{projectId:int}/preliminaryStudy",
+        data: {
+          css: 'assets/css/navbarLeft.css'
+        },
+        views: {
+          "navbar": {
+            templateUrl: "views/projectNavbar.html"
+          },
+          "content": {
+            templateUrl: "views/project.preliminaryStudy.html"
+          }
+        }
       });
   });
 

@@ -1,0 +1,19 @@
+/* make sidebar nav vertical */
+
+.navbargap {
+  margin-top: 50px;
+}
+.sidebar-nav .navbar .navbar-collapse {
+  margin-top: 50px;
+  padding: 0;
+}
+.sidebar-nav .navbar ul {
+  float: none;
+}
+.sidebar-nav .navbar li {
+  float: none;
+}
+.sidebar-nav .navbar li a {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}

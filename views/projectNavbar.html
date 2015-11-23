@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-controller="NavbarHomeCtrl">
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
     <div class="container-fluid">
@@ -7,8 +7,12 @@
       </div>
       <div>
         <ul class="nav navbar-nav">
-          <li ng-class="{active: $state.is('home')}"><a ui-sref="home">Choose your project</a></li>
-          <li ng-class="{active: $state.is('createProject.views')}"><a ui-sref="createProject.views">Create a project</a></li>
+          <li ng-class="{active: $state.is('projectHome')}"><a ui-sref="projectHome">Home</a></li>
+          <li ng-class="{active: $state.is('preliminaryStudy')}"><a ui-sref="preliminaryStudy({projectId:projectId})">Preliminary study</a></li>
+          <li ng-class="{active: $state.is('projectHome.requirementSpecification')}"><a ui-sref="home">Requirement specification</a></li>
+          <li ng-class="{active: $state.is('projectHome.functionalSpecification')}"><a ui-sref="home">Functional specifications</a></li>
+          <li ng-class="{active: $state.is('projectHome.finalization')}"><a ui-sref="home">Finalization</a></li>
+          <li><a ui-sref="home">Miscellaneous items</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
@@ -32,3 +36,4 @@
         </ul>
       </div>
   </nav>
+</div>

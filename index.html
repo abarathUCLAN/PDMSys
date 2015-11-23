@@ -19,7 +19,7 @@
   <title ng-bind="'PDMSys - ' + $root.title">MyApp - Welcome</title>
 </head>
 
-<body>
+<body ng-cloak>
   <div ui-view name="navbar"></div>
   <div ui-view name="content"></div>
 
@@ -31,6 +31,8 @@
   <script src="app/controllers/ProjectDetailsCtrl.js"></script>
   <script src="app/controllers/ProjectInvitationsCtrl.js"></script>
   <script src="app/controllers/ConfirmInformationCtrl.js"></script>
+  <script src="app/controllers/ProjectHomeCtrl.js"></script>
+  <script src="app/controllers/NavbarHomeCtrl.js"></script>
 
 </body>
 
