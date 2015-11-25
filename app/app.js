@@ -17,6 +17,7 @@ pdmsys.run(
   )
   .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
+    $urlRouterProvider.when('/project/{projectId:int}/preliminaryStudy', '/project/{projectId:int}/preliminaryStudy/projectDescription');
     $stateProvider
       .state('index', {
         url: "/",
@@ -96,7 +97,7 @@ pdmsys.run(
       .state('projectHome', {
         url: "/project/{projectId:int}",
         data: {
-          css: 'assets/css/projectHome.css'
+          css: ['assets/css/projectHome.css', 'assets/css/navbar.css']
         },
         views: {
           "navbar": {
@@ -108,9 +109,10 @@ pdmsys.run(
         }
       })
       .state('preliminaryStudy', {
+        abstract: true,
         url: "/project/{projectId:int}/preliminaryStudy",
         data: {
-          css: 'assets/css/navbarLeft.css'
+          css: 'assets/css/navbar.css'
         },
         views: {
           "navbar": {
@@ -120,6 +122,38 @@ pdmsys.run(
             templateUrl: "views/project.preliminaryStudy.html"
           }
         }
+      })
+      .state('preliminaryStudy.projectDescription', {
+        url: '/projectDescription',
+        templateUrl: "views/preliminaryStudy/preliminaryStudy.projectDescription.html"
+      })
+      .state('preliminaryStudy.risks', {
+        url: '/risks',
+        templateUrl: "views/preliminaryStudy/preliminaryStudy.risks.html"
+      })
+      .state('preliminaryStudy.milestones', {
+        url: '/milestones',
+        templateUrl: "views/preliminaryStudy/preliminaryStudy.milestones.html"
+      })
+      .state('preliminaryStudy.marketAnalysis', {
+        url: '/marketAnalysis',
+        templateUrl: "views/preliminaryStudy/preliminaryStudy.marketAnalysis.html"
+      })
+      .state('preliminaryStudy.effort', {
+        url: '/effort',
+        templateUrl: "views/preliminaryStudy/preliminaryStudy.effort.html"
+      })
+      .state('preliminaryStudy.timeCost', {
+        url: '/timeCost',
+        templateUrl: "views/preliminaryStudy/preliminaryStudy.timeCost.html"
+      })
+      .state('preliminaryStudy.psp', {
+        url: '/psp',
+        templateUrl: "views/preliminaryStudy/preliminaryStudy.psp.html"
+      })
+      .state('preliminaryStudy.ucp', {
+        url: '/ucp',
+        templateUrl: "views/preliminaryStudy/preliminaryStudy.ucp.html"
       });
   });
 

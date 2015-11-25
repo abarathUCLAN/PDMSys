@@ -1,8 +1,8 @@
 <div class="gap container" ng-controller="ProjectHomeCtrl">
   <ul class="cbp-ig-grid">
-    <div class="grow" ng-repeat="documentCategory in documentCategories">
-      <a ui-sref="projectHome.preliminaryStudy">
-        <div class="col-xs-3 col-md-3" ng-class="test(documentCategory.percentFinished)">
+    <div align="center" class="grow" ng-repeat="documentCategory in documentCategories">
+      <a ui-sref="{{ documentCategory.url }}">
+        <div class="col-xs-3 col-md-3" ng-class="percentFinishedCalculation(documentCategory.percentFinished)">
           <span class="fa fa-circle-o-notch fa-spin"></span>
           <div class="percent">{{ documentCategory.percentFinished }} %</div>
           <h3 class="documentCategoryName">{{ documentCategory.name}}</h3>

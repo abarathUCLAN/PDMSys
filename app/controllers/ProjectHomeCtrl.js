@@ -7,7 +7,7 @@ pdmsys.controller('ProjectHomeCtrl',
 
     $scope.documentCategories = [{
       name: 'Preliminary study',
-      url: 'preliminaryStudy',
+      url: 'preliminaryStudy.projectDescription({projectId:projectId})',
       percentFinished: '100'
     }, {
       name: 'Requirement specification',
@@ -23,7 +23,13 @@ pdmsys.controller('ProjectHomeCtrl',
       percentFinished: '10'
     }];
 
-    $scope.test = function(percent) {
+    $scope.switchView = function (value) {
+      switch(value) {
+        case 0: return "preliminaryStudy.projectDescription({projectId:projectId})";;
+      }
+    }
+
+    $scope.percentFinishedCalculation = function(percent) {
       if(percent < 50)
         return 'danger';
       else if (percent > 49 && percent < 89)

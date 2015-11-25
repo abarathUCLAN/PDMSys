@@ -1,5 +1,42 @@
-<div class="container" ng-controller="NavbarHomeCtrl">
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="" ng-controller="NavbarHomeCtrl">
+  <nav class="navbar navbar-default navbarDefault" role="banner">
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav main_nav_top">
+        <li ng-class="{active: $state.is('projectHome')}"><a ui-sref="projectHome({projectId:projectId})">{{ projectName }} - Home</a></li>
+        <li ng-class="{active: $state.includes('preliminaryStudy')}"><a ui-sref="preliminaryStudy.projectDescription({projectId:projectId})">Preliminary study</a></li>
+        <li ng-class="{active: $state.includes('requirementSpecification')}"class="bordo"><a ui-sref="requirementSpecification({projectId:projectId})">Requirement specification</a></li>
+        <li id="logo">
+          <a class="navbar-brand navbarBrand" href="http://www.goldenroutes.com/index.php" style="padding-top:8px;">
+            <img class="hidden-xs" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSLUbQk-Rb10zjcbjUG5DkceqCQtv_CW6OgIj9FuDtwwRfGLtvxD0Dt1A" alt="">
+          </a>
+        </li>
+        <li ng-class="{active: $state.includes('functionalSpecification')}"> <a ui-sref="functionalSpecification({projectId:projectId})">Functional specification</a></li>
+        <li ng-class="{active: $state.includes('finalization')}"><a ui-sref="finalization({projectId:projectId})">Finalization</a></li>
+        <li ng-class="{active: $state.includes('miscellaneous')}" class="last"><a ui-sref="miscellaneous({projectId:projectId})">Miscellaneous items</a></li>
+        <ul class="nav navbar-right">
+          <li class="settings">
+            <a href="" class="fa fa-cog fa-size dropdown-toggle" role="button" data-toggle="dropdown"></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#profile">
+                  <span class="glyphicon glyphicon-user"></span> Userprofile</a>
+              </li>
+              <li>
+                <a href="#settings">
+                  <i class="fa fa-cog"></i> Account settings</a>
+              </li>
+              <li>
+                <a href="#logout">
+                  <i class="fa fa-sign-out"></i> Logout</a>
+              </li>
+            </ul>
+      </ul>
+    </div>
+
+
+  </nav>
+  <div class="container">
+  <!--<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
     <div class="container-fluid">
       <div class="navbar-header">
@@ -7,11 +44,11 @@
       </div>
       <div>
         <ul class="nav navbar-nav">
-          <li ng-class="{active: $state.is('projectHome')}"><a ui-sref="projectHome">Home</a></li>
+          <li ng-class="{active: $state.is('projectHome')}"><a ui-sref="projectHome({projectId:projectId})">Home</a></li>
           <li ng-class="{active: $state.is('preliminaryStudy')}"><a ui-sref="preliminaryStudy({projectId:projectId})">Preliminary study</a></li>
-          <li ng-class="{active: $state.is('projectHome.requirementSpecification')}"><a ui-sref="home">Requirement specification</a></li>
-          <li ng-class="{active: $state.is('projectHome.functionalSpecification')}"><a ui-sref="home">Functional specifications</a></li>
-          <li ng-class="{active: $state.is('projectHome.finalization')}"><a ui-sref="home">Finalization</a></li>
+          <li ng-class="{active: $state.is('requirementSpecification')}"><a ui-sref="requirementSpecification({projectId:projectId})">Requirement specification</a></li>
+          <li ng-class="{active: $state.is('functionalSpecification')}"><a ui-sref="functionalSpecification({projectId:projectId})">Functional specifications</a></li>
+          <li ng-class="{active: $state.is('finalization')}"><a ui-sref="finalization({projectId:projectId})">Finalization</a></li>
           <li><a ui-sref="home">Miscellaneous items</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -35,5 +72,5 @@
           </li>
         </ul>
       </div>
-  </nav>
+  </nav>-->
 </div>
