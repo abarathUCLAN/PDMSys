@@ -140,17 +140,9 @@ pdmsys.run(
         },
         templateUrl: "views/preliminaryStudy/preliminaryStudy.milestones.html"
       })
-      .state('preliminaryStudy.marketAnalysis', {
-        url: '/marketAnalysis',
-        templateUrl: "views/preliminaryStudy/preliminaryStudy.marketAnalysis.html"
-      })
       .state('preliminaryStudy.effort', {
         url: '/effort',
         templateUrl: "views/preliminaryStudy/preliminaryStudy.effort.html"
-      })
-      .state('preliminaryStudy.psp', {
-        url: '/psp',
-        templateUrl: "views/preliminaryStudy/preliminaryStudy.psp.html"
       })
       .state('functionalSpecification', {
         abstract: true,
