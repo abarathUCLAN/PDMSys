@@ -9,19 +9,33 @@
 
   <script src="assets/libs/jquery/dist/jquery.min.js"></script>
   <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="assets/libs/angular/angular.min.js"></script>
+  <script src="assets/libs/angular/angular.js"></script>
   <script src="assets/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="app/app.js"></script>
   <script src="assets/libs/angular-validation-match/dist/angular-validation-match.min.js"></script>
   <script src="assets/libs/angular-ui-router-styles/ui-router-styles.js"></script>
 
-
   <title ng-bind="'PDMSys - ' + $root.title">MyApp - Welcome</title>
+
+
 </head>
 
 <body ng-cloak>
   <div ui-view name="navbar"></div>
   <div ui-view name="content"></div>
+
+  <script src="assets/libs/angular-strap/dist/angular-strap.js"></script>
+  <script src="assets/libs/angular-strap/dist/angular-strap.tpl.js"></script>
+  <script src="assets/libs/angular-native-dragdrop/draganddrop.js"></script>
+  <script src="assets/libs/angular-ui-tree/dist/angular-ui-tree.js"></script>
+  <script src="assets/libs/moment/moment.js"></script>
+  <script src="assets/libs/angular-moment/angular-moment.js"></script>
+  <script src="assets/libs/angular-gantt/assets/angular-gantt.js"></script>
+  <script src="assets/libs/angular-gantt/assets/angular-gantt-plugins.js"></script>
+  <script src="assets/libs/moment-range/dist/moment-range.js"></script>
+  <script src="assets/libs/css-element-queries/src/ElementQueries.js"></script>
+  <script src="assets/libs/css-element-queries/src/ResizeSensor.js"></script>
+
 
   <script src="app/controllers/StartCtrl.js"></script>
   <script src="app/controllers/LoginCtrl.js"></script>
@@ -33,6 +47,9 @@
   <script src="app/controllers/ConfirmInformationCtrl.js"></script>
   <script src="app/controllers/ProjectHomeCtrl.js"></script>
   <script src="app/controllers/NavbarHomeCtrl.js"></script>
+  <script src="app/modules/pdmsys.milestoneGANTT.js"></script>
+
+
 
 </body>
 

@@ -1,1 +1,149 @@
-milestones
+<div>
+  <div ng-controller="MilestoneCtrl">
+    <div class="container-content" ng-cloak="true">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel-group" bs-collapse>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a href="" bs-collapse-toggle>Options</a>
+                  </h4>
+                </div>
+                <div class="panel-collapse" bs-collapse-target>
+                  <div class="panel-body">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="form-inline">
+
+                          <div class="form-group text-center">
+                            <label class="control-label"><i class="fa fa-clock-o"></i> Today</label>
+                            <br>
+                            <button type="button" style="width: 6em; text-align: left" class="btn btn-default" ng-model="options.currentDate" bs-options="d for d in ['none', 'line', 'column']" bs-select></button>
+                          </div>
+
+                          <div class="form-group text-center">
+                            <label class="control-label"><i class="fa fa-expand"></i> Expand</label>
+                            <br>
+                            <button type="button" style="width: 6em; text-align: left" class="btn btn-default" ng-model="options.autoExpand" bs-options="e for e in ['none', 'both', 'left', 'right']" bs-select></button>
+                          </div>
+
+                          <div class="form-group text-center">
+                            <label class="control-label"><i class="fa fa-scissors"></i> Out of range</label>
+                            <br>
+                            <button type="button" style="width: 8em; text-align: left" class="btn btn-default" ng-model="options.taskOutOfRange" bs-options="e for e in ['expand', 'truncate']" bs-select></button>
+                          </div>
+
+                          <div class="form-group text-center">
+                            <label class="control-label"><i class="fa fa-search"></i> Zoom</label>
+                            <br>
+                            <input ng-disabled="!options.width" type="number" ng-model="options.zoom" step="0.1" min="0.1" max="5" class="form-control" />
+                          </div>
+
+
+                          <div class="form-group text-center">
+                            <label class="control-label"><i class="fa fa-text-width"></i> Labels</label>
+                            <br>
+                            <div class="btn-group" bs-checkbox-group>
+                              <button type="button" class="btn btn-default" ng-model="options.labelsEnabled" bs-checkbox>Show</button>
+                              <button type="button" class="btn btn-default" ng-model="options.allowSideResizing" bs-checkbox>Resizable</button>
+                            </div>
+                          </div>
+
+                          <div class="form-group text-center">
+                            <label class="control-label"><i class="fa fa-calendar"></i> <i class="fa fa-arrows-h"></i> <i class="fa fa-calendar"></i> Date range</label>
+                            <br>
+                            <div class="form-group">
+                              <input type="text" class="form-control" ng-model="options.fromDate" max-date="{{options.toDate}}" start-date="{{options.currentDateValue.toString()}}" start-week="1" placeholder="From" bs-datepicker>
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" ng-model="options.toDate" min-date="{{options.fromDate}}" start-date="{{options.currentDateValue.toString()}}" start-week="1" placeholder="To" bs-datepicker>
+                            </div>
+                          </div>
+
+                          <div ng-if="options.sideMode === 'Tree' || options.sideMode === 'TreeTable'" class="form-group text-center">
+                            <label class="control-label"><i class="fa fa fa-chevron-circle-right"></i> Tree actions</label>
+                            <br>
+                            <div class="btn-group">
+                              <button class="btn btn-default" ng-click="expandAll()">Expand all</button>
+                              <button class="btn btn-default" ng-click="collapseAll()">Collapse all</button>
+                            </div>
+                          </div>
+                          <div class="form-group text-center">
+                              <form name="form" novalidate>
+                                <div class="form-group">
+                                  <label>Add task:</label>
+                                  <input type="text" class="form-control" ng-model="task.name" >
+                                </div>
+                                <div class="form-group text-center">
+                                  <label class="control-label"><i class="fa fa-calendar"></i> <i class="fa fa-arrows-h"></i> <i class="fa fa-calendar"></i> Date range</label>
+                                  <br>
+                                  <div class="form-group">
+                                    <input type="text" class="form-control" ng-model="task.fromDate" max-date="{{options.toDate}}" start-date="{{options.currentDateValue.toString()}}" start-week="1" placeholder="From" bs-datepicker>
+                                  </div>
+                                  <div class="form-group">
+                                    <input type="text" class="form-control" ng-model="task.toDate" min-date="{{options.fromDate}}" start-date="{{options.currentDateValue.toString()}}" start-week="1" placeholder="To" bs-datepicker>
+                                  </div>
+                                </div>
+                                <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="addTask(task)">Add Task</button>
+                              </form>
+                            </form>
+                          </div>
+
+                          <div class="form-group text-center">
+                              <form name="form" novalidate>
+                                <div class="form-group">
+                                  <label>Add Milestone:</label>
+                                  <input type="text" class="form-control" ng-model="milestone.name" >
+                                </div>
+                                <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="addMilestone(milestone)">Add Milestone</button>
+                              </form>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row top-buffer">
+          <div class="col-md-12">
+            <div class="panel-group" bs-collapse>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a href="" bs-collapse-toggle>Gantt</a>
+                  </h4>
+                </div>
+                <div class="panel-collapse" bs-collapse-target>
+                  <div class="panel-body">
+                    <div gantt data="data" timespans="timespans" show-side="options.labelsEnabled" daily="options.daily" column-width="getColumnWidth(options.width, options.scale, options.zoom)" auto-expand="options.autoExpand" task-out-of-range="options.taskOutOfRange"
+                    from-date="options.fromDate" to-date="options.toDate" allow-side-resizing="options.allowSideResizing" task-content="options.taskContentEnabled ? options.taskContent : undefined" row-content="options.rowContentEnabled ? options.rowContent : undefined"
+                    current-date="options.currentDate" current-date-value="options.currentDateValue" headers="options.width && options.shortHeaders || options.longHeaders" max-height="options.maxHeight && 300 || 0" time-frames="options.timeFrames" date-frames="options.dateFrames"
+                    time-frames-working-mode="options.timeFramesWorkingMode" time-frames-non-working-mode="options.timeFramesNonWorkingMode" time-frames-magnet="options.timeFramesMagnet" api="options.api">
+                      <gantt-tree enabled="options.sideMode === 'Tree' || options.sideMode === 'TreeTable'" header-content="options.treeHeaderContent" keep-ancestor-on-filter-row="true">
+                      </gantt-tree>
+                      <gantt-table enabled="options.sideMode === 'Table' || options.sideMode === 'TreeTable'" columns="options.sideMode === 'TreeTable' ? options.treeTableColumns : options.columns" headers="options.columnsHeaders" classes="options.columnsClasses" formatters="options.columnsFormatters"
+                      contents="options.columnsContents" header-contents="options.columnsHeaderContents">
+                      </gantt-table>
+                      <gantt-tooltips></gantt-tooltips>
+                      <gantt-movable enabled="!options.readOnly"></gantt-movable>
+                      <gantt-draw-task enabled="options.canDraw" move-threshold="2" task-factory="options.drawTaskFactory">
+                      </gantt-draw-task>
+                      <gantt-overlap></gantt-overlap>
+                      <gantt-resize-sensor></gantt-resize-sensor>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

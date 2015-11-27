@@ -1,3 +1,67 @@
+.container-content {
+    margin: 10px;
+}
+
+.top-buffer {
+    margin-top: 8px;
+}
+
+.navbar-right-spacing {
+    margin-right: 160px;
+}
+
+.btn:focus {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.btn.active:focus {
+    color: #333;
+    background-color: #ebebeb;
+    border-color: #adadad;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none !important;
+}
+
+.gantt-timeframe-holiday {
+    border: solid 2px black;
+    opacity: 0.6;
+}
+
+.gantt-row-milestone {
+    font-weight: bold;
+    vertical-align: middle;
+    color: white;
+}
+
+div.live-table {
+    display: table;
+    width: 100%;
+}
+
+div.live-row {
+    display: table-row;
+}
+
+div.live-cell {
+    display: table-cell;
+    padding: 5px;
+    width: 50%;
+}
+
+textarea.live-task,
+textarea.live-row {
+    width: 100%;
+    height: 300px;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 0.9em;
+    color: #333;
+}
+
+
 .navbarBrand {
   height: auto;
   min-height: 66px;
@@ -6,6 +70,10 @@
 }
 .navbar-brand img {
   float: left;
+}
+
+.gapForNavbar {
+  margin-top: 120px;
 }
 
 .navbarDefault .navbar-nav>.active>a{
@@ -33,6 +101,11 @@
 }
 
 .navbarDefault {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
   background: #ffffff;
   margin: 0px auto;
 }

@@ -11,7 +11,7 @@ pdmsys.controller('ProjectHomeCtrl',
       percentFinished: '100'
     }, {
       name: 'Requirement specification',
-      url :'requirementSpecification',
+      url :'requirementSpecification.productRequirement({projectId:projectId})',
       percentFinished: '50'
     }, {
       name: 'Functional specification',

@@ -4,13 +4,13 @@
       <ul class="nav navbar-nav main_nav_top">
         <li ng-class="{active: $state.is('projectHome')}"><a ui-sref="projectHome({projectId:projectId})">{{ projectName }} - Home</a></li>
         <li ng-class="{active: $state.includes('preliminaryStudy')}"><a ui-sref="preliminaryStudy.projectDescription({projectId:projectId})">Preliminary study</a></li>
-        <li ng-class="{active: $state.includes('requirementSpecification')}"class="bordo"><a ui-sref="requirementSpecification({projectId:projectId})">Requirement specification</a></li>
+        <li ng-class="{active: $state.includes('requirementSpecification')}"class="bordo"><a ui-sref="requirementSpecification.projectIntroduction({projectId:projectId})">Requirement specification</a></li>
         <li id="logo">
           <a class="navbar-brand navbarBrand" href="http://www.goldenroutes.com/index.php" style="padding-top:8px;">
             <img class="hidden-xs" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSLUbQk-Rb10zjcbjUG5DkceqCQtv_CW6OgIj9FuDtwwRfGLtvxD0Dt1A" alt="">
           </a>
         </li>
-        <li ng-class="{active: $state.includes('functionalSpecification')}"> <a ui-sref="functionalSpecification({projectId:projectId})">Functional specification</a></li>
+        <li ng-class="{active: $state.includes('functionalSpecification')}"> <a ui-sref="functionalSpecification.productRequirement({projectId:projectId})">Functional specification</a></li>
         <li ng-class="{active: $state.includes('finalization')}"><a ui-sref="finalization({projectId:projectId})">Finalization</a></li>
         <li ng-class="{active: $state.includes('miscellaneous')}" class="last"><a ui-sref="miscellaneous({projectId:projectId})">Miscellaneous items</a></li>
         <ul class="nav navbar-right">

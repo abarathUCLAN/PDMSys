@@ -1,6 +1,6 @@
 'use strict';
 
-var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'uiRouterStyles']);
+var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'uiRouterStyles', 'pdmsys.milestone']);
 
 pdmsys.run(
     ['$rootScope', '$state', '$stateParams',
@@ -17,7 +17,9 @@ pdmsys.run(
   )
   .config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
-    $urlRouterProvider.when('/project/{projectId:int}/preliminaryStudy', '/project/{projectId:int}/preliminaryStudy/projectDescription');
+    //$urlRouterProvider.when('/project/{projectId:int}/preliminaryStudy', '/project/{projectId:int}/preliminaryStudy/projectDescription');
+    //$urlRouterProvider.when('/project/{projectId:int}/functionalSpecification', '/project/{projectId:int}/functionalSpecification/productRequirement');
+    $stateProvider
     $stateProvider
       .state('index', {
         url: "/",
@@ -133,6 +135,9 @@ pdmsys.run(
       })
       .state('preliminaryStudy.milestones', {
         url: '/milestones',
+        data: {
+          css: ['assets/libs/angular-gantt/assets/angular-gantt.css', 'assets/libs/angular-gantt/assets/angular-gantt-plugins.css']
+        },
         templateUrl: "views/preliminaryStudy/preliminaryStudy.milestones.html"
       })
       .state('preliminaryStudy.marketAnalysis', {
@@ -143,17 +148,95 @@ pdmsys.run(
         url: '/effort',
         templateUrl: "views/preliminaryStudy/preliminaryStudy.effort.html"
       })
-      .state('preliminaryStudy.timeCost', {
-        url: '/timeCost',
-        templateUrl: "views/preliminaryStudy/preliminaryStudy.timeCost.html"
-      })
       .state('preliminaryStudy.psp', {
         url: '/psp',
         templateUrl: "views/preliminaryStudy/preliminaryStudy.psp.html"
       })
-      .state('preliminaryStudy.ucp', {
-        url: '/ucp',
-        templateUrl: "views/preliminaryStudy/preliminaryStudy.ucp.html"
+      .state('functionalSpecification', {
+        abstract: true,
+        url: "/project/{projectId:int}/functionalSpecification",
+        data: {
+          css: 'assets/css/navbar.css'
+        },
+        views: {
+          "navbar": {
+            templateUrl: "views/projectNavbar.html"
+          },
+          "content": {
+            templateUrl: "views/project.functionalSpecification.html"
+          }
+        }
+      })
+      .state('functionalSpecification.productRequirement', {
+        url: '/productRequirement',
+        templateUrl: "views/functionalSpecification/functionalSpecification.productRequirement.html"
+      })
+      .state('functionalSpecification.UCDiagram', {
+        url: '/UCDiagram',
+        templateUrl: "views/functionalSpecification/functionalSpecification.ucdiagram.html"
+      })
+      .state('functionalSpecification.UCDiagram.diagram', {
+        url: '/{ucdiagramId:int}',
+        templateUrl: "views/functionalSpecification/functionalSpecification.ucdiagram.diagram.html"
+      })
+      .state('functionalSpecification.implementation', {
+        url: '/implementation',
+        templateUrl: "views/functionalSpecification/functionalSpecification.implementation.html"
+      })
+      .state('requirementSpecification', {
+        abstract: true,
+        url: "/project/{projectId:int}/requirementSpecification",
+        data: {
+          css: 'assets/css/navbar.css'
+        },
+        views: {
+          "navbar": {
+            templateUrl: "views/projectNavbar.html"
+          },
+          "content": {
+            templateUrl: "views/project.requirementSpecification.html"
+          }
+        }
+      })
+      .state('requirementSpecification.projectIntroduction', {
+        url: '/introduction',
+        templateUrl: "views/requirementSpecification/requirementSpecification.projectIntroduction.html"
+      })
+      .state('requirementSpecification.needs', {
+        url: '/needToHave',
+        templateUrl: "views/requirementSpecification/requirementSpecification.needToHave.html"
+      })
+      .state('requirementSpecification.nice', {
+        url: '/niceToHave',
+        templateUrl: "views/requirementSpecification/requirementSpecification.niceToHave.html"
+      })
+      .state('requirementSpecification.result', {
+        url: '/result',
+        templateUrl: "views/requirementSpecification/requirementSpecification.result.html"
+      })
+      .state('requirementSpecification.productUse', {
+        url: '/productUse',
+        templateUrl: "views/requirementSpecification/requirementSpecification.productUse.html"
+      })
+      .state('requirementSpecification.actualState', {
+        url: '/actualState',
+        templateUrl: "views/requirementSpecification/requirementSpecification.actualState.html"
+      })
+      .state('requirementSpecification.targetState', {
+        url: '/targetState',
+        templateUrl: "views/requirementSpecification/requirementSpecification.targetState.html"
+      })
+      .state('requirementSpecification.productData', {
+        url: '/productData',
+        templateUrl: "views/requirementSpecification/requirementSpecification.productData.html"
+      })
+      .state('requirementSpecification.nonfunctional', {
+        url: '/nonfunctional',
+        templateUrl: "views/requirementSpecification/requirementSpecification.nonfunctional.html"
+      })
+      .state('requirementSpecification.quality', {
+        url: '/quality',
+        templateUrl: "views/requirementSpecification/requirementSpecification.quality.html"
       });
   });
 

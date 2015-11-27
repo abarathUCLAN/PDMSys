@@ -1,0 +1,33 @@
+<div class="row gapForNavbar">
+  <div class="col-sm-3">
+    <div class="sidebar-nav">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a ui-sref="requirementSpecification.projectIntroduction">
+                Acceptance protocol
+                <span class="pull-right glyphicon glyphicon-menu-right"></span>
+              </a>
+            </li>
+            <li>
+              <a ui-sref="requirementSpecification.needs">
+                Project manual
+                <span class="pull-right glyphicon glyphicon-menu-right">
+              </a>
+            </li>
+            <li>
+              <a ui-sref="requirementSpecification.nice">
+                Nice to haves
+                <span class="pull-right glyphicon glyphicon-menu-right">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div ui-view></div>
+  </div>
+</div>

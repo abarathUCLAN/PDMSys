@@ -1,1 +1,273 @@
-effort estimation
+<div class="panel-body">
+  <label>Unadjusted Actor Weight (UAW):</label>
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 10%">Actor Classification</th>
+        <th style="width: 40%">Type of Actor</th>
+        <th style="width: 10%">Weight</th>
+        <th>Actor amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Simple</td>
+        <td>External system that must interact with the system using a well-defined API</td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>Average</td>
+        <td>External system that must interact with the system using standard communication protocols (e.g. TCP/IP, FTP, HTTP, database)</td>
+        <td>2</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>Complex</td>
+        <td>Human actor using a GUI application interface</td>
+        <td>3</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr/>
+  <label>Unadjusted Use Case Weight (UUCW):</label>
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 10%">Use Case Classification</th>
+        <th style="width: 40%">No. of Transactions</th>
+        <th style="width: 10%">Weight</th>
+        <th>Use Case amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Simple</td>
+        <td>1 to 3 transactions </td>
+        <td>5</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>Average</td>
+        <td>4 to 7 transactions</td>
+        <td>10</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>Complex</td>
+        <td>8 or more transactions</td>
+        <td>15</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr/>
+  <label>Technical Complexity Factor (TCF):</label>
+  <table class="table" style: "width: 100%">
+    <thead>
+      <tr>
+        <th style="width: 10%">Factor</th>
+        <th style="width: 40%">Description</th>
+        <th style="width: 10%">Weight</th>
+        <th>Value(0 (factor is irrelevant) and 5 (factor is essential))</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T1</td>
+        <td>Distributed system</td>
+        <td>2</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>T2</td>
+        <td>Response time/performance objectives</td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+        <td>T3</td>
+        <td>End-user efficiency/td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>T4</td>
+        <td>Internal processing complexity</td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>T5</td>
+        <td>Code reusability</td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>T6</td>
+        <td>Easy to install</td>
+        <td>0.5</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>T7</td>
+        <td>Easy to use</td>
+        <td>0.5</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>T8</td>
+        <td>Portability to other platforms</td>
+        <td>2</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>T9</td>
+        <td>System maintenance</td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>T10</td>
+        <td>Concurrent/parallel processing</td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>T11</td>
+        <td>Security features</td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>T12</td>
+        <td>Access for third parties</td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>T13</td>
+        <td>End user training</td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr/>
+  <label>Environmental Complexity Factor (ECF):</label>
+  <table class="table" style: "width: 100%">
+    <thead>
+      <tr>
+        <th style="width: 10%">Factor</th>
+        <th style="width: 40%">Description</th>
+        <th style="width: 10%">Weight</th>
+        <th>Value(0 (no experience) and 5 (expert))</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>E1</td>
+        <td>Familiarity with development process used</td>
+        <td>1.5</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>E2</td>
+        <td>Application experience</td>
+        <td>0.5</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+        <td>E3</td>
+        <td>Object-oriented experience of team</td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>E4</td>
+        <td>Lead analyst capability</td>
+        <td>0.5</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>E5</td>
+        <td>Motivation of the team</td>
+        <td>1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>E6</td>
+        <td>Stability of requirements</td>
+        <td>2</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>E7</td>
+        <td>Part-time staff</td>
+        <td>-1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+      <tr>
+        <td>E8</td>
+        <td>Difficult programming language</td>
+        <td>-1</td>
+        <td>
+          <input type="text" class="form-control" style="width: 10%">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr/>
+  <label>Adjusted Use-Case-Points:  <label id="ucp">123</label></label>
+</div>
