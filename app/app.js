@@ -144,6 +144,10 @@ pdmsys.run(
         url: '/effort',
         templateUrl: "views/preliminaryStudy/preliminaryStudy.effort.html"
       })
+      .state('preliminaryStudy.psp', {
+        url: '/psp',
+        templateUrl: "views/preliminaryStudy/preliminaryStudy.psp.html"
+      })
       .state('functionalSpecification', {
         abstract: true,
         url: "/project/{projectId:int}/functionalSpecification",
