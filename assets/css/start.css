@@ -1,0 +1,29 @@
+
+html{
+    min-height:100%;/* make sure it is at least as tall as the viewport */
+    position:relative;
+}
+
+header{
+ height: 1024px;
+}
+
+.login{
+  margin-top:3%;
+}
+
+.butt{
+  background-color: transparent;
+  border: 2px solid;
+  border-color: white;
+  padding: 2px,2px,2px,2px;
+  text-transform: uppercase;
+  line-height: 20px;
+  height: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.navilein{
+  padding-top: 7%;
+}

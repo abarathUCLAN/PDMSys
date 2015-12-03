@@ -32,7 +32,9 @@
         </ul>
       </div>
   </nav>
+
   <div class="gap" ui-view>
+    <div class="cont">
     <ul class="cbp-ig-grid">
       <li ng-repeat="project in projects">
         <a ng-href="#projects/{{ project.id }}">
@@ -46,5 +48,6 @@
         </a>
       </li>
   </div>
+</div>
   </div>
 </div>
