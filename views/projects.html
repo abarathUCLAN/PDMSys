@@ -1,13 +1,14 @@
-<div class="gap container" ui-view ng-controller="ProjectsCtrl">
+<div class="gap container" ui-view ng-controller="ProjectsCtrl" ng-init="getProjects()">
+  <div><strong>{{projectStatus}}</strong></div>
   <ul class="cbp-ig-grid">
     <li ng-repeat="project in projects">
-      <a ng-href="#projects/{{ project.id }}">
+      <a ui-sref="projectHome({projectId: project.id})">
         <span class="glyphicon glyphicon-folder-open glyphicon-size"></span>
         <h3 class="cbp-ig-title">{{ project.name }}</h3>
         <div class="cbp-ig-info">
           {{ project.description }}
           <hr> Completion of the documentation:
-          <strong> {{ project.completion }} % </strong>.
+          <strong> {{ project.acronym }} </strong>.
         </div>
       </a>
     </li>

@@ -2,12 +2,13 @@
   <div class="panel-heading">
     <div class="panel-title text-center">Member invitations</div>
   </div>
-
+  <div align="center" class="alert alert-warning" role="alert"><strong>WARNING!</strong> The invitations are only for unregistered PDMSys-users. if you want to add a registered user to your project, you can do that at your project home page.</div>
   <div class="panel-body">
     <table class="table">
       <thead>
         <tr>
-          <th>Name</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
           <th>Email</th>
           <th></th>
           <th>Type</th>
@@ -19,8 +20,12 @@
     </table>
     <form name="form" novalidate>
       <div class="form-group">
-        <label>Name:</label>
-        <input type="text" class="form-control" ng-model="invitation.name" required>
+        <label>Firstname:</label>
+        <input type="text" class="form-control" ng-model="invitation.firstname" required>
+      </div>
+      <div class="form-group">
+        <label>Lastname:</label>
+        <input type="text" class="form-control" ng-model="invitation.lastname" required>
       </div>
       <div class="form-group">
         <label>Email:</label>

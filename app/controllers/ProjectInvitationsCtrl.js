@@ -6,17 +6,20 @@ pdmsys.controller('ProjectInvitationsCtrl',
     $scope.invitations = {
       invitations: [{
         id: 1,
-        name: 'Alexander Barath',
+        firstname: 'Alexander',
+        lastname: 'Barath',
         email: 'barath1058@gmail.com',
         type: '2'
       }, {
         id: 2,
-        name: 'Stefanie Gwiasda',
+        firstname: 'Stefanie',
+        lastname: 'Gwiasda',
         email: 'sg@gmail.com',
         type: '1'
       }, {
         id: 3,
-        name: 'Stefan Isakovic',
+        firstname: 'Stefan',
+        lastname: 'Isakovic',
         email: 'isak@gmail.com',
         type: '0'
       }],
@@ -47,7 +50,8 @@ pdmsys.controller('ProjectInvitationsCtrl',
 
     $scope.addInvitation = function(invitation) {
       var newInvitation = {
-        name: invitation.name,
+        firstname: invitation.firstname,
+        lastname: invitation.lastname,
         email: invitation.email,
         type: invitation.type,
         id: $scope.invitations.invitations.length

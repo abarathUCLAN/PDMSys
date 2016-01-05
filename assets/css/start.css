@@ -27,3 +27,11 @@ header{
 .navilein{
   padding-top: 7%;
 }
+
+.errorMessage {
+  color: red;
+}
+
+.registerMessage {
+  color: green;
+}

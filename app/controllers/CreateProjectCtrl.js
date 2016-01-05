@@ -1,12 +1,18 @@
 'use strict';
 
 pdmsys.controller('CreateProjectCtrl',
-  function CreateProjectCtrl($scope) {
+  function CreateProjectCtrl($scope, projectFactory, invitationFactory, $state) {
     $scope.openedViewTab = 1;
 
     $scope.projectInformation = {};
 
-    $scope.projectInvitations = {};
+    $scope.projectInvitations = undefined;
+
+    $scope.projectCreated = false;
+
+    $scope.projectHomeButton = false;
+
+    $scope.projectId = undefined;
 
     $scope.viewsTabViewFnc = function(value) {
       if (value == this.openedViewTab)
@@ -27,5 +33,34 @@ pdmsys.controller('CreateProjectCtrl',
     $scope.$on('oneViewTabBack', function(event, data) {
       $scope.openedViewTab--;
     });
+
+    $scope.createProject = function () {
+      projectFactory.insertProject($scope.projectInformation)
+      .then(function (response) {
+          if(!angular.equals({}, $scope.projectInvitations)) {
+            $scope.projectCreated = true;
+            $scope.projectHomeButton = true;
+            $scope.projectId = response.data;
+            $scope.createInvitations(response.data);
+          } else
+            $$scope.projectHome();
+      }, function (error) {
+          $scope.createProjectStatus = "Project couldn't be created.";
+      })
+    };
+
+    $scope.createInvitations = function(projectId) {
+      invitationFactory.insertInvitation(projectId, $scope.projectInvitations)
+      .then(function (response) {
+         $scope.projectHome();
+      }, function (error) {
+          $scope.projectInvitations = error.data;
+          $scope.createProjectStatus = "Project and PDMSys-invitations created except the already registered/invited users above.";
+      })
+    };
+
+    $scope.projectHome = function() {
+      $state.go('projectHome', {projectId: $scope.projectId});
+    };
 
   });
