@@ -43,14 +43,14 @@ pdmsys.controller('CreateProjectCtrl',
             $scope.projectId = response.data;
             $scope.createInvitations(response.data);
           } else
-            $$scope.projectHome();
+            $scope.projectHome();
       }, function (error) {
           $scope.createProjectStatus = "Project couldn't be created.";
       })
     };
 
     $scope.createInvitations = function(projectId) {
-      invitationFactory.insertInvitation(projectId, $scope.projectInvitations)
+      invitationFactory.insertInvitation($scope.projectInvitations, projectId)
       .then(function (response) {
          $scope.projectHome();
       }, function (error) {

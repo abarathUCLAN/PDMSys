@@ -4,12 +4,14 @@ pdmsys.controller('ProjectsCtrl',
   function ProjectsCtrl($scope, projectFactory) {
     $scope.projects = {};
 
-    $scope.getProjects = function () {
-      projectFactory.getAllProjects()
-      .then(function (response) {
+    $scope.projectStatus;
+
+    $scope.getProjects = function() {
+      projectFactory.getProjects()
+        .then(function(response) {
           $scope.projects = response.data;
-      },function (error) {
+        }, function(error) {
           $scope.projectStatus = 'No projects found.';
-      })};
-      
+        })
+    };
   });

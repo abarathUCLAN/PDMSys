@@ -1,3 +1,7 @@
+.gap {
+  margin-top: 150px;
+}
+
 .node {
     cursor: pointer;
 }
