@@ -60,7 +60,7 @@ pdmsys.controller('CreateProjectCtrl',
     };
 
     $scope.projectHome = function() {
-      $state.go('projectHome', {projectId: $scope.projectId});
+      $state.go('projectHome.dashboard', {projectId: $scope.projectId});
     };
 
   });

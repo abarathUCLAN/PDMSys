@@ -1,6 +1,6 @@
 'use strict';
 
-var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'satellizer', 'uiRouterStyles', 'pdmsys.milestone']);
+var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'ngDialog', 'satellizer', 'uiRouterStyles', 'pdmsys.milestone']);
 
 pdmsys.run(
     ['$rootScope', '$state', '$stateParams', '$auth',
@@ -113,6 +113,7 @@ pdmsys.run(
       })
       .state('projectHome', {
         url: "/project/{projectId:int}",
+        abstract: true,
         data: {
           css: ['assets/css/projectHome.css', 'assets/css/navbar.css']
         },
@@ -121,8 +122,15 @@ pdmsys.run(
             templateUrl: "views/projectNavbar.html"
           },
           "content": {
-            templateUrl: "views/projectHome.html"
+            templateUrl: "views/project.projectHome.html"
           }
+        }
+      })
+      .state('projectHome.dashboard', {
+        url: '/dashboard',
+        templateUrl: "views/projectHome/projectHome.dashboard.html",
+        data: {
+          css: 'assets/css/input.css'
         }
       })
       .state('preliminaryStudy', {
@@ -165,10 +173,6 @@ pdmsys.run(
         url: '/effort',
         templateUrl: "views/preliminaryStudy/preliminaryStudy.effort.html"
       })
-      .state('preliminaryStudy.psp', {
-        url: '/psp',
-        templateUrl: "views/preliminaryStudy/preliminaryStudy.psp.html"
-      })
       .state('functionalSpecification', {
         abstract: true,
         url: "/project/{projectId:int}/functionalSpecification",
@@ -190,14 +194,6 @@ pdmsys.run(
         data: {
           css: 'assets/css/input.css'
         }
-      })
-      .state('functionalSpecification.UCDiagram', {
-        url: '/UCDiagram',
-        templateUrl: "views/functionalSpecification/functionalSpecification.ucdiagram.html"
-      })
-      .state('functionalSpecification.UCDiagram.diagram', {
-        url: '/{ucdiagramId:int}',
-        templateUrl: "views/functionalSpecification/functionalSpecification.ucdiagram.diagram.html"
       })
       .state('functionalSpecification.implementation', {
         url: '/implementation',
@@ -290,5 +286,77 @@ pdmsys.run(
         data: {
           css: 'assets/css/input.css'
         }
-      });
+      })
+      .state('finalization', {
+        abstract: true,
+        url: "/project/{projectId:int}/finalization",
+        data: {
+          css: 'assets/css/navbar.css'
+        },
+        views: {
+          "navbar": {
+            templateUrl: "views/projectNavbar.html"
+          },
+          "content": {
+            templateUrl: "views/project.finalization.html"
+          }
+        }
+      })
+      .state('finalization.acceptanceProtocol', {
+        url: '/acceptanceProtocol',
+        templateUrl: "views/finalization/finalization.acceptanceProtocol.html",
+        data: {
+          css: 'assets/css/input.css'
+        }
+      })
+      .state('finalization.projectManual', {
+        url: '/projectManual',
+        templateUrl: "views/finalization/finalization.projectManual.html",
+        data: {
+          css: 'assets/css/input.css'
+        }
+      })
+      .state('miscellaneous', {
+        abstract: true,
+        url: "/project/{projectId:int}/miscellaneous",
+        data: {
+          css: 'assets/css/navbar.css'
+        },
+        views: {
+          "navbar": {
+            templateUrl: "views/projectNavbar.html"
+          },
+          "content": {
+            templateUrl: "views/project.miscellaneous.html"
+          }
+        }
+      })
+      .state('miscellaneous.presentations', {
+        url: '/presentations',
+        templateUrl: "views/miscellaneous/miscellaneous.presentations.html",
+        data: {
+          css: 'assets/css/input.css'
+        }
+      })
+      .state('miscellaneous.changeRequests', {
+        url: '/changeRequests',
+        templateUrl: "views/miscellaneous/miscellaneous.changeRequests.html",
+        data: {
+          css: 'assets/css/input.css'
+        }
+      })
+      .state('miscellaneous.codeStyleGuide', {
+        url: '/codeStyleGuide',
+        templateUrl: "views/miscellaneous/miscellaneous.codeStyleGuide.html",
+        data: {
+          css: 'assets/css/input.css'
+        }
+      })
+      .state('miscellaneous.monthlyReports', {
+        url: '/monthlyReports',
+        templateUrl: "views/miscellaneous/miscellaneous.monthlyReports.html",
+        data: {
+          css: 'assets/css/input.css'
+        }
+      })
   });

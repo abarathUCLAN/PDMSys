@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('pdmsys')
     .factory('userFactory', ['$http', function($http) {
 

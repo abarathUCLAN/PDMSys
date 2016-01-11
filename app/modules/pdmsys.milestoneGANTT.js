@@ -20,21 +20,268 @@ angular.module('pdmsys.milestone', [, 'gantt', // angular-gantt.
     var objectModel;
     var dataToRemove;
 
-    $scope.tasknew = {
-      name: 'swag',
-      color: '#93C47D',
-      from: '2013-10-10T09:00:00',
-      to: '2013-10-15T10:00:00',
-      data: 'Can contain any custom data or object'
+    $scope.data = [
+      // Order is optional. If not specified it will be assigned automatically
+      {
+        name: 'Milestones',
+        height: '3em',
+        sortable: false,
+        classes: 'gantt-row-milestone',
+        color: '#45607D',
+        tasks: [
+          // Dates can be specified as string, timestamp or javascript date object. The data attribute can be used to attach a custom object
+          {
+            name: 'Kickoff',
+            color: '#93C47D',
+            from: '2016-10-07T09:00:00',
+            to: '2016-10-07T10:00:00'
+          }, {
+            name: 'Concept approval',
+            color: '#93C47D',
+            from: new Date(2016, 9, 18, 18, 0, 0),
+            to: new Date(2016, 9, 18, 18, 0, 0)
+          }, {
+            name: 'Development finished',
+            color: '#93C47D',
+            from: new Date(2016, 10, 15, 18, 0, 0),
+            to: new Date(2016, 10, 15, 18, 0, 0)
+          }, {
+            name: 'Shop is running',
+            color: '#93C47D',
+            from: new Date(2016, 10, 22, 12, 0, 0),
+            to: new Date(2016, 10, 22, 12, 0, 0)
+          }, {
+            name: 'Go-live',
+            color: '#93C47D',
+            from: new Date(2016, 10, 29, 16, 0, 0),
+            to: new Date(2016, 10, 29, 16, 0, 0)
+          }
+        ],
+      }, {
+        name: 'Status meetings',
+        tasks: [{
+          name: 'Demo #1',
+          color: '#9FC5F8',
+          from: new Date(2016, 9, 25, 15, 0, 0),
+          to: new Date(2016, 9, 25, 18, 30, 0)
+        }, {
+          name: 'Demo #2',
+          color: '#9FC5F8',
+          from: new Date(2016, 10, 1, 15, 0, 0),
+          to: new Date(2016, 10, 1, 18, 0, 0)
+        }, {
+          name: 'Demo #3',
+          color: '#9FC5F8',
+          from: new Date(2016, 10, 8, 15, 0, 0),
+          to: new Date(2016, 10, 8, 18, 0, 0)
+        }, {
+          name: 'Demo #4',
+          color: '#9FC5F8',
+          from: new Date(2016, 10, 15, 15, 0, 0),
+          to: new Date(2016, 10, 15, 18, 0, 0)
+        }, {
+          name: 'Demo #5',
+          color: '#9FC5F8',
+          from: new Date(2016, 10, 24, 9, 0, 0),
+          to: new Date(2016, 10, 24, 10, 0, 0)
+        }]
+      }, {
+        name: 'Kickoff',
+        tasks: [{
+          name: 'Day 1',
+          color: '#9FC5F8',
+          from: new Date(2016, 9, 7, 9, 0, 0),
+          to: new Date(2016, 9, 7, 17, 0, 0),
+          progress: {
+            percent: 100,
+            color: '#3C8CF8'
+          },
+          movable: false
+        }, {
+          name: 'Day 2',
+          color: '#9FC5F8',
+          from: new Date(2016, 9, 8, 9, 0, 0),
+          to: new Date(2016, 9, 8, 17, 0, 0),
+          progress: {
+            percent: 100,
+            color: '#3C8CF8'
+          }
+        }, {
+          name: 'Day 3',
+          color: '#9FC5F8',
+          from: new Date(2016, 9, 9, 8, 30, 0),
+          to: new Date(2016, 9, 9, 12, 0, 0),
+          progress: {
+            percent: 100,
+            color: '#3C8CF8'
+          }
+        }]
+      }, {
+        name: 'Create concept',
+        tasks: [{
+          name: 'Create concept',
+          priority: 20,
+          content: '<i class="fa fa-cog" ng-click="scope.handleTaskIconClick(task.model)"></i> {{task.model.name}}',
+          color: '#F1C232',
+          from: new Date(2016, 9, 10, 8, 0, 0),
+          to: new Date(2016, 9, 16, 18, 0, 0),
+          est: new Date(2016, 9, 8, 8, 0, 0),
+          lct: new Date(2016, 9, 18, 20, 0, 0),
+          progress: 100
+        }]
+      }, {
+        name: 'Finalize concept',
+        tasks: [{
+          name: 'Finalize concept',
+          priority: 10,
+          color: '#F1C232',
+          from: new Date(2016, 9, 17, 8, 0, 0),
+          to: new Date(2016, 9, 18, 18, 0, 0),
+          progress: 100
+        }]
+      }, {
+        name: 'Development',
+        children: ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4'],
+        content: '<i class="fa fa-file-code-o" ng-click="scope.handleRowIconClick(row.model)"></i> {{row.model.name}}'
+      }, {
+        name: 'Sprint 1',
+        tooltips: false,
+        tasks: [{
+          name: 'Product list view',
+          color: '#F1C232',
+          from: new Date(2016, 9, 21, 8, 0, 0),
+          to: new Date(2016, 9, 25, 15, 0, 0),
+          progress: 25
+        }]
+      }, {
+        name: 'Sprint 2',
+        tasks: [{
+          name: 'Order basket',
+          color: '#F1C232',
+          from: new Date(2016, 9, 28, 8, 0, 0),
+          to: new Date(2016, 10, 1, 15, 0, 0)
+        }]
+      }, {
+        name: 'Sprint 3',
+        tasks: [{
+          name: 'Checkout',
+          color: '#F1C232',
+          from: new Date(2016, 10, 4, 8, 0, 0),
+          to: new Date(2016, 10, 8, 15, 0, 0)
+        }]
+      }, {
+        name: 'Sprint 4',
+        tasks: [{
+          name: 'Login & Signup & Admin Views',
+          color: '#F1C232',
+          from: new Date(2016, 10, 11, 8, 0, 0),
+          to: new Date(2016, 10, 15, 15, 0, 0)
+        }]
+      }, {
+        name: 'Hosting'
+      }, {
+        name: 'Setup',
+        tasks: [{
+          name: 'HW',
+          color: '#F1C232',
+          from: new Date(2016, 10, 18, 8, 0, 0),
+          to: new Date(2016, 10, 18, 12, 0, 0)
+        }]
+      }, {
+        name: 'Config',
+        tasks: [{
+          name: 'SW / DNS/ Backups',
+          color: '#F1C232',
+          from: new Date(2016, 10, 18, 12, 0, 0),
+          to: new Date(2016, 10, 21, 18, 0, 0)
+        }]
+      }, {
+        name: 'Server',
+        parent: 'Hosting',
+        children: ['Setup', 'Config']
+      }, {
+        name: 'Deployment',
+        parent: 'Hosting',
+        tasks: [{
+          name: 'Depl. & Final testing',
+          color: '#F1C232',
+          from: new Date(2016, 10, 21, 8, 0, 0),
+          to: new Date(2016, 10, 22, 12, 0, 0),
+          'classes': 'gantt-task-deployment'
+        }]
+      }, {
+        name: 'Workshop',
+        tasks: [{
+          name: 'On-side education',
+          color: '#F1C232',
+          from: new Date(2016, 10, 24, 9, 0, 0),
+          to: new Date(2016, 10, 25, 15, 0, 0)
+        }]
+      }, {
+        name: 'Content',
+        tasks: [{
+          name: 'Supervise content creation',
+          color: '#F1C232',
+          from: new Date(2016, 10, 26, 9, 0, 0),
+          to: new Date(2016, 10, 29, 16, 0, 0)
+        }]
+      }, {
+        name: 'Documentation',
+        tasks: [{
+          name: 'Technical/User documentation',
+          color: '#F1C232',
+          from: new Date(2016, 10, 26, 8, 0, 0),
+          to: new Date(2016, 10, 28, 18, 0, 0)
+        }]
+      }
+    ];
+
+    $scope.dropdownOptions = [];
+
+    $scope.taskOptions = [];
+
+    $scope.initMilestoneAndTaskDropdown = function() {
+      for (var i = 0; i < $scope.data.length; i++) {
+        var option = {
+          "id": i,
+          "name": $scope.data[i].name
+        };
+        $scope.dropdownOptions.push(option);
+        if ($scope.data[i].tasks != undefined) {
+          for (var a = 0; a < $scope.data[i].tasks.length; a++) {
+            var task = {
+              "name": $scope.data[i].tasks[a].name
+            };
+            $scope.taskOptions.push(task);
+          }
+        }
+      }
+    };
+
+
+    $scope.deleteTask = function(task) {
+      for (var i = 0; i < $scope.data.length; i++) {
+        if ($scope.data[i].tasks != undefined) {
+          for (var a = 0; a < $scope.data[i].tasks.length; a++) {
+            if ($scope.data[i].tasks[a].name == task.task) {
+              $scope.data[i].tasks.splice(a, 1);
+            }
+          }
+        }
+      }
     };
 
     $scope.addTask = function(task) {
-      console.log($scope.data);
-      var val = $scope.tasknew;
-      val.name = task.name;
-      val.from = task.fromDate;
-      val.to = task.toDate;
-      $scope.data[0].tasks.push(val);
+      var newTask = {};
+      newTask.name = task.name;
+      if (task.milestone == 0)
+        newTask.color = '#93C47D';
+      else
+        newTask.color = '#F1C232';
+
+      newTask.from = new Date(task.from);
+      newTask.to = new Date(task.to);
+      $scope.data[task.milestone].tasks.push(newTask);
     };
 
     $scope.addMilestone = function(milestone) {
@@ -44,6 +291,16 @@ angular.module('pdmsys.milestone', [, 'gantt', // angular-gantt.
       };
       val.name = milestone.name;
       $scope.data.push(val);
+      $scope.dropdownOptions.push(val);
+    };
+
+    $scope.deleteMilestone = function(milestone) {
+      for (var i = 0; i < $scope.data.length; i++) {
+        if ($scope.data[i].name == milestone.milestone) {
+          $scope.data.splice(i, 1);
+          $scope.dropdownOptions.splice(i, 1);
+        }
+      }
     };
 
 
@@ -139,43 +396,43 @@ angular.module('pdmsys.milestone', [, 'gantt', // angular-gantt.
 
         api.core.on.ready($scope, function() {
           // Log various events to console
-          api.scroll.on.scroll($scope, logScrollEvent);
-          api.core.on.ready($scope, logReadyEvent);
+          api.scroll.on.scroll($scope);
+          api.core.on.ready($scope);
 
-          api.data.on.remove($scope, addEventName('data.on.remove', logDataEvent));
-          api.data.on.load($scope, addEventName('data.on.load', logDataEvent));
-          api.data.on.clear($scope, addEventName('data.on.clear', logDataEvent));
-          api.data.on.change($scope, addEventName('data.on.change', logDataEvent));
+          api.data.on.remove($scope, addEventName('data.on.remove'));
+          api.data.on.load($scope, addEventName('data.on.load'));
+          api.data.on.clear($scope, addEventName('data.on.clear'));
+          api.data.on.change($scope, addEventName('data.on.change'));
 
-          api.tasks.on.add($scope, addEventName('tasks.on.add', logTaskEvent));
-          api.tasks.on.change($scope, addEventName('tasks.on.change', logTaskEvent));
-          api.tasks.on.rowChange($scope, addEventName('tasks.on.rowChange', logTaskEvent));
-          api.tasks.on.remove($scope, addEventName('tasks.on.remove', logTaskEvent));
+          api.tasks.on.add($scope, addEventName('tasks.on.add'));
+          api.tasks.on.change($scope, addEventName('tasks.on.change'));
+          api.tasks.on.rowChange($scope, addEventName('tasks.on.rowChange'));
+          api.tasks.on.remove($scope, addEventName('tasks.on.remove'));
 
           if (api.tasks.on.moveBegin) {
-            api.tasks.on.moveBegin($scope, addEventName('tasks.on.moveBegin', logTaskEvent));
+            api.tasks.on.moveBegin($scope, addEventName('tasks.on.moveBegin'));
             //api.tasks.on.move($scope, addEventName('tasks.on.move', logTaskEvent));
-            api.tasks.on.moveEnd($scope, addEventName('tasks.on.moveEnd', logTaskEvent));
+            api.tasks.on.moveEnd($scope, addEventName('tasks.on.moveEnd'));
 
-            api.tasks.on.resizeBegin($scope, addEventName('tasks.on.resizeBegin', logTaskEvent));
+            api.tasks.on.resizeBegin($scope, addEventName('tasks.on.resizeBegin'));
             //api.tasks.on.resize($scope, addEventName('tasks.on.resize', logTaskEvent));
-            api.tasks.on.resizeEnd($scope, addEventName('tasks.on.resizeEnd', logTaskEvent));
+            api.tasks.on.resizeEnd($scope, addEventName('tasks.on.resizeEnd'));
           }
 
-          api.rows.on.add($scope, addEventName('rows.on.add', logRowEvent));
-          api.rows.on.change($scope, addEventName('rows.on.change', logRowEvent));
-          api.rows.on.move($scope, addEventName('rows.on.move', logRowEvent));
-          api.rows.on.remove($scope, addEventName('rows.on.remove', logRowEvent));
+          api.rows.on.add($scope, addEventName('rows.on.add'));
+          api.rows.on.change($scope, addEventName('rows.on.change'));
+          api.rows.on.move($scope, addEventName('rows.on.move'));
+          api.rows.on.remove($scope, addEventName('rows.on.remove'));
 
-          api.side.on.resizeBegin($scope, addEventName('labels.on.resizeBegin', logLabelsEvent));
+          api.side.on.resizeBegin($scope, addEventName('labels.on.resizeBegin'));
           //api.side.on.resize($scope, addEventName('labels.on.resize', logLabelsEvent));
-          api.side.on.resizeEnd($scope, addEventName('labels.on.resizeEnd', logLabelsEvent));
+          api.side.on.resizeEnd($scope, addEventName('labels.on.resizeEnd'));
 
-          api.timespans.on.add($scope, addEventName('timespans.on.add', logTimespanEvent));
-          api.columns.on.generate($scope, logColumnsGenerateEvent);
+          api.timespans.on.add($scope, addEventName('timespans.on.add'));
+          api.columns.on.generate($scope);
 
-          api.rows.on.filter($scope, logRowsFilterEvent);
-          api.tasks.on.filter($scope, logTasksFilterEvent);
+          api.rows.on.filter($scope);
+          api.tasks.on.filter($scope);
 
           api.data.on.change($scope, function(newData) {
 
@@ -190,7 +447,6 @@ angular.module('pdmsys.milestone', [, 'gantt', // angular-gantt.
             if (directiveName === 'ganttTask') {
               element.bind('click', function(event) {
                 event.stopPropagation();
-                logTaskEvent('task-click', directiveScope.task);
               });
               element.bind('mousedown touchstart', function(event) {
                 event.stopPropagation();
@@ -205,7 +461,6 @@ angular.module('pdmsys.milestone', [, 'gantt', // angular-gantt.
             } else if (directiveName === 'ganttRow') {
               element.bind('click', function(event) {
                 event.stopPropagation();
-                logRowEvent('row-click', directiveScope.row);
               });
               element.bind('mousedown touchstart', function(event) {
                 event.stopPropagation();
@@ -213,9 +468,7 @@ angular.module('pdmsys.milestone', [, 'gantt', // angular-gantt.
                 $scope.$digest();
               });
             } else if (directiveName === 'ganttRowLabel') {
-              element.bind('click', function() {
-                logRowEvent('row-label-click', directiveScope.row);
-              });
+              element.bind('click', function() {});
               element.bind('mousedown touchstart', function() {
                 $scope.live.row = directiveScope.row.model;
                 $scope.$digest();
@@ -293,8 +546,8 @@ angular.module('pdmsys.milestone', [, 'gantt', // angular-gantt.
       dataToRemove = undefined;
 
       $scope.timespans = {
-        from: new Date(2013, 9, 21, 8, 0, 0),
-        to: new Date(2013, 9, 25, 15, 0, 0),
+        from: new Date(2016, 9, 21, 8, 0, 0),
+        to: new Date(2016, 9, 25, 15, 0, 0),
         name: 'Sprint 1 Timespan'
           //priority: undefined,
           //classes: [],
@@ -396,286 +649,50 @@ angular.module('pdmsys.milestone', [, 'gantt', // angular-gantt.
       $scope.live.rowJson = angular.toJson($scope.live.row, true);
     });
 
-    // Event handler
-    var logScrollEvent = function(left, date, direction) {
-      if (date !== undefined) {
-        $log.info('[Event] api.on.scroll: ' + left + ', ' + (date === undefined ? 'undefined' : date.format()) + ', ' + direction);
-      }
-    };
-
-    // Event handler
-    var logDataEvent = function(eventName) {
-      $log.info('[Event] ' + eventName);
-    };
-
-    // Event handler
-    var logTaskEvent = function(eventName, task) {
-      $log.info('[Event] ' + eventName + ': ' + task.model.name);
-    };
-
-    // Event handler
-    var logRowEvent = function(eventName, row) {
-      $log.info('[Event] ' + eventName + ': ' + row.model.name);
-    };
-
-    // Event handler
-    var logTimespanEvent = function(eventName, timespan) {
-      $log.info('[Event] ' + eventName + ': ' + timespan.model.name);
-    };
-
-    // Event handler
-    var logLabelsEvent = function(eventName, width) {
-      $log.info('[Event] ' + eventName + ': ' + width);
-    };
-
-    // Event handler
-    var logColumnsGenerateEvent = function(columns, headers) {
-      $log.info('[Event] ' + 'columns.on.generate' + ': ' + columns.length + ' column(s), ' + headers.length + ' header(s)');
-    };
-
-    // Event handler
-    var logRowsFilterEvent = function(rows, filteredRows) {
-      $log.info('[Event] rows.on.filter: ' + filteredRows.length + '/' + rows.length + ' rows displayed.');
-    };
-
-    // Event handler
-    var logTasksFilterEvent = function(tasks, filteredTasks) {
-      $log.info('[Event] tasks.on.filter: ' + filteredTasks.length + '/' + tasks.length + ' tasks displayed.');
-    };
-
-    // Event handler
-    var logReadyEvent = function() {
-      $log.info('[Event] core.on.ready');
-    };
-
     // Event utility function
     var addEventName = function(eventName, func) {
       return function(data) {
-        return func(eventName, data);
+        //  return func(eventName, data);
       };
     };
+  }]).directive('modal', function() {
+    return {
+      template: '<div class="modal fade">' +
+        '<div class="modal-dialog">' +
+        '<div class="modal-content">' +
+        '<div class="modal-header">' +
+        '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+        '<h4 class="modal-title">{{ title }}</h4>' +
+        '</div>' +
+        '<div class="modal-body" ng-transclude></div>' +
+        '</div>' +
+        '</div>' +
+        '</div>',
+      restrict: 'E',
+      transclude: true,
+      replace: true,
+      scope: true,
+      link: function postLink(scope, element, attrs) {
+        scope.title = attrs.title;
 
+        scope.$watch(attrs.visible, function(value) {
+          if (value == true)
+            $(element).modal('show');
+          else
+            $(element).modal('hide');
+        });
 
-    $scope.data = [
-      // Order is optional. If not specified it will be assigned automatically
-      {
-        name: 'Milestones',
-        height: '3em',
-        sortable: false,
-        classes: 'gantt-row-milestone',
-        color: '#45607D',
-        tasks: [
-          // Dates can be specified as string, timestamp or javascript date object. The data attribute can be used to attach a custom object
-          {
-            name: 'Kickoff',
-            color: '#93C47D',
-            from: '2013-10-07T09:00:00',
-            to: '2013-10-07T10:00:00',
-            data: 'Can contain any custom data or object'
-          }, {
-            name: 'Concept approval',
-            color: '#93C47D',
-            from: new Date(2013, 9, 18, 18, 0, 0),
-            to: new Date(2013, 9, 18, 18, 0, 0),
-            est: new Date(2013, 9, 16, 7, 0, 0),
-            lct: new Date(2013, 9, 19, 0, 0, 0)
-          }, {
-            name: 'Development finished',
-            color: '#93C47D',
-            from: new Date(2013, 10, 15, 18, 0, 0),
-            to: new Date(2013, 10, 15, 18, 0, 0)
-          }, {
-            name: 'Shop is running',
-            color: '#93C47D',
-            from: new Date(2013, 10, 22, 12, 0, 0),
-            to: new Date(2013, 10, 22, 12, 0, 0)
-          }, {
-            name: 'Go-live',
-            color: '#93C47D',
-            from: new Date(2013, 10, 29, 16, 0, 0),
-            to: new Date(2013, 10, 29, 16, 0, 0)
-          }
-        ],
-        data: 'Can contain any custom data or object'
-      }, {
-        name: 'Status meetings',
-        tasks: [{
-          name: 'Demo #1',
-          color: '#9FC5F8',
-          from: new Date(2013, 9, 25, 15, 0, 0),
-          to: new Date(2013, 9, 25, 18, 30, 0)
-        }, {
-          name: 'Demo #2',
-          color: '#9FC5F8',
-          from: new Date(2013, 10, 1, 15, 0, 0),
-          to: new Date(2013, 10, 1, 18, 0, 0)
-        }, {
-          name: 'Demo #3',
-          color: '#9FC5F8',
-          from: new Date(2013, 10, 8, 15, 0, 0),
-          to: new Date(2013, 10, 8, 18, 0, 0)
-        }, {
-          name: 'Demo #4',
-          color: '#9FC5F8',
-          from: new Date(2013, 10, 15, 15, 0, 0),
-          to: new Date(2013, 10, 15, 18, 0, 0)
-        }, {
-          name: 'Demo #5',
-          color: '#9FC5F8',
-          from: new Date(2013, 10, 24, 9, 0, 0),
-          to: new Date(2013, 10, 24, 10, 0, 0)
-        }]
-      }, {
-        name: 'Kickoff',
-        movable: {
-          allowResizing: false
-        },
-        tasks: [{
-          name: 'Day 1',
-          color: '#9FC5F8',
-          from: new Date(2013, 9, 7, 9, 0, 0),
-          to: new Date(2013, 9, 7, 17, 0, 0),
-          progress: {
-            percent: 100,
-            color: '#3C8CF8'
-          },
-          movable: false
-        }, {
-          name: 'Day 2',
-          color: '#9FC5F8',
-          from: new Date(2013, 9, 8, 9, 0, 0),
-          to: new Date(2013, 9, 8, 17, 0, 0),
-          progress: {
-            percent: 100,
-            color: '#3C8CF8'
-          }
-        }, {
-          name: 'Day 3',
-          color: '#9FC5F8',
-          from: new Date(2013, 9, 9, 8, 30, 0),
-          to: new Date(2013, 9, 9, 12, 0, 0),
-          progress: {
-            percent: 100,
-            color: '#3C8CF8'
-          }
-        }]
-      }, {
-        name: 'Create concept',
-        tasks: [{
-          name: 'Create concept',
-          priority: 20,
-          content: '<i class="fa fa-cog" ng-click="scope.handleTaskIconClick(task.model)"></i> {{task.model.name}}',
-          color: '#F1C232',
-          from: new Date(2013, 9, 10, 8, 0, 0),
-          to: new Date(2013, 9, 16, 18, 0, 0),
-          est: new Date(2013, 9, 8, 8, 0, 0),
-          lct: new Date(2013, 9, 18, 20, 0, 0),
-          progress: 100
-        }]
-      }, {
-        name: 'Finalize concept',
-        tasks: [{
-          name: 'Finalize concept',
-          priority: 10,
-          color: '#F1C232',
-          from: new Date(2013, 9, 17, 8, 0, 0),
-          to: new Date(2013, 9, 18, 18, 0, 0),
-          progress: 100
-        }]
-      }, {
-        name: 'Development',
-        children: ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4'],
-        content: '<i class="fa fa-file-code-o" ng-click="scope.handleRowIconClick(row.model)"></i> {{row.model.name}}'
-      }, {
-        name: 'Sprint 1',
-        tooltips: false,
-        tasks: [{
-          name: 'Product list view',
-          color: '#F1C232',
-          from: new Date(2013, 9, 21, 8, 0, 0),
-          to: new Date(2013, 9, 25, 15, 0, 0),
-          progress: 25
-        }]
-      }, {
-        name: 'Sprint 2',
-        tasks: [{
-          name: 'Order basket',
-          color: '#F1C232',
-          from: new Date(2013, 9, 28, 8, 0, 0),
-          to: new Date(2013, 10, 1, 15, 0, 0)
-        }]
-      }, {
-        name: 'Sprint 3',
-        tasks: [{
-          name: 'Checkout',
-          color: '#F1C232',
-          from: new Date(2013, 10, 4, 8, 0, 0),
-          to: new Date(2013, 10, 8, 15, 0, 0)
-        }]
-      }, {
-        name: 'Sprint 4',
-        tasks: [{
-          name: 'Login & Signup & Admin Views',
-          color: '#F1C232',
-          from: new Date(2013, 10, 11, 8, 0, 0),
-          to: new Date(2013, 10, 15, 15, 0, 0)
-        }]
-      }, {
-        name: 'Hosting'
-      }, {
-        name: 'Setup',
-        tasks: [{
-          name: 'HW',
-          color: '#F1C232',
-          from: new Date(2013, 10, 18, 8, 0, 0),
-          to: new Date(2013, 10, 18, 12, 0, 0)
-        }]
-      }, {
-        name: 'Config',
-        tasks: [{
-          name: 'SW / DNS/ Backups',
-          color: '#F1C232',
-          from: new Date(2013, 10, 18, 12, 0, 0),
-          to: new Date(2013, 10, 21, 18, 0, 0)
-        }]
-      }, {
-        name: 'Server',
-        parent: 'Hosting',
-        children: ['Setup', 'Config']
-      }, {
-        name: 'Deployment',
-        parent: 'Hosting',
-        tasks: [{
-          name: 'Depl. & Final testing',
-          color: '#F1C232',
-          from: new Date(2013, 10, 21, 8, 0, 0),
-          to: new Date(2013, 10, 22, 12, 0, 0),
-          'classes': 'gantt-task-deployment'
-        }]
-      }, {
-        name: 'Workshop',
-        tasks: [{
-          name: 'On-side education',
-          color: '#F1C232',
-          from: new Date(2013, 10, 24, 9, 0, 0),
-          to: new Date(2013, 10, 25, 15, 0, 0)
-        }]
-      }, {
-        name: 'Content',
-        tasks: [{
-          name: 'Supervise content creation',
-          color: '#F1C232',
-          from: new Date(2013, 10, 26, 9, 0, 0),
-          to: new Date(2013, 10, 29, 16, 0, 0)
-        }]
-      }, {
-        name: 'Documentation',
-        tasks: [{
-          name: 'Technical/User documentation',
-          color: '#F1C232',
-          from: new Date(2013, 10, 26, 8, 0, 0),
-          to: new Date(2013, 10, 28, 18, 0, 0)
-        }]
+        $(element).on('shown.bs.modal', function() {
+          scope.$apply(function() {
+            scope.$parent[attrs.visible] = true;
+          });
+        });
+
+        $(element).on('hidden.bs.modal', function() {
+          scope.$apply(function() {
+            scope.$parent[attrs.visible] = false;
+          });
+        });
       }
-    ];
-  }]);
+    };
+  });

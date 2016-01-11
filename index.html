@@ -4,6 +4,8 @@
 <head>
   <link href="assets/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/libs/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="assets/libs/ng-dialog/css/ngDialog.css" rel="stylesheet">
+  <link href="assets/libs/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet">
   <link href="assets/css/icons.css" rel="stylesheet">
   <link rel="shortcut icon" href="favicon.ico">
 
@@ -14,10 +16,10 @@
   <script src="app/app.js"></script>
   <script src="assets/libs/angular-validation-match/dist/angular-validation-match.min.js"></script>
   <script src="assets/libs/angular-ui-router-styles/ui-router-styles.js"></script>
-  <script src="assets/js/psp/d3.min.js" charset="utf-8"></script>
   <script src="assets/libs/satellizer/satellizer.js"></script>
+  <script src="assets/libs/ng-dialog/js/ngDialog.min.js"></script>
 
-  <title ng-bind="'PDMSys - ' + $root.title">MyApp - Welcome</title>
+  <title>PDMSys</title>
 
 
 </head>
@@ -49,12 +51,13 @@
   <script src="app/controllers/ConfirmInformationCtrl.js"></script>
   <script src="app/controllers/ProjectHomeCtrl.js"></script>
   <script src="app/controllers/NavbarHomeCtrl.js"></script>
+  <script src="app/controllers/NavbarProjectCtrl.js"></script>
   <script src="app/modules/pdmsys.milestoneGANTT.js"></script>
-  <script src="app/controllers/PspCtrl.js"></script>
 
   <script src="app/factories/UserFactory.js"></script>
   <script src="app/factories/ProjectFactory.js"></script>
   <script src="app/factories/InvitationsFactory.js"></script>
+  <script src="app/factories/PreliminaryStudyFactory.js"></script>
 
 
 </body>

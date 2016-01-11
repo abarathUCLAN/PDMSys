@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('pdmsys')
     .factory('invitationFactory', ['$http', function($http) {
 

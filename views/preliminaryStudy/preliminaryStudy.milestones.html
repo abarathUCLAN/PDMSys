@@ -1,5 +1,5 @@
 <div>
-  <div ng-controller="MilestoneCtrl">
+  <div ng-controller="MilestoneCtrl" ng-init="initMilestoneAndTaskDropdown()">
     <div class="container-content" ng-cloak="true">
       <div class="container-fluid">
         <div class="row">
@@ -70,37 +70,6 @@
                               <button class="btn btn-default" ng-click="collapseAll()">Collapse all</button>
                             </div>
                           </div>
-                          <div class="form-group text-center">
-                              <form name="form" novalidate>
-                                <div class="form-group">
-                                  <label>Add task:</label>
-                                  <input type="text" class="form-control" ng-model="task.name" >
-                                </div>
-                                <div class="form-group text-center">
-                                  <label class="control-label"><i class="fa fa-calendar"></i> <i class="fa fa-arrows-h"></i> <i class="fa fa-calendar"></i> Date range</label>
-                                  <br>
-                                  <div class="form-group">
-                                    <input type="text" class="form-control" ng-model="task.fromDate" max-date="{{options.toDate}}" start-date="{{options.currentDateValue.toString()}}" start-week="1" placeholder="From" bs-datepicker>
-                                  </div>
-                                  <div class="form-group">
-                                    <input type="text" class="form-control" ng-model="task.toDate" min-date="{{options.fromDate}}" start-date="{{options.currentDateValue.toString()}}" start-week="1" placeholder="To" bs-datepicker>
-                                  </div>
-                                </div>
-                                <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="addTask(task)">Add Task</button>
-                              </form>
-                            </form>
-                          </div>
-
-                          <div class="form-group text-center">
-                              <form name="form" novalidate>
-                                <div class="form-group">
-                                  <label>Add Milestone:</label>
-                                  <input type="text" class="form-control" ng-model="milestone.name" >
-                                </div>
-                                <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="addMilestone(milestone)">Add Milestone</button>
-                              </form>
-                            </form>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -110,6 +79,63 @@
             </div>
           </div>
         </div>
+        <div class="form-group text-center form-inline">
+          <form name="form" novalidate>
+            <div class="form-group">
+              <label>Add task:</label>
+              <input type="text" class="form-control" ng-model="task.name">
+            </div>
+            <div class="form-group text-center">
+              <label class="control-label"><i class="fa fa-calendar"></i> <i class="fa fa-arrows-h"></i> <i class="fa fa-calendar"></i> Date range</label>
+              <br>
+              <div class="form-group">
+                <input type="text" class="form-control" ng-model="task.from" max-date="{{options.toDate}}" start-date="{{options.currentDateValue.toString()}}" start-week="1" placeholder="From" bs-datepicker>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" ng-model="task.to" min-date="{{options.fromDate}}" start-date="{{options.currentDateValue.toString()}}" start-week="1" placeholder="To" bs-datepicker>
+              </div>
+            </div>
+            <select ng-model="task.milestone">
+              <option ng-repeat="option in dropdownOptions" value="{{option.id}}">{{option.name}}</option>
+            </select>
+            <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="addTask(task)">Add Task</button>
+          </form>
+        </div>
+
+        <div class="form-group text-center form-inline">
+          <form name="form" novalidate>
+            <div class="form-group">
+              <label>Add Milestone:</label>
+              <input type="text" class="form-control" ng-model="milestone.name">
+            </div>
+            <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="addMilestone(milestone)">Add Milestone</button>
+          </form>
+        </div>
+
+        <div class="form-group text-center form-inline">
+          <form name="form" novalidate>
+            <div class="form-group">
+              <label>Delete Milestone:</label>
+              <select ng-model="milestone.milestone">
+                <option ng-repeat="option in dropdownOptions" value="{{option.name}}">{{option.name}}</option>
+              </select>
+            </div>
+            <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="deleteMilestone(milestone)">Delete Milestone</button>
+          </form>
+        </div>
+
+        <div class="form-group text-center form-inline">
+          <form name="form" novalidate>
+            <div class="form-group">
+              <label>Delete Task:</label>
+              <select ng-model="task.task">
+                <option ng-repeat="option in taskOptions" value="{{option.name}}">{{option.name}}</option>
+              </select>
+            </div>
+            <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="deleteTask(task)">Delete Task</button>
+          </form>
+        </div>
+
         <div class="row top-buffer">
           <div class="col-md-12">
             <div class="panel-group" bs-collapse>
