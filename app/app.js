@@ -1,6 +1,6 @@
 'use strict';
 
-var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'ngDialog', 'satellizer', 'uiRouterStyles', 'pdmsys.milestone']);
+var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'swxSessionStorage', 'ngDialog', 'satellizer', 'uiRouterStyles', 'pdmsys.milestone']);
 
 pdmsys.run(
     ['$rootScope', '$state', '$stateParams', '$auth',
@@ -129,6 +129,20 @@ pdmsys.run(
       .state('projectHome.dashboard', {
         url: '/dashboard',
         templateUrl: "views/projectHome/projectHome.dashboard.html",
+        data: {
+          css: 'assets/css/input.css'
+        }
+      })
+      .state('projectHome.members', {
+        url: '/members',
+        templateUrl: "views/projectHome/projectHome.members.html",
+        data: {
+          css: 'assets/css/input.css'
+        }
+      })
+      .state('projectHome.invitations', {
+        url: '/invitations',
+        templateUrl: "views/projectHome/projectHome.invitations.html",
         data: {
           css: 'assets/css/input.css'
         }
@@ -357,6 +371,20 @@ pdmsys.run(
         templateUrl: "views/miscellaneous/miscellaneous.monthlyReports.html",
         data: {
           css: 'assets/css/input.css'
+        }
+      })
+      .state('userprofile', {
+        url: '/profile',
+        views: {
+          "navbar": {
+            templateUrl: "views/navbar.html"
+          },
+          "content": {
+            templateUrl: "views/userprofile.html"
+          }
+        },
+        data: {
+          css: 'assets/css/navbar.css'
         }
       })
   });

@@ -1,23 +1,25 @@
-<div class="panel panel-default" ng-controller="ProjectInvitationsCtrl">
-  <div class="panel-heading">
-    <div class="panel-title text-center">Member invitations</div>
-  </div>
-  <div align="center" class="alert alert-warning" role="alert"><strong>WARNING!</strong> The invitations are only for unregistered PDMSys-users. if you want to add a registered user to your project, you can do that at your project home page.</div>
-  <div class="panel-body">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Email</th>
-          <th></th>
-          <th>Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="invitation in invitations.invitations" ng-include="getTemplate(invitation)"></tr>
-      </tbody>
-    </table>
+<div class="gap container">
+  <div class="panel panel-default" ng-controller="ProjectInvitationsCtrl">
+    <div class="panel-heading">
+      <div class="panel-title text-center">Project invitations</div>
+    </div>
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th></th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="invitation in invitations.invitations" ng-include="getTemplate(invitation)"></tr>
+        </tbody>
+      </table>
+      </form>
+    </div>
     <form name="form" novalidate>
       <div class="form-group">
         <label>Firstname:</label>

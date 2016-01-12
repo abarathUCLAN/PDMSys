@@ -14,5 +14,9 @@ angular.module('pdmsys')
         return $http.post(urlBase, project);
     };
 
+    dataFactory.getProjectRights = function (projectId) {
+        return $http.get(urlBase + '/rights/' + projectId);
+    };
+
     return dataFactory;
 }]);

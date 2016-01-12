@@ -1,7 +1,7 @@
 'use strict';
 
 pdmsys.controller('ProjectInvitationsCtrl',
-  function ProjectInvitationsCtrl($scope) {
+  function ProjectInvitationsCtrl($scope, invitationFactory) {
 
     $scope.invitations = {
       invitations: [{
@@ -60,6 +60,15 @@ pdmsys.controller('ProjectInvitationsCtrl',
         newInvitation.type = 0;
       $scope.invitations.invitations.push(newInvitation);
       angular.copy({}, invitation);
+    };
+
+    $scope.getProjectInvitations = function () {
+      /**invitationFactory.getProjectInvitations()
+      .then(function() {
+
+      }, function() {
+
+      });**/
     };
 
     $scope.changeOpenedViewTab = function() {

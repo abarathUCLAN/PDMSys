@@ -1,0 +1,40 @@
+<div class="gap container">
+  <div class="panel panel-default" ng-controller="ProjectMembersController">
+    <div class="panel-heading">
+      <div class="panel-title text-center">Project members</div>
+    </div>
+    <div class="panel-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th></th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="member in members.members" ng-include="getTemplate(member)"></tr>
+        </tbody>
+      </table>
+      </form>
+    </div>
+  </div>
+  <form name="form" novalidate>
+    <div class="form-group">
+      <label>Find user by email:</label>
+      <input type="email" class="form-control" ng-model="member.email" required>
+    </div>
+    <div class="form-group">
+      <label>Type:</label>
+      <select ng-model="invitation.type">
+        <option value="">Spectator</option>
+        <option value="1">Member</option>
+        <option value="2">Leader</option>
+      </select>
+    </div>
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="addInvitation(invitation)">Add User</button>
+  </form>
+  <div>{{ userFoundStatus }}</div>
+</div>

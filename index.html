@@ -18,6 +18,7 @@
   <script src="assets/libs/angular-ui-router-styles/ui-router-styles.js"></script>
   <script src="assets/libs/satellizer/satellizer.js"></script>
   <script src="assets/libs/ng-dialog/js/ngDialog.min.js"></script>
+  <script src="assets/libs/Angular-swx-session-storage ($sessionStorage)/release/swx-session-storage.min.js"></script>
 
   <title>PDMSys</title>
 
@@ -25,8 +26,10 @@
 </head>
 
 <body ng-cloak>
-  <div ui-view name="navbar"></div>
-  <div ui-view name="content"></div>
+  <div ng-controller="AuthorizationHandlerController">
+    <div ui-view name="navbar"></div>
+    <div ui-view name="content"></div>
+  </div>
 
   <script src="assets/libs/angular-strap/dist/angular-strap.js"></script>
   <script src="assets/libs/angular-strap/dist/angular-strap.tpl.js"></script>
@@ -52,12 +55,18 @@
   <script src="app/controllers/ProjectHomeCtrl.js"></script>
   <script src="app/controllers/NavbarHomeCtrl.js"></script>
   <script src="app/controllers/NavbarProjectCtrl.js"></script>
+  <script src="app/controllers/ProjectMembersCtrl.js"></script>
+  <script src="app/controllers/AuthorizationHandlerCtrl.js"></script>
+
+
   <script src="app/modules/pdmsys.milestoneGANTT.js"></script>
+
 
   <script src="app/factories/UserFactory.js"></script>
   <script src="app/factories/ProjectFactory.js"></script>
   <script src="app/factories/InvitationsFactory.js"></script>
   <script src="app/factories/PreliminaryStudyFactory.js"></script>
+  <script src="app/factories/AuthorizationFactory.js"></script>
 
 
 </body>
