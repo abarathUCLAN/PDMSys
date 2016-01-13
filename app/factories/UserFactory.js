@@ -14,6 +14,10 @@ angular.module('pdmsys')
         return $http.get(urlBase);
     };
 
+    dataFactory.getUserByEmail = function (email) {
+        return $http.post(urlBase + '/getUserByEmail', email);
+    };
+
     dataFactory.insertUser = function (user) {
         return $http.post(urlBase + '/register', user);
     };

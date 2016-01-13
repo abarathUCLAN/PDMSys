@@ -1,5 +1,5 @@
 <div class="gap container">
-  <div class="panel panel-default" ng-controller="ProjectMembersController">
+  <div class="panel panel-default" ng-controller="ProjectMembersController" ng-init="getMembers()">
     <div class="panel-heading">
       <div class="panel-title text-center">Project members</div>
     </div>
@@ -20,21 +20,23 @@
       </table>
       </form>
     </div>
+
+    <form name="form" novalidate>
+      <div class="form-group">
+        <label>Find user by email:</label>
+        <input type="email" class="form-control" ng-model="member.email">
+      </div>
+      <div class="form-group">
+        <label>Type:</label>
+        <select ng-model="member.type" required="">
+          <option value="">Spectator</option>
+          <option value="1">Member</option>
+          <option value="2">Leader</option>
+        </select>
+      </div>
+
+      <button class="btn btn-default" ng-Disabled="!userFoundStatus" ng-click="addMember(member)">Add User</button>
+    </form>
+    <strong>{{ userFoundMessage }}</strong>
   </div>
-  <form name="form" novalidate>
-    <div class="form-group">
-      <label>Find user by email:</label>
-      <input type="email" class="form-control" ng-model="member.email" required>
-    </div>
-    <div class="form-group">
-      <label>Type:</label>
-      <select ng-model="invitation.type">
-        <option value="">Spectator</option>
-        <option value="1">Member</option>
-        <option value="2">Leader</option>
-      </select>
-    </div>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="addInvitation(invitation)">Add User</button>
-  </form>
-  <div>{{ userFoundStatus }}</div>
 </div>
