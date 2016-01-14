@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pdmsys')
-    .factory('preliminaryStudyFactory', ['$http', function($http) {
+    .factory('functionalSpecificationFactory', ['$http', function($http) {
 
     var urlBase = 'http://localhost:8000/api/functionalSpecification';
     var dataFactory = {};

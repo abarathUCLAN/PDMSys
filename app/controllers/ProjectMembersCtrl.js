@@ -19,9 +19,6 @@ pdmsys.controller('ProjectMembersController',
       projectFactory.getProjectMembers($scope.projectId)
       .then(function (response) {
         $scope.members.members = response.data;
-        for(var i = 0; i < $scope.members.members.length; i++) {
-          $scope.members.members[i].id = i;
-        }
       } , function() {
 
       });
@@ -69,19 +66,19 @@ pdmsys.controller('ProjectMembersController',
     };
 
     $scope.addMember = function(member) {
-      console.log($scope.foundUser);
       var newmember = {
         firstname: $scope.foundUser.firstname,
         lastname: $scope.foundUser.lastname,
         email: member.email,
         type: member.type,
-        id: $scope.members.members.length
+        id: 0
       };
       if (newmember.type == undefined || newmember.type == '')
         newmember.type = 0;
       projectFactory.addMemberToProject($scope.projectId, newmember)
-      .then(function() {
+      .then(function(response) {
         $scope.userFoundMessage = 'User added.';
+        newmember.id = response.data[0].id;
         $scope.members.members.push(newmember);
         angular.copy({}, member);
         $scope.userFoundStatus = false;

@@ -1,30 +1,16 @@
 'use strict';
 
 pdmsys.controller('ProjectInvitationsCtrl',
-  function ProjectInvitationsCtrl($scope, invitationFactory) {
+  function ProjectInvitationsCtrl($scope, invitationFactory, $stateParams) {
+
+    $scope.projectId = $stateParams.projectId;
 
     $scope.invitations = {
-      invitations: [{
-        id: 1,
-        firstname: 'Alexander',
-        lastname: 'Barath',
-        email: 'barath1058@gmail.com',
-        type: '2'
-      }, {
-        id: 2,
-        firstname: 'Stefanie',
-        lastname: 'Gwiasda',
-        email: 'sg@gmail.com',
-        type: '1'
-      }, {
-        id: 3,
-        firstname: 'Stefan',
-        lastname: 'Isakovic',
-        email: 'isak@gmail.com',
-        type: '0'
-      }],
+      invitations: {},
       selected: {}
     };
+
+    $scope.invitationMessage = undefined;
 
     $scope.getTemplate = function(invitation) {
       if (invitation.id === $scope.invitations.selected.id) return 'views/editInvitationTmp.html';
@@ -40,8 +26,13 @@ pdmsys.controller('ProjectInvitationsCtrl',
       $scope.reset();
     };
 
-    $scope.removeInvitation = function (idx) {
-      $scope.invitations.invitations.splice( idx, 1 );
+    $scope.removeInvitation = function (idx, invitation) {
+      invitationFactory.deleteProjectInvitation($scope.projectId, {"email": invitation.email})
+      .then(function() {
+              $scope.invitations.invitations.splice( idx, 1 );
+      }, function() {
+
+      });
     };
 
     $scope.reset = function() {
@@ -49,26 +40,31 @@ pdmsys.controller('ProjectInvitationsCtrl',
     };
 
     $scope.addInvitation = function(invitation) {
-      var newInvitation = {
+      var newinvitation = {
         firstname: invitation.firstname,
         lastname: invitation.lastname,
         email: invitation.email,
         type: invitation.type,
-        id: $scope.invitations.invitations.length
+        id: 0
       };
-      if (newInvitation.type == undefined || newInvitation.type == '')
-        newInvitation.type = 0;
-      $scope.invitations.invitations.push(newInvitation);
-      angular.copy({}, invitation);
+      if (newinvitation.type == undefined || newinvitation.type == '')
+        newinvitation.type = 0;
+      invitationFactory.addInvitationToProject($scope.projectId, newinvitation)
+      .then(function(response) {
+        newinvitation.id = response.data.id;
+        $scope.invitations.invitations.push(newinvitation);
+        angular.copy({}, invitation);
+      }, function() {
+      });
     };
 
     $scope.getProjectInvitations = function () {
-      /**invitationFactory.getProjectInvitations()
-      .then(function() {
+      invitationFactory.getProjectInvitations($scope.projectId)
+      .then(function (response) {
+        $scope.invitations.invitations = response.data;
+      } , function() {
 
-      }, function() {
-
-      });**/
+      });
     };
 
     $scope.changeOpenedViewTab = function() {

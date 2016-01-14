@@ -6,9 +6,23 @@ angular.module('pdmsys')
     var urlBase = 'http://localhost:8000/api/invitations';
     var dataFactory = {};
 
-    dataFactory.insertInvitation = function (invitations, projectId) {
-        return $http.post(urlBase + '/' + projectId, invitations);
+    dataFactory.insertInvitation = function (invitation, projectId) {
+        return $http.post(urlBase + '/createInvitation/' + projectId, invitation);
     };
+
+    dataFactory.getProjectInvitations = function (projectId) {
+        return $http.get(urlBase + '/' + projectId);
+    };
+
+    dataFactory.addInvitationToProject = function (projectId, invitation) {
+        return $http.post(urlBase + '/addInvitationToProject/' + projectId, invitation);
+    };
+
+    dataFactory.deleteProjectInvitation = function (projectId, invitationId) {
+        return $http.post(urlBase + '/deleteInvitation/' + projectId, invitationId);
+    };
+
+
 
     return dataFactory;
 }]);

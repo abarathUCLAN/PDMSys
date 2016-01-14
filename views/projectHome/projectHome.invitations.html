@@ -1,5 +1,5 @@
 <div class="gap container">
-  <div class="panel panel-default" ng-controller="ProjectInvitationsCtrl">
+  <div class="panel panel-default" ng-controller="ProjectInvitationsCtrl" ng-init="getProjectInvitations()">
     <div class="panel-heading">
       <div class="panel-title text-center">Project invitations</div>
     </div>
@@ -43,5 +43,6 @@
       </div>
       <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="addInvitation(invitation)">Add User</button>
     </form>
+    <strong>{{ invitationMessage }}</strong>
   </div>
 </div>

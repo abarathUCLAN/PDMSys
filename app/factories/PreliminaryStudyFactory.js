@@ -10,12 +10,8 @@ angular.module('pdmsys')
         return $http.post(urlBase + '/projectDescription/' + projectId, projectDescription);
     };
 
-    dataFactory.updateProjectDescription = function (projectId, projectDescription) {
-        return $http.put(urlBase + '/projectDescription/' + projectId, projectDescription);
-    };
-
-    dataFactory.deleteProjectDescription = function (projectId, projectDescription) {
-        return $http.delete(urlBase + '/projectDescription/' + projectId, projectDescription);
+    dataFactory.deleteProjectDescription = function (projectId) {
+        return $http.post(urlBase + '/projectDescription/delete/' + projectId);
     };
 
     dataFactory.getProjectDescription = function (projectId) {
@@ -28,12 +24,8 @@ angular.module('pdmsys')
         return $http.post(urlBase + '/risk/' + projectId, risk);
     };
 
-    dataFactory.updateRisk = function (projectId, riskId, risk) {
-        return $http.put(urlBase + '/risk/' + projectId + '/' + riskId , risk);
-    };
-
     dataFactory.deleteRisk = function (projectId, riskId) {
-        return $http.delete(urlBase + '/risk/' + projectId + '/' + riskId);
+        return $http.post(urlBase + '/risk/delete/' + projectId + '/' + riskId);
     };
 
     dataFactory.getRisks = function (projectId) {
@@ -43,15 +35,11 @@ angular.module('pdmsys')
 
 
     dataFactory.insertMilestone = function (projectId, milestone) {
-        return $http.post(urlBase + '/milestone', milestone );
-    };
-
-    dataFactory.updateMilestone = function (projectId, milestone) {
-        return $http.put(urlBase + '/milestone/' + projectId, milestone);
+        return $http.post(urlBase + '/milestone/' + projectId, milestone );
     };
 
     dataFactory.deleteMilestone = function (projectId) {
-        return $http.delete(urlBase + '/milestone/' + projectId);
+        return $http.post(urlBase + '/milestone/delete/' + projectId);
     };
 
     dataFactory.getMilestone = function (projectId) {
@@ -64,12 +52,8 @@ angular.module('pdmsys')
         return $http.post(urlBase + '/effortEstimation/' + projectId, estimation);
     };
 
-    dataFactory.updateEffortEstimation = function (projectId, estimation) {
-        return $http.put(urlBase + '/effortEstimation/' + projectId, estimation);
-    };
-
     dataFactory.deleteEffortEstimation = function (projectId) {
-        return $http.delete(urlBase + '/effortEstimation/' + projectId);
+        return $http.post(urlBase + '/effortEstimation/delete/' + projectId);
     };
 
     dataFactory.getEffortEstimation = function (projectId) {
@@ -93,4 +77,6 @@ angular.module('pdmsys')
     dataFactory.getPSP = function (projectId) {
         return $http.get(urlBase + '/psp/' + projectId);
     };
+
+    return dataFactory;
 }]);

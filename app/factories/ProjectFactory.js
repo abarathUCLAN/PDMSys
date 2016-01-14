@@ -10,6 +10,10 @@ angular.module('pdmsys')
         return $http.get(urlBase);
     };
 
+    dataFactory.getProjectName = function (projectId) {
+        return $http.get(urlBase + '/getProjectName/' + projectId);
+    };
+
     dataFactory.insertProject = function (project) {
         return $http.post(urlBase, project);
     };
