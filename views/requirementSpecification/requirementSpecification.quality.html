@@ -1,12 +1,13 @@
-<div class="form-group text-center cont">
+<div class="form-group text-center cont" ng-init="getProductQuality()">
   <div class="page-header">
   <h3>Project Quality<br>
      <small>This description shows the quality of the project.</small></h3>
 </div>
   <form name="form" novalidate>
     <div class="form-group">
-      <textarea rows="25" cols="100" type="text" class="form-control" required></textarea>
+      <textarea rows="25" cols="100" ng-model="projectQuality.content" type="text" class="form-control" required></textarea>
     </div>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="">Submit</button>
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertProductQuality(projectQuality)">Submit</button>
+    <button class="btn btn-default" ng-show="showDeleteButton" ng-click="deleteProductQuality()">Delete</button>
   </form>
 </div>

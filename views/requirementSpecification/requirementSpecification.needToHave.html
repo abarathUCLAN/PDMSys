@@ -1,15 +1,29 @@
-<div class="form-group text-center cont">
+<div class="form-group text-center cont" ng-init="getNeedToHave()">
   <div class="page-header">
   <h3>New Need to have<br>
      <small>create a new need to have for your projects.
   <form name="form" novalidate>
     <div class="form-group">
       name:
-      <input type="text"></input><br/>
+      <input type="text" ng-model="need.name" required></input><br/>
       content:</small></h3>
 
-      <textarea rows="5" cols="100" type="text" class="form-control" required></textarea>
+      <textarea rows="5" ng-model="need.content" cols="100" type="text" class="form-control" required></textarea>
     </div> </div>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="">Add N2H</button>
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertNeedToHave(need)">Submit</button>
   </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="need in projectNeeds">
+        <td>{{ need.name }} </td>
+        <td>{{ need.content }} </td>
+        <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deleteNeed($index, need)">Delete</button></td>
+    </tbody>
+  </table>
 </div>

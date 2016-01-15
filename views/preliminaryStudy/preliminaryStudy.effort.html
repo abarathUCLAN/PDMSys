@@ -1,4 +1,4 @@
-<div class="panel-body">
+<div class="panel-body" ng-init="getEffortEstimation()">
   <label>Unadjusted Actor Weight (UAW):</label>
   <form name="form" novalidate>
     <table class="table">
@@ -275,7 +275,7 @@
   <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertEffortEstimation()">Submit</button>
   <button class="btn btn-default" ng-show="showDeleteButton" ng-click="deleteEffortEstimation()">Reset</button>
   <label>Adjusted Use-Case-Points:
-    <div></div>
+    <div>{{effortEstimationResult}}</div>
     <br/>
   </label>
 </div>

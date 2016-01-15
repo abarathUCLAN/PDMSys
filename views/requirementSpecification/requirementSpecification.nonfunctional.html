@@ -1,4 +1,4 @@
-<div class="form-group text-center cont">
+<div class="form-group text-center cont" ng-init="getNonFunctionalRequirement()">
 <div class="page-header">
 <h3>New non-functional requirement <br>
    <small>Create a new non-functional requirement for your project.
@@ -7,10 +7,24 @@
 
     <div class="form-group">
       Requirement name:
-      <input type="text"></input><br/>
+      <input required ng-model="non.name" type="text"></input><br/>
       Requirement content:
-      <textarea rows="5" cols="100" type="text" class="form-control" required></textarea>
+      <textarea rows="5" cols="100" type="text" ng-model="non.content" class="form-control" required></textarea>
     </div></small></h3>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="">Add requirement</button>
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertNonFunctionalRequirement(non)">Submit</button>
   </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="non in nonFunctional">
+        <td>{{ non.name }} </td>
+        <td>{{ non.content }} </td>
+        <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deleteNonFunctionalRequirement($index, non)">Delete</button></td>
+    </tbody>
+  </table>
 </div>

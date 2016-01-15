@@ -52,7 +52,7 @@ test: [{"name":"Milestones","height":"3em","sortable":false,"classes":"gantt-row
         preliminaryStudyFactory.getMilestone($scope.projectId)
           .then(function(response) {
             $scope.showDeleteButton = true;
-            $scope.test = response.data;
+            $scope.test = JSON.parse(response.data);
             $scope.data = $scope.test;
           }, function() {
             $scope.showDeleteButton = false;

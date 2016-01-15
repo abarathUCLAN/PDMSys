@@ -7,37 +7,41 @@ pdmsys.controller('PreliminaryStudyController',
     $scope.projectDescription = {};
     $scope.projectDescriptionStatusMessage = undefined;
     $scope.showDeleteButton = false;
-    $scope.projectRisks = {};
-    $scope.effort = {
-      uawSimple: '',
-      uawAverage: '',
-      uawComplex: '',
-      uucwSimple: '',
-      uucwAverage: '',
-      uucwComplex: '',
-      t1: '',
-      t2: '',
-      t3: '',
-      t4: '',
-      t5: '',
-      t6: '',
-      t7: '',
-      t8: '',
-      t9: '',
-      t10: '',
-      t11: '',
-      t12: '',
-      t13: '',
-      e1: '',
-      e2: '',
-      e3: '',
-      e4: '',
-      e5: '',
-      e6: '',
-      e7: '',
-      e8: ''
-    };
+    $scope.projectRisks = [];
+    $scope.effort = {};
+    $scope.effortEstimationResult = undefined;
+    $scope.effortWeight = [1, 2, 3, 5, 10, 15, 2, 1, 1, 1, 1, 0.5, 0.5, 2, 1, 1, 1, 1, 1, 1.5, 0.5, 1, 0.5, 1, 2, -1, -1];
 
+    $scope.$watch('effort', function() {
+      var counter = 0;
+      var error = false;
+      var uucw = 0;
+      var uaw = 0;
+      var tcf = 0;
+      var ecf = 0;
+      angular.forEach($scope.effort, function(value, key) {
+        if (value === undefined)
+          error = true;
+        if (!error) {
+          if (counter >= 0 && counter <= 2) {
+            uucw += (value * $scope.effortWeight[counter]);
+            counter++;
+          } else if (counter >= 3 && counter <= 5) {
+            uaw += (value * $scope.effortWeight[counter]);
+            counter++;
+          } else if (counter >= 6 && counter <= 18) {
+            tcf += (value * $scope.effortWeight[counter]);
+            counter++;
+          } else {
+            ecf += (value * $scope.effortWeight[counter]);
+            counter++;
+          }
+        }
+      });
+      if(!error) {
+        $scope.effortEstimationResult = (uucw + uaw) * (0.6 + (tcf/100)) * (1.4 + (-0.03 * ecf));
+      }
+    }, true);
 
     $scope.insertProjectDescription = function(projectDescription) {
       preliminaryStudyFactory.insertProjectDescription($scope.projectId, projectDescription)
@@ -104,10 +108,12 @@ pdmsys.controller('PreliminaryStudyController',
 
 
     $scope.insertEffortEstimation = function(projectDescription) {
-      preliminaryStudyFactory.insertProjectDescription($scope.projectId, projectDescription)
+      preliminaryStudyFactory.insertEffortEstimation($scope.projectId, {
+          "content": $scope.effort
+        })
         .then(function(response) {
           $scope.showDeleteButton = true;
-          $scope.projectDescriptionStatusMessage = 'Project description saved.'
+          $scope.projectDescriptionStatusMessage = 'Effort estimation saved.'
         }, function() {
           $scope.projectDescriptionStatusMessage = 'An error occured.';
         });
@@ -115,20 +121,20 @@ pdmsys.controller('PreliminaryStudyController',
 
     $scope.getEffortEstimation = function() {
       $scope.projectId = $stateParams.projectId;
-      preliminaryStudyFactory.getProjectDescription($scope.projectId)
+      preliminaryStudyFactory.getEffortEstimation($scope.projectId)
         .then(function(response) {
           $scope.showDeleteButton = true;
-          $scope.projectDescription = response.data;
+          $scope.effort = JSON.parse(response.data);
         }, function() {
           $scope.showDeleteButton = false;
         });
     };
 
     $scope.deleteEffortEstimation = function() {
-      preliminaryStudyFactory.deleteProjectDescription($scope.projectId)
+      preliminaryStudyFactory.deleteEffortEstimation($scope.projectId)
         .then(function(response) {
           $scope.showDeleteButton = false;
-          $scope.projectDescription = {};
+          $scope.effort = {};
         }, function() {});
     };
 

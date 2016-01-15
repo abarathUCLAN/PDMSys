@@ -1,12 +1,13 @@
-<div class="form-group text-center cont">
+<div class="form-group text-center cont" ng-init="getProjectResult()">
   <div class="page-header">
   <h3>Project Result<br>
      <small>This description shows the desired outcome of the project.</small></h3>
 </div>
   <form name="form" novalidate>
     <div class="form-group">
-      <textarea rows="25" cols="100" type="text" class="form-control" required></textarea>
+      <textarea rows="25" cols="100" type="text" ng-model="projectResult.content"class="form-control" required></textarea>
     </div>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="">Submit</button>
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertProductResult(projectResult)">Submit</button>
+    <button class="btn btn-default" ng-show="showDeleteButton" ng-click="deleteProductResult()">Delete</button>
   </form>
 </div>

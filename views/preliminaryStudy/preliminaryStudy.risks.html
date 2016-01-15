@@ -11,17 +11,17 @@
     <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertRisk(risk)">Create risk</button>
   </form>
   <table class="table">
-    <thead>
-      <tr>
-        <th>name</th>
-        <th>content</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="risk in projectRisks">
-        <td>{{ risk.name }} </td>
-        <td>{{ risk.content }} </td>
-        <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deleteRisk($index, risk)">Delete</button></td>
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="risk in projectRisks">
+      <td>{{ risk.name }} </td>
+      <td>{{ risk.content }} </td>
+      <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deleteRisk($index, risk)">Delete</button></td>
+  </tbody>
+</table>
 </div>
