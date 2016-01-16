@@ -1,4 +1,4 @@
-<div class="form-group text-center cont">
+<div class="form-group text-center cont" ng-init="getFunctionalRequirement()">
   <div class="page-header">
   <h3>New functional Requirement <br>
      <small>
@@ -6,10 +6,25 @@
   <form name="form" novalidate>
     <div class="form-group">
       Requirement name:
-      <input type="text"></input><br/>
+      <input type="text" required ng-model="requirement.name"></input><br/>
       Requirement content:
-      <textarea rows="5" cols="100" type="text" class="form-control" required></textarea>
+      <textarea rows="5" cols="100" type="text" ng-model="requirement.content" class="form-control" required></textarea>
     </div></small></h3>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="">Add requirement</button>
-  </form></div>
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertFunctionalRequirement(requirement)">Submit</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="func in functional">
+        <td>{{ func.name }} </td>
+        <td>{{ func.content }} </td>
+        <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deleteFunctionalRequirement($index, func)">Delete</button></td>
+    </tbody>
+  </table>
+</div>
 </div>

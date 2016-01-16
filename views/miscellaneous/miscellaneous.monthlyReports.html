@@ -1,0 +1,62 @@
+<div class="form-group text-center cont" ng-init="getReport()">
+
+  <form name="form" novalidate>
+    <div class="form-group">
+      <div class="page-header">
+        <h3>Create new monthly report
+          <br>
+          <small>Month:
+            <select ng-model="report.month">
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+            <br>report content:
+            <textarea rows="5" cols="20" type="text" class="form-control" ng-model="report.content" required></textarea>
+          </small>
+        </h3>
+      </div>
+    </div>
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertReport(report)">Submit</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>month</th>
+        <th>content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="report in reports">
+        <td>
+          <div ng-switch on="report.month">
+            <div ng-switch-when="1">January</div>
+            <div ng-switch-when="2">February</div>
+            <div ng-switch-when="3">March</div>
+            <div ng-switch-when="4">April</div>
+            <div ng-switch-when="5">May</div>
+            <div ng-switch-when="6">June</div>
+            <div ng-switch-when="7">July</div>
+            <div ng-switch-when="8">August</div>
+            <div ng-switch-when="9">September</div>
+            <div ng-switch-when="10">October</div>
+            <div ng-switch-when="11">November</div>
+            <div ng-switch-when="12">December</div>
+          </div>
+        </td>
+        <td>{{ report.content }} </td>
+        <td ng-show="showDeleteButton">
+          <button class="btn btn-default" ng-click="deleteReport($index, report)">Delete</button>
+        </td>
+    </tbody>
+  </table>
+</div>

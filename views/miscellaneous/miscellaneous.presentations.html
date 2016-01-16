@@ -1,0 +1,36 @@
+<div class="form-group text-center cont" ng-init="getPresentation()">
+
+  <form name="form" novalidate enctype="multipart/form-data">
+    <div class="form-group">
+      <div class="page-header">
+        <h3>Upload new presentation
+          <br>
+          <small>Presentation name:
+            <input type="text" ng-model="presentation.name" required></input>
+            <br> Presentation Content:
+            <textarea rows="5" cols="20" type="text" class="form-control" ng-model="presentation.content" required></textarea>
+            <br> File:
+            <input type="file" ngf-select ng-model="presentation.file" name="file" ngf-max-size="10MB" required>
+          </small>
+        </h3>
+      </div>
+    </div>
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertPresentation(presentation)">Submit</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>content</th>
+        <th>Download link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="presentation in presentations">
+        <td>{{ presentation.name }} </td>
+        <td>{{ presentation.content }} </td>
+        <td><button class="btn btn-default" ng-click="downloadPresentation(presentation.id)">Download {{ presentation.file}}</button></td>
+        <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deletePresentation($index, presentation)">Delete</button></td>
+    </tbody>
+  </table>
+</div>

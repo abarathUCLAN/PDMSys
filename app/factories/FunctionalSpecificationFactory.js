@@ -11,33 +11,27 @@ angular.module('pdmsys')
         return $http.post(urlBase + '/functionalRequirement/' + projectId, requirement);
     };
 
-    dataFactory.updateFunctionalRequirement  = function (projectId, requirementId, requirement) {
-        return $http.put(urlBase + '/functionalRequirement/' + projectId + '/' + requirementId , requirement);
+    dataFactory.deleteFunctionalRequirement  = function (projectId, requirementId) {
+        return $http.post(urlBase + '/functionalRequirement/delete/' + projectId + '/' + requirementId);
     };
 
-    dataFactory.deleteFunctionalRequirement  = function (projectId, riskId) {
-        return $http.delete(urlBase + '/functionalRequirementisk/' + requirementId + '/' + riskId);
-    };
-
-    dataFactory.getFunctionalRequirements  = function (projectId) {
+    dataFactory.getFunctionalRequirement  = function (projectId) {
         return $http.get(urlBase + '/functionalRequirement/' + projectId);
     };
 
 
 
     dataFactory.insertProjectImplementation = function (projectId, implementation) {
-        return $http.post(urlBase + '/projectImplementation', implementation );
-    };
-
-    dataFactory.updateProjectImplementation = function (projectId, implementation) {
-        return $http.put(urlBase + '/projectImplementation/' + projectId, implementation);
+        return $http.post(urlBase + '/projectImplementation/' + projectId, implementation );
     };
 
     dataFactory.deleteProjectImplementation = function (projectId) {
-        return $http.delete(urlBase + '/projectImplementation/' + projectId);
+        return $http.post(urlBase + '/projectImplementation/delete/' + projectId);
     };
 
     dataFactory.getProjectImplementation = function (projectId) {
         return $http.get(urlBase + '/projectImplementation/' + projectId);
     };
+
+    return dataFactory;
 }]);

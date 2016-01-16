@@ -1,0 +1,34 @@
+<div class="form-group text-center cont" ng-init="getStyleGuide()">
+
+  <form name="form" novalidate >
+    <div class="form-group">
+      <div class="page-header">
+        <h3>Create a new style guide
+          <br>
+          <small>rule name:
+            <input type="text" ng-model="guide.name" required></input>
+            <br>rule content:
+            <textarea rows="5" cols="20" type="text" class="form-control" ng-model="guide.content" required></textarea>
+          </small>
+        </h3>
+      </div>
+    </div>
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertStyleGuide(guide)">Submit</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="guide in styleGuides">
+        <td>{{ guide.name }} </td>
+        <td>{{ guide.content }} </td>
+        <td ng-show="showDeleteButton">
+          <button class="btn btn-default" ng-click="deleteStyleGuide($index, guide)">Delete</button>
+        </td>
+    </tbody>
+  </table>
+</div>

@@ -1,4 +1,4 @@
-<div class="form-group text-center cont">
+<div class="form-group text-center cont" ng-init="getProtocol()">
 
   <form name="form" novalidate>
     <div class="form-group">
@@ -6,20 +6,39 @@
         <h3>Create new acceptance criteria
           <br>
           <small>Criteria requirement:
-            <input type="text"></input>
+            <input type="text" ng-model="acceptanceprotocol.requirement" required></input>
             <br> KO Criteria:
-            <input type="text"></input>
+            <input type="text" ng-model="acceptanceprotocol.criteriaName" required ></input>
             <br> KO Criteria:
-            <textarea rows="5" cols="20" type="text" class="form-control" required></textarea>
+            <textarea rows="5" cols="20" type="text" class="form-control" ng-model="acceptanceprotocol.criteria" required></textarea>
             <br> Fulfilled:
-            <input type="checkbox" name="vehicle" value="Car">
+            <input type="checkbox" name="vehicle" ng-model="acceptanceprotocol.fulfilled">
             <br> Note:
-            <textarea rows="3" cols="20" type="text" class="form-control" required></textarea>
+            <textarea rows="3" cols="20" type="text" ng-model="acceptanceprotocol.note" class="form-control"></textarea>
           </small>
         </h3>
-
       </div>
     </div>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="">Create risk</button>
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertProtocol(acceptanceprotocol)">Submit</button>
   </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>requirement</th>
+        <th>name</th>
+        <th>content</th>
+        <th>fulfilled</th>
+        <th>note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="pro in protocol">
+        <td>{{ pro.requirement }} </td>
+        <td>{{ pro.criteriaName }} </td>
+        <td>{{ pro.criteria }} </td>
+        <td>{{ pro.fulfilled }} </td>
+        <td>{{ pro.note }} </td>
+        <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deleteProtocol($index, pro)">Delete</button></td>
+    </tbody>
+  </table>
 </div>

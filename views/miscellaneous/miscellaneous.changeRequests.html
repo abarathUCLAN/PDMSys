@@ -1,0 +1,34 @@
+<div class="form-group text-center cont" ng-init="getChangeRequest()">
+
+  <form name="form" novalidate enctype="multipart/form-data">
+    <div class="form-group">
+      <div class="page-header">
+        <h3>Create new change request
+          <br>
+          <small>name:
+            <input type="text" ng-model="change.name" required></input>
+            <br>content:
+            <textarea rows="5" cols="20" type="text" class="form-control" ng-model="change.content" required></textarea>
+          </small>
+        </h3>
+      </div>
+    </div>
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertChangeRequest(change)">Submit</button>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="change in changeRequests">
+        <td>{{ change.name }} </td>
+        <td>{{ change.content }} </td>
+        <td ng-show="showDeleteButton">
+          <button class="btn btn-default" ng-click="deleteChangeRequest($index, change)">Delete</button>
+        </td>
+    </tbody>
+  </table>
+</div>

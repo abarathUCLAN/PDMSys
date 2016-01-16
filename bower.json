@@ -28,6 +28,7 @@
     "satellizer": "~0.13.3",
     "ng-dialog": "~0.5.6",
     "ngstorage": "~0.3.10",
+    "ng-file-upload": "~11.1.1",
     "Angular-swx-session-storage ($sessionStorage)": "angular-swx-session-storage#~0.0.9"
   },
   "resolutions": {

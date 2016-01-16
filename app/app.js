@@ -1,6 +1,6 @@
 'use strict';
 
-var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'swxSessionStorage', 'ngDialog', 'satellizer', 'uiRouterStyles', 'pdmsys.milestone']);
+var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'ngFileUpload', 'swxSessionStorage', 'ngDialog', 'satellizer', 'uiRouterStyles', 'pdmsys.milestone']);
 
 pdmsys.run(
     ['$rootScope', '$state', '$stateParams', '$auth',
