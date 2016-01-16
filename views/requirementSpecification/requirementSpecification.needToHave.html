@@ -10,7 +10,7 @@
 
       <textarea rows="5" ng-model="need.content" cols="100" type="text" class="form-control" required></textarea>
     </div> </div>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertNeedToHave(need)">Submit</button>
+    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertNeedToHave(need)">Submit</button>
   </form>
   <table class="table">
     <thead>
@@ -23,7 +23,7 @@
       <tr ng-repeat="need in projectNeeds">
         <td>{{ need.name }} </td>
         <td>{{ need.content }} </td>
-        <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deleteNeed($index, need)">Delete</button></td>
+        <td ng-show="showDeleteButton && !isSpectator"><button class="btn btn-default" ng-click="deleteNeed($index, need)">Delete</button></td>
     </tbody>
   </table>
 </div>

@@ -10,7 +10,7 @@
       content:</small></h3>
       <textarea rows="5" cols="100" ng-model="nice.content" type="text" class="form-control" required></textarea>
     </div></div>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertNiceToHave(nice)">Submit</button>
+    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertNiceToHave(nice)">Submit</button>
   </form>
   <table class="table">
     <thead>
@@ -23,7 +23,7 @@
       <tr ng-repeat="nice in projectNices">
         <td>{{ nice.name }} </td>
         <td>{{ nice.content }} </td>
-        <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deleteNice($index, nice)">Delete</button></td>
+        <td ng-show="showDeleteButton && !isSpectator"><button class="btn btn-default" ng-click="deleteNice($index, nice)">Delete</button></td>
     </tbody>
   </table>
 </div>

@@ -37,13 +37,15 @@ pdmsys.controller('CreateProjectCtrl',
     $scope.createProject = function () {
       projectFactory.insertProject($scope.projectInformation)
       .then(function (response) {
-          if(!angular.equals({}, $scope.projectInvitations)) {
+          if(angular.equals({}, $scope.projectInvitations)) {
             $scope.projectCreated = true;
             $scope.projectHomeButton = true;
             $scope.projectId = response.data;
             $scope.createInvitations(response.data);
-          } else
+          } else {
+            console.log("swag");
             $scope.projectHome();
+          }
       }, function (error) {
           $scope.createProjectStatus = "Project couldn't be created.";
       })
@@ -60,6 +62,7 @@ pdmsys.controller('CreateProjectCtrl',
     };
 
     $scope.projectHome = function() {
+      console.log("swag2");
       $state.go('projectHome.dashboard', {projectId: $scope.projectId});
     };
 

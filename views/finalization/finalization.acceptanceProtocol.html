@@ -19,7 +19,7 @@
         </h3>
       </div>
     </div>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertProtocol(acceptanceprotocol)">Submit</button>
+    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertProtocol(acceptanceprotocol)">Submit</button>
   </form>
   <table class="table">
     <thead>
@@ -38,7 +38,7 @@
         <td>{{ pro.criteria }} </td>
         <td>{{ pro.fulfilled }} </td>
         <td>{{ pro.note }} </td>
-        <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deleteProtocol($index, pro)">Delete</button></td>
+        <td ng-show="showDeleteButton && !isSpectator"><button class="btn btn-default" ng-click="deleteProtocol($index, pro)">Delete</button></td>
     </tbody>
   </table>
 </div>

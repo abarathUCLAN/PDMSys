@@ -11,8 +11,6 @@
   <div ng-show="{{ member.type == 2 }}">Leader</div>
 </td>
 <td>
-  <div ng-if=isAdmin()>
     <button class="btn btn-info" ng-click="editMember(member)">Edit</button>
     <button class="btn btn-danger" ng-click="removeMember($index, member)">Remove</button>
-  </div>
 </td>

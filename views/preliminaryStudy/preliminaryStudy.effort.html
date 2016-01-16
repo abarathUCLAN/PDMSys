@@ -70,7 +70,7 @@
           <td>8 or more transactions</td>
           <td>15</td>
           <td>
-            <input type="text" ng-model="effort.uucwComplex" required  class="form-control" style="width: 10%">
+            <input type="text" ng-model="effort.uucwComplex" required class="form-control" style="width: 10%">
           </td>
         </tr>
       </tbody>
@@ -92,7 +92,7 @@
           <td>Distributed system</td>
           <td>2</td>
           <td>
-            <input type="text" ng-model="effort.t1" required  class="form-control" style="width: 10%">
+            <input type="text" ng-model="effort.t1" required class="form-control" style="width: 10%">
           </td>
         </tr>
         <tr>
@@ -100,7 +100,7 @@
           <td>Response time/performance objectives</td>
           <td>1</td>
           <td>
-            <input type="text" ng-model="effort.t2" required  class="form-control" style="width: 10%">
+            <input type="text" ng-model="effort.t2" required class="form-control" style="width: 10%">
           </td>
         </tr>
         <td>T3</td>
@@ -224,7 +224,7 @@
         <td>Object-oriented experience of team</td>
         <td>1</td>
         <td>
-          <input type="text"  ng-model="effort.e3" required class="form-control" style="width: 10%">
+          <input type="text" ng-model="effort.e3" required class="form-control" style="width: 10%">
         </td>
         </tr>
         <tr>
@@ -271,9 +271,10 @@
     </table>
   </form>
   <hr/>
-
-  <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertEffortEstimation()">Submit</button>
-  <button class="btn btn-default" ng-show="showDeleteButton" ng-click="deleteEffortEstimation()">Reset</button>
+  <div ng-show="!isSpectator">
+    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertEffortEstimation()">Submit</button>
+    <button class="btn btn-default" ng-show="showDeleteButton && !isSpectator" ng-click="deleteEffortEstimation()">Reset</button>
+  </div>
   <label>Adjusted Use-Case-Points:
     <div>{{effortEstimationResult}}</div>
     <br/>

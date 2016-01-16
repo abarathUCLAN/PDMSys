@@ -15,7 +15,7 @@
         </h3>
       </div>
     </div>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertPresentation(presentation)">Submit</button>
+    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertPresentation(presentation)">Submit</button>
   </form>
   <table class="table">
     <thead>
@@ -30,7 +30,7 @@
         <td>{{ presentation.name }} </td>
         <td>{{ presentation.content }} </td>
         <td><button class="btn btn-default" ng-click="downloadPresentation(presentation.id)">Download {{ presentation.file}}</button></td>
-        <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deletePresentation($index, presentation)">Delete</button></td>
+        <td ng-show="showDeleteButton && !isSpectator"><button class="btn btn-default" ng-click="deletePresentation($index, presentation)">Delete</button></td>
     </tbody>
   </table>
 </div>

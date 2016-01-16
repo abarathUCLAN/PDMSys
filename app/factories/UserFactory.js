@@ -10,10 +10,6 @@ angular.module('pdmsys')
         return $http.post(urlBase, user);
     };
 
-    dataFactory.getUsers = function () {
-        return $http.get(urlBase);
-    };
-
     dataFactory.getUserByEmail = function (email) {
         return $http.post(urlBase + '/getUserByEmail', email);
     };
@@ -24,6 +20,10 @@ angular.module('pdmsys')
 
     dataFactory.updateUser = function (user) {
         return $http.post(urlBase + '/changeData', user)
+    };
+
+    dataFactory.getUserData = function () {
+        return $http.get(urlBase);
     };
 
     dataFactory.logoutUser = function () {

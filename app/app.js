@@ -40,7 +40,8 @@ pdmsys.run(
         },
         data: {
           css: 'assets/css/agency.css',
-          public: true
+          public: true,
+          project: false
         }
       })
       .state('start', {
@@ -53,7 +54,8 @@ pdmsys.run(
         },
         data: {
           css: ['assets/css/start.css', 'assets/css/agency.css'],
-          public: true
+          public: true,
+          project: false
         }
       })
       .state('start.loginAndRegister', {
@@ -65,12 +67,16 @@ pdmsys.run(
           "register": {
             templateUrl: "views/register.html"
           }
+        },
+        data: {
+          project: false
         }
       })
       .state('home', {
         url: "/home",
         data: {
-          css: ['assets/css/home.css', 'assets/css/navbar.css']
+          css: ['assets/css/home.css', 'assets/css/navbar.css'],
+          project: false
         },
         views: {
           "navbar": {
@@ -86,7 +92,8 @@ pdmsys.run(
         url: "/createProject",
         controller: 'CreateProjectCtrl',
         data: {
-          css: ['assets/css/createProject.css', 'assets/css/navbar.css']
+          css: ['assets/css/createProject.css', 'assets/css/navbar.css'],
+          project: false
         },
         views: {
           "navbar": {
@@ -109,6 +116,9 @@ pdmsys.run(
           "confirmInformation": {
             templateUrl: "views/confirmInformation.html"
           }
+        },
+        data: {
+          project: false
         }
       })
       .state('projectHome', {
@@ -384,7 +394,8 @@ pdmsys.run(
           }
         },
         data: {
-          css: 'assets/css/navbar.css'
+          css: 'assets/css/navbar.css',
+          project: false
         }
       })
   });

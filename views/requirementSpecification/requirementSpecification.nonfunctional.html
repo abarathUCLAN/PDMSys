@@ -11,7 +11,7 @@
       Requirement content:
       <textarea rows="5" cols="100" type="text" ng-model="non.content" class="form-control" required></textarea>
     </div></small></h3>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertNonFunctionalRequirement(non)">Submit</button>
+    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertNonFunctionalRequirement(non)">Submit</button>
   </form>
   <table class="table">
     <thead>
@@ -24,7 +24,7 @@
       <tr ng-repeat="non in nonFunctional">
         <td>{{ non.name }} </td>
         <td>{{ non.content }} </td>
-        <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deleteNonFunctionalRequirement($index, non)">Delete</button></td>
+        <td ng-show="showDeleteButton && !isSpectator"><button class="btn btn-default" ng-click="deleteNonFunctionalRequirement($index, non)">Delete</button></td>
     </tbody>
   </table>
 </div>

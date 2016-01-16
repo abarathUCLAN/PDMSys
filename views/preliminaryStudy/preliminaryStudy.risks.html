@@ -8,7 +8,7 @@
       <textarea rows="5" cols="100" type="text" ng-model="risk.content" class="form-control" required></textarea>
     </div>
     </div>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertRisk(risk)">Create risk</button>
+    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertRisk(risk)">Create risk</button>
   </form>
   <table class="table">
   <thead>
@@ -21,7 +21,7 @@
     <tr ng-repeat="risk in projectRisks">
       <td>{{ risk.name }} </td>
       <td>{{ risk.content }} </td>
-      <td ng-show="showDeleteButton"><button class="btn btn-default" ng-click="deleteRisk($index, risk)">Delete</button></td>
+      <td ng-show="showDeleteButton && !isSpectator"><button class="btn btn-default" ng-click="deleteRisk($index, risk)">Delete</button></td>
   </tbody>
 </table>
 </div>
