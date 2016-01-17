@@ -31,6 +31,7 @@ pdmsys.run(
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/json';
     $urlRouterProvider.otherwise("/");
     $stateProvider
+
       .state('index', {
         url: "/",
         views: {
@@ -69,6 +70,19 @@ pdmsys.run(
           }
         },
         data: {
+          project: false
+        }
+      })
+      .state('invitation', {
+        url: "/invitation/:invitationCode",
+        views: {
+          "content": {
+            templateUrl: "views/invitation.html"
+          }
+        },
+        data: {
+          css: ['assets/css/start.css', 'assets/css/agency.css'],
+          public: true,
           project: false
         }
       })

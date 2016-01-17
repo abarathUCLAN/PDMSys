@@ -30,5 +30,13 @@ angular.module('pdmsys')
         return $http.post(urlBase + '/logout');
     };
 
+    dataFactory.checkIfUrlCodeIsValid = function (urlcode) {
+        return $http.post(urlBase + '/checkIfUrlCodeIsValid', urlcode);
+    };
+
+    dataFactory.registerUserWithUrlCode = function (user) {
+        return $http.post(urlBase + '/registerUserWithUrlCode', user);
+    };
+
     return dataFactory;
 }]);

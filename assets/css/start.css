@@ -4,6 +4,10 @@ html{
     position:relative;
 }
 
+.gap {
+  margin-top: 150px;
+}
+
 header{
  height: 1024px;
 }
