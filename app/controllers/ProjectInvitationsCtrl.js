@@ -6,7 +6,7 @@ pdmsys.controller('ProjectInvitationsCtrl',
     $scope.projectId = $stateParams.projectId;
 
     $scope.invitations = {
-      invitations: {},
+      invitations: [],
       selected: {}
     };
 
@@ -49,13 +49,8 @@ pdmsys.controller('ProjectInvitationsCtrl',
       };
       if (newinvitation.type == undefined || newinvitation.type == '')
         newinvitation.type = 0;
-      invitationFactory.addInvitationToProject($scope.projectId, newinvitation)
-      .then(function(response) {
-        newinvitation.id = response.data.id;
-        $scope.invitations.invitations.push(newinvitation);
-        angular.copy({}, invitation);
-      }, function() {
-      });
+      $scope.invitations.invitations.push(newinvitation);
+      angular.copy({}, invitation);
     };
 
     $scope.getProjectInvitations = function () {

@@ -37,13 +37,13 @@ pdmsys.controller('CreateProjectCtrl',
     $scope.createProject = function () {
       projectFactory.insertProject($scope.projectInformation)
       .then(function (response) {
-          if(angular.equals({}, $scope.projectInvitations)) {
+        console.log($scope.projectInvitations.length);
+          if($scope.projectInvitations.length != undefined && $scope.projectInvitations.length > 0) {
             $scope.projectCreated = true;
             $scope.projectHomeButton = true;
             $scope.projectId = response.data;
             $scope.createInvitations(response.data);
           } else {
-            console.log("swag");
             $scope.projectHome();
           }
       }, function (error) {
@@ -52,7 +52,7 @@ pdmsys.controller('CreateProjectCtrl',
     };
 
     $scope.createInvitations = function(projectId) {
-      invitationFactory.insertInvitation($scope.projectInvitations, projectId)
+      invitationFactory.insertInvitation(projectId, $scope.projectInvitations)
       .then(function (response) {
          $scope.projectHome();
       }, function (error) {
@@ -62,7 +62,6 @@ pdmsys.controller('CreateProjectCtrl',
     };
 
     $scope.projectHome = function() {
-      console.log("swag2");
       $state.go('projectHome.dashboard', {projectId: $scope.projectId});
     };
 

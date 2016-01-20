@@ -83,7 +83,8 @@ pdmsys.run(
         data: {
           css: ['assets/css/start.css', 'assets/css/agency.css'],
           public: true,
-          project: false
+          project: false,
+          login: true
         }
       })
       .state('home', {

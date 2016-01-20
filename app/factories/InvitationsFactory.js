@@ -6,7 +6,7 @@ angular.module('pdmsys')
     var urlBase = 'http://localhost:8000/api/invitations';
     var dataFactory = {};
 
-    dataFactory.insertInvitation = function (invitation, projectId) {
+    dataFactory.insertInvitation = function (projectId, invitation) {
         return $http.post(urlBase + '/createInvitation/' + projectId, invitation);
     };
 

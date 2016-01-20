@@ -9,7 +9,7 @@ pdmsys.controller('ProjectMembersController',
     $scope.test = {};
 
     $scope.members = {
-      members: {},
+      members: [{}],
       selected: {}
     };
 
