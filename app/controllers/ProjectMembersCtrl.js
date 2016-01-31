@@ -39,8 +39,8 @@ pdmsys.controller('ProjectMembersController',
     });
 
     $scope.getTemplate = function(member) {
-      if (member.id === $scope.members.selected.id) return 'views/editmemberTmp.html';
-      else return 'views/displaymemberTmp.admin.html';
+      if (member.id === $scope.members.selected.id) return 'views/templates/editmemberTmp.html';
+      else return 'views/templates/displaymemberTmp.admin.html';
     };
 
     $scope.editMember = function(member) {

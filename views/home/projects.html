@@ -1,0 +1,16 @@
+<div class="gap container" ui-view ng-controller="ProjectsCtrl" ng-init="getProjects()">
+  <div><strong>{{projectStatus}}</strong></div>
+  <ul class="cbp-ig-grid">
+    <li ng-repeat="project in projects">
+      <a ui-sref="projectHome.dashboard({projectId: project.id})">
+        <span class="glyphicon glyphicon-folder-open glyphicon-size"></span>
+        <h3 class="cbp-ig-title">{{ project.name }}</h3>
+        <div class="cbp-ig-info">
+          {{ project.description }}
+          <hr> Acronym
+          <strong> {{ project.acronym || 'Not available.'}} </strong>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>

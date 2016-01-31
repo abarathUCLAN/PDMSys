@@ -1,6 +1,11 @@
 'use strict';
 
-var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'ngFileUpload', 'swxSessionStorage', 'ngDialog', 'satellizer', 'uiRouterStyles', 'pdmsys.milestone']);
+var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'ngFileUpload',
+  'swxSessionStorage', 'satellizer', 'uiRouterStyles',
+  'pdmsys.milestone', 'pdmsys.HomeModule', 'pdmsys.ProjectHome', 'pdmsys.PreliminaryStudy',
+  'pdmsys.FunctionalSpecification', 'pdmsys.RequirementSpecification', 'pdmsys.Finalization',
+  'pdmsys.Miscellaneous'
+]);
 
 pdmsys.run(
     ['$rootScope', '$state', '$stateParams', '$auth',
@@ -23,7 +28,7 @@ pdmsys.run(
   .config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$httpProvider',
     function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider) {
       //for 401 responses
-      $httpProvider.interceptors.push('authHttpResponseInterceptor');
+      $httpProvider.interceptors.push('UnauthorizedResponseInterceptor');
       $authProvider.baseUrl = 'http://localhost:8000';
       $authProvider.oauth2({
         name: 'pdmsys',
@@ -51,7 +56,7 @@ pdmsys.run(
           url: "/start",
           views: {
             "content": {
-              templateUrl: "views/start.html"
+              templateUrl: "views/user/start.html"
             }
           },
           data: {
@@ -64,10 +69,10 @@ pdmsys.run(
           url: '',
           views: {
             "login": {
-              templateUrl: "views/login.html"
+              templateUrl: "views/user/login.html"
             },
             "register": {
-              templateUrl: "views/register.html"
+              templateUrl: "views/user/register.html"
             }
           },
           data: {
@@ -78,7 +83,7 @@ pdmsys.run(
           url: "/invitation/:invitationCode",
           views: {
             "content": {
-              templateUrl: "views/invitation.html"
+              templateUrl: "views/user/invitation.html"
             }
           },
           data: {
@@ -88,317 +93,6 @@ pdmsys.run(
             login: true
           }
         })
-        .state('home', {
-          url: "/home",
-          data: {
-            css: ['assets/css/home.css', 'assets/css/navbar.css'],
-            project: false
-          },
-          views: {
-            "navbar": {
-              templateUrl: "views/navbar.html"
-            },
-            "content": {
-              templateUrl: "views/projects.html"
-            }
-          }
-        })
-        .state('createProject', {
-          abstract: true,
-          url: "/createProject",
-          controller: 'CreateProjectCtrl',
-          data: {
-            css: ['assets/css/createProject.css', 'assets/css/navbar.css'],
-            project: false
-          },
-          views: {
-            "navbar": {
-              templateUrl: "views/navbar.html"
-            },
-            "content": {
-              templateUrl: "views/createProject.html"
-            }
-          }
-        })
-        .state('createProject.views', {
-          url: '',
-          views: {
-            "information": {
-              templateUrl: "views/projectInformation.html"
-            },
-            "invitation": {
-              templateUrl: "views/projectInvitation.html"
-            },
-            "confirmInformation": {
-              templateUrl: "views/confirmInformation.html"
-            }
-          },
-          data: {
-            project: false
-          }
-        })
-        .state('projectHome', {
-          url: "/project/{projectId:int}",
-          abstract: true,
-          data: {
-            css: ['assets/css/projectHome.css', 'assets/css/navbar.css']
-          },
-          views: {
-            "navbar": {
-              templateUrl: "views/projectNavbar.html"
-            },
-            "content": {
-              templateUrl: "views/project.projectHome.html"
-            }
-          }
-        })
-        .state('projectHome.dashboard', {
-          url: '/dashboard',
-          templateUrl: "views/projectHome/projectHome.dashboard.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('projectHome.members', {
-          url: '/members',
-          templateUrl: "views/projectHome/projectHome.members.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('projectHome.invitations', {
-          url: '/invitations',
-          templateUrl: "views/projectHome/projectHome.invitations.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('preliminaryStudy', {
-          abstract: true,
-          url: "/project/{projectId:int}/preliminaryStudy",
-          data: {
-            css: 'assets/css/navbar.css'
-          },
-          views: {
-            "navbar": {
-              templateUrl: "views/projectNavbar.html"
-            },
-            "content": {
-              templateUrl: "views/project.preliminaryStudy.html"
-            }
-          }
-        })
-        .state('preliminaryStudy.projectDescription', {
-          url: '/projectDescription',
-          templateUrl: "views/preliminaryStudy/preliminaryStudy.projectDescription.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('preliminaryStudy.risks', {
-          url: '/risks',
-          templateUrl: "views/preliminaryStudy/preliminaryStudy.risks.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('preliminaryStudy.milestones', {
-          url: '/milestones',
-          data: {
-            css: ['assets/libs/angular-gantt/assets/angular-gantt.css', 'assets/libs/angular-gantt/assets/angular-gantt-plugins.css']
-          },
-          templateUrl: "views/preliminaryStudy/preliminaryStudy.milestones.html"
-        })
-        .state('preliminaryStudy.effort', {
-          url: '/effort',
-          templateUrl: "views/preliminaryStudy/preliminaryStudy.effort.html"
-        })
-        .state('functionalSpecification', {
-          abstract: true,
-          url: "/project/{projectId:int}/functionalSpecification",
-          data: {
-            css: 'assets/css/navbar.css'
-          },
-          views: {
-            "navbar": {
-              templateUrl: "views/projectNavbar.html"
-            },
-            "content": {
-              templateUrl: "views/project.functionalSpecification.html"
-            }
-          }
-        })
-        .state('functionalSpecification.productRequirement', {
-          url: '/productRequirement',
-          templateUrl: "views/functionalSpecification/functionalSpecification.productRequirement.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('functionalSpecification.implementation', {
-          url: '/implementation',
-          templateUrl: "views/functionalSpecification/functionalSpecification.implementation.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('requirementSpecification', {
-          abstract: true,
-          url: "/project/{projectId:int}/requirementSpecification",
-          data: {
-            css: 'assets/css/navbar.css'
-          },
-          views: {
-            "navbar": {
-              templateUrl: "views/projectNavbar.html"
-            },
-            "content": {
-              templateUrl: "views/project.requirementSpecification.html"
-            }
-          }
-        })
-        .state('requirementSpecification.projectIntroduction', {
-          url: '/introduction',
-          templateUrl: "views/requirementSpecification/requirementSpecification.projectIntroduction.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('requirementSpecification.needs', {
-          url: '/needToHave',
-          templateUrl: "views/requirementSpecification/requirementSpecification.needToHave.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('requirementSpecification.nice', {
-          url: '/niceToHave',
-          templateUrl: "views/requirementSpecification/requirementSpecification.niceToHave.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('requirementSpecification.result', {
-          url: '/result',
-          templateUrl: "views/requirementSpecification/requirementSpecification.result.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('requirementSpecification.productUse', {
-          url: '/productUse',
-          templateUrl: "views/requirementSpecification/requirementSpecification.productUse.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('requirementSpecification.actualState', {
-          url: '/actualState',
-          templateUrl: "views/requirementSpecification/requirementSpecification.actualState.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('requirementSpecification.targetState', {
-          url: '/targetState',
-          templateUrl: "views/requirementSpecification/requirementSpecification.targetState.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('requirementSpecification.productData', {
-          url: '/productData',
-          templateUrl: "views/requirementSpecification/requirementSpecification.productData.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('requirementSpecification.nonfunctional', {
-          url: '/nonfunctional',
-          templateUrl: "views/requirementSpecification/requirementSpecification.nonfunctional.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('requirementSpecification.quality', {
-          url: '/quality',
-          templateUrl: "views/requirementSpecification/requirementSpecification.quality.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('finalization', {
-          abstract: true,
-          url: "/project/{projectId:int}/finalization",
-          data: {
-            css: 'assets/css/navbar.css'
-          },
-          views: {
-            "navbar": {
-              templateUrl: "views/projectNavbar.html"
-            },
-            "content": {
-              templateUrl: "views/project.finalization.html"
-            }
-          }
-        })
-        .state('finalization.acceptanceProtocol', {
-          url: '/acceptanceProtocol',
-          templateUrl: "views/finalization/finalization.acceptanceProtocol.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('finalization.projectManual', {
-          url: '/projectManual',
-          templateUrl: "views/finalization/finalization.projectManual.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('miscellaneous', {
-          abstract: true,
-          url: "/project/{projectId:int}/miscellaneous",
-          data: {
-            css: 'assets/css/navbar.css'
-          },
-          views: {
-            "navbar": {
-              templateUrl: "views/projectNavbar.html"
-            },
-            "content": {
-              templateUrl: "views/project.miscellaneous.html"
-            }
-          }
-        })
-        .state('miscellaneous.presentations', {
-          url: '/presentations',
-          templateUrl: "views/miscellaneous/miscellaneous.presentations.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('miscellaneous.changeRequests', {
-          url: '/changeRequests',
-          templateUrl: "views/miscellaneous/miscellaneous.changeRequests.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('miscellaneous.codeStyleGuide', {
-          url: '/codeStyleGuide',
-          templateUrl: "views/miscellaneous/miscellaneous.codeStyleGuide.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
-        .state('miscellaneous.monthlyReports', {
-          url: '/monthlyReports',
-          templateUrl: "views/miscellaneous/miscellaneous.monthlyReports.html",
-          data: {
-            css: 'assets/css/input.css'
-          }
-        })
         .state('userprofile', {
           url: '/profile',
           views: {
@@ -406,7 +100,7 @@ pdmsys.run(
               templateUrl: "views/navbar.html"
             },
             "content": {
-              templateUrl: "views/userprofile.html"
+              templateUrl: "views/user/userprofile.html"
             }
           },
           data: {
@@ -415,14 +109,4 @@ pdmsys.run(
           }
         })
     }
-  ]).factory('authHttpResponseInterceptor', ['$q', '$injector', function($q, $injector) {
-    return {
-      responseError: function(rejection, $sessionStorage) {
-        if (rejection.status === 401) {
-          $injector.get('$auth').logout();
-          $injector.get('$state').go("start.loginAndRegister");
-        }
-        return $q.reject(rejection);
-      }
-    }
-  }]);
+  ]);

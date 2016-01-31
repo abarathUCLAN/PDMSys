@@ -1,0 +1,47 @@
+'use strict';
+
+angular.module('pdmsys.PreliminaryStudy', [])
+  .config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$httpProvider',
+    function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider) {
+      $stateProvider.state('preliminaryStudy', {
+          abstract: true,
+          url: "/project/{projectId:int}/preliminaryStudy",
+          data: {
+            css: 'assets/css/navbar.css'
+          },
+          views: {
+            "navbar": {
+              templateUrl: "views/projectNavbar.html"
+            },
+            "content": {
+              templateUrl: "views/preliminaryStudy/project.preliminaryStudy.html"
+            }
+          }
+        })
+        .state('preliminaryStudy.projectDescription', {
+          url: '/projectDescription',
+          templateUrl: "views/preliminaryStudy/preliminaryStudy.projectDescription.html",
+          data: {
+            css: 'assets/css/input.css'
+          }
+        })
+        .state('preliminaryStudy.risks', {
+          url: '/risks',
+          templateUrl: "views/preliminaryStudy/preliminaryStudy.risks.html",
+          data: {
+            css: 'assets/css/input.css'
+          }
+        })
+        .state('preliminaryStudy.milestones', {
+          url: '/milestones',
+          data: {
+            css: ['assets/libs/angular-gantt/assets/angular-gantt.css', 'assets/libs/angular-gantt/assets/angular-gantt-plugins.css']
+          },
+          templateUrl: "views/preliminaryStudy/preliminaryStudy.milestones.html"
+        })
+        .state('preliminaryStudy.effort', {
+          url: '/effort',
+          templateUrl: "views/preliminaryStudy/preliminaryStudy.effort.html"
+        });
+    }
+  ]);

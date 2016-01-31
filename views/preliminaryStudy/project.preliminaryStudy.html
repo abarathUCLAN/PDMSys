@@ -1,0 +1,20 @@
+<div class="row gapForNavbar">
+  <div class="col-sm-3">
+    <div class="sidebar-nav">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a ui-sref="preliminaryStudy.projectDescription">Project description<span class="pull-right glyphicon glyphicon-menu-right"></span></a></li>
+            <li><a ui-sref="preliminaryStudy.risks">Risks<span class="pull-right glyphicon glyphicon-menu-right"></a></li>
+            <li><a ui-sref="preliminaryStudy.milestones">Milestones<span class="pull-right glyphicon glyphicon-menu-right"></a></li>
+            <li><a ui-sref="preliminaryStudy.effort">Effort estimation<span class="pull-right glyphicon glyphicon-menu-right"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9" ng-controller="PreliminaryStudyController">
+    <div ui-view></div>
+    {{projectDescriptionStatusMessage}}
+  </div>
+</div>

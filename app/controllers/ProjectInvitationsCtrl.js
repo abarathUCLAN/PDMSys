@@ -13,8 +13,8 @@ pdmsys.controller('ProjectInvitationsCtrl',
     $scope.invitationMessage = undefined;
 
     $scope.getTemplate = function(invitation) {
-      if (invitation.id === $scope.invitations.selected.id) return 'views/editInvitationTmp.html';
-      else return 'views/displayInvitationTmp.html';
+      if (invitation.id === $scope.invitations.selected.id) return 'views/templates/editInvitationTmp.html';
+      else return 'views/templates/displayInvitationTmp.html';
     };
 
     $scope.editInvitation = function(invitation) {

@@ -1,0 +1,16 @@
+<td>{{ member.firstname }} </td>
+<td>{{ member.lastname }} </td>
+<td>{{ member.email }} </td>
+<td>
+  <div ng-show="{{ member.type == 0 }}">Spectator</div>
+</td>
+<td>
+  <div ng-show="{{ member.type == 1 }}">Member</div>
+</td>
+<td>
+  <div ng-show="{{ member.type == 2 }}">Leader</div>
+</td>
+<td>
+    <button class="btn btn-info" ng-click="editMember(member)">Edit</button>
+    <button class="btn btn-danger" ng-click="removeMember($index, member)">Remove</button>
+</td>
