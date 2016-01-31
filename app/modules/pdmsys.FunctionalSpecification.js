@@ -22,14 +22,16 @@ angular.module('pdmsys.FunctionalSpecification', [])
         url: '/productRequirement',
         templateUrl: "views/functionalSpecification/functionalSpecification.productRequirement.html",
         data: {
-          css: 'assets/css/input.css'
+          css: 'assets/css/input.css',
+          pageTitle: 'Requirement'
         }
       })
       .state('functionalSpecification.implementation', {
         url: '/implementation',
         templateUrl: "views/functionalSpecification/functionalSpecification.implementation.html",
         data: {
-          css: 'assets/css/input.css'
+          css: 'assets/css/input.css',
+          pageTitle: 'Implementation'
         }
       });
     }

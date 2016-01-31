@@ -1,12 +1,13 @@
 'use strict';
 
 pdmsys.controller('UserprofileCtrl',
-  function UserprofileCtrl($scope, userFactory, $state) {
+  function UserprofileCtrl($scope, userFactory, $state, md5) {
 
     $scope.setting = {};
     $scope.statusMessage = undefined;
 
     $scope.editUserData = function(data) {
+      data.password = md5.createHash(data.password);
       userFactory.updateUser(data)
       .then(function() {
         $scope.statusMessage = 'Userdata updated.';
@@ -25,5 +26,4 @@ pdmsys.controller('UserprofileCtrl',
         $state.go("home");
       });
     };
-
   });

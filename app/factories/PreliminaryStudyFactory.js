@@ -32,22 +32,6 @@ angular.module('pdmsys')
         return $http.get(urlBase + '/risk/' + projectId);
     };
 
-
-
-    dataFactory.insertMilestone = function (projectId, milestone) {
-        return $http.post(urlBase + '/milestone/' + projectId, milestone );
-    };
-
-    dataFactory.deleteMilestone = function (projectId) {
-        return $http.post(urlBase + '/milestone/delete/' + projectId);
-    };
-
-    dataFactory.getMilestone = function (projectId) {
-        return $http.get(urlBase + '/milestone/' + projectId);
-    };
-
-
-
     dataFactory.insertEffortEstimation = function (projectId, estimation) {
         return $http.post(urlBase + '/effortEstimation/' + projectId, estimation);
     };

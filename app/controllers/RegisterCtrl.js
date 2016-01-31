@@ -1,7 +1,7 @@
 'use strict';
 
 pdmsys.controller('RegisterCtrl',
-  function RegisterCtrl($scope, userFactory, $stateParams, $state) {
+  function RegisterCtrl($scope, userFactory, $stateParams, $state, md5) {
     $scope.passwordRegEx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,15}/;
     $scope.nameRegEx = /^[a-z ,.'-]+$/i;
 
@@ -47,7 +47,13 @@ pdmsys.controller('RegisterCtrl',
     };
 
     $scope.registerUser = function () {
-      userFactory.insertUser($scope.registration)
+      var registrationWithHash = {
+        firstname: $scope.registration.firstname,
+        email: $scope.registration.email,
+        lastname: $scope.registration.lastname,
+        password: md5.createHash($scope.registration.password)
+      };
+      userFactory.insertUser(registrationWithHash)
       .then(function () {
           $scope.registerStatus = 'Registration successful.';
       },function (error) {

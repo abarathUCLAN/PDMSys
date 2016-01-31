@@ -2,9 +2,9 @@
 
 var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'ngFileUpload',
   'swxSessionStorage', 'satellizer', 'uiRouterStyles',
-  'pdmsys.milestone', 'pdmsys.HomeModule', 'pdmsys.ProjectHome', 'pdmsys.PreliminaryStudy',
+  'pdmsys.HomeModule', 'pdmsys.ProjectHome', 'pdmsys.PreliminaryStudy',
   'pdmsys.FunctionalSpecification', 'pdmsys.RequirementSpecification', 'pdmsys.Finalization',
-  'pdmsys.Miscellaneous'
+  'pdmsys.Miscellaneous', 'angular-md5'
 ]);
 
 pdmsys.run(
@@ -12,6 +12,7 @@ pdmsys.run(
       function($rootScope, $state, $stateParams, $auth) {
         $rootScope.$state = $state;
         $rootScope.$stateParams = $stateParams;
+
         $rootScope.$on('$stateChangeStart', function(event, toState) {
           if (toState.data.public === true && $auth.isAuthenticated() === true) {
             event.preventDefault();
@@ -22,6 +23,7 @@ pdmsys.run(
             $state.go('start.loginAndRegister');
           }
         });
+
       }
     ]
   )
@@ -48,7 +50,8 @@ pdmsys.run(
           data: {
             css: 'assets/css/agency.css',
             public: true,
-            project: false
+            project: false,
+            pageTitle: 'Welcome'
           }
         })
         .state('start', {
@@ -62,7 +65,8 @@ pdmsys.run(
           data: {
             css: ['assets/css/start.css', 'assets/css/agency.css'],
             public: true,
-            project: false
+            project: false,
+            pageTitle: 'Start'
           }
         })
         .state('start.loginAndRegister', {
@@ -90,7 +94,8 @@ pdmsys.run(
             css: ['assets/css/start.css', 'assets/css/agency.css'],
             public: true,
             project: false,
-            login: true
+            login: true,
+            pageTitle: 'Accept invitation'
           }
         })
         .state('userprofile', {
@@ -105,7 +110,8 @@ pdmsys.run(
           },
           data: {
             css: 'assets/css/navbar.css',
-            project: false
+            project: false,
+            pageTitle: 'Profile'
           }
         })
     }

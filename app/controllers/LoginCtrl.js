@@ -1,7 +1,7 @@
 'use strict';
 
 pdmsys.controller('LoginCtrl',
-  function LoginCtrl($scope, $auth, userFactory, $state) {
+  function LoginCtrl($scope, $auth, userFactory, $state, md5) {
     $scope.passwordRegEx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,15}/;
 
     $scope.login = {
@@ -15,6 +15,7 @@ pdmsys.controller('LoginCtrl',
     $scope.loginStatus = '';
 
     $scope.loginUser = function() {
+      $scope.login.password = md5.createHash($scope.login.password);
       userFactory.loginUser($scope.login)
         .then(function(response) {
           $auth.setToken(response.data.access_token);
@@ -23,5 +24,4 @@ pdmsys.controller('LoginCtrl',
           $scope.loginStatus = 'Login failed.';
         });
     };
-
   });

@@ -23,28 +23,32 @@ angular.module('pdmsys.Miscellaneous', [])
         url: '/presentations',
         templateUrl: "views/miscellaneous/miscellaneous.presentations.html",
         data: {
-          css: 'assets/css/input.css'
+          css: 'assets/css/input.css',
+          pageTitle: 'Presentations'
         }
       })
       .state('miscellaneous.changeRequests', {
         url: '/changeRequests',
         templateUrl: "views/miscellaneous/miscellaneous.changeRequests.html",
         data: {
-          css: 'assets/css/input.css'
+          css: 'assets/css/input.css',
+          pageTitle: 'Change requests'
         }
       })
       .state('miscellaneous.codeStyleGuide', {
         url: '/codeStyleGuide',
         templateUrl: "views/miscellaneous/miscellaneous.codeStyleGuide.html",
         data: {
-          css: 'assets/css/input.css'
+          css: 'assets/css/input.css',
+          pageTitle: 'Code style guide'
         }
       })
       .state('miscellaneous.monthlyReports', {
         url: '/monthlyReports',
         templateUrl: "views/miscellaneous/miscellaneous.monthlyReports.html",
         data: {
-          css: 'assets/css/input.css'
+          css: 'assets/css/input.css',
+          pageTitle: 'Monthly reports'
         }
       });
     }

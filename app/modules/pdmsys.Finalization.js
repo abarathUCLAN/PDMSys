@@ -23,14 +23,16 @@ angular.module('pdmsys.Finalization', [])
           url: '/acceptanceProtocol',
           templateUrl: "views/finalization/finalization.acceptanceProtocol.html",
           data: {
-            css: 'assets/css/input.css'
+            css: 'assets/css/input.css',
+            pageTitle: 'Acceptance protocol'
           }
         })
         .state('finalization.projectManual', {
           url: '/projectManual',
           templateUrl: "views/finalization/finalization.projectManual.html",
           data: {
-            css: 'assets/css/input.css'
+            css: 'assets/css/input.css',
+            pageTitle: 'Manual'
           }
         });
     }

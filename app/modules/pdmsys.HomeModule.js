@@ -7,7 +7,8 @@ angular.module('pdmsys.HomeModule', [])
           url: "/home",
           data: {
             css: ['assets/css/home.css', 'assets/css/navbar.css'],
-            project: false
+            project: false,
+            pageTitle: 'Home'
           },
           views: {
             "navbar": {
@@ -24,7 +25,8 @@ angular.module('pdmsys.HomeModule', [])
           controller: 'CreateProjectCtrl',
           data: {
             css: ['assets/css/createProject.css', 'assets/css/navbar.css'],
-            project: false
+            project: false,
+            pageTitle: 'Create a new project'
           },
           views: {
             "navbar": {

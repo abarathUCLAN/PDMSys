@@ -22,26 +22,24 @@ angular.module('pdmsys.PreliminaryStudy', [])
           url: '/projectDescription',
           templateUrl: "views/preliminaryStudy/preliminaryStudy.projectDescription.html",
           data: {
-            css: 'assets/css/input.css'
+            css: 'assets/css/input.css',
+            pageTitle: 'Project description'
           }
         })
         .state('preliminaryStudy.risks', {
           url: '/risks',
           templateUrl: "views/preliminaryStudy/preliminaryStudy.risks.html",
           data: {
-            css: 'assets/css/input.css'
+            css: 'assets/css/input.css',
+            pageTitle: 'Risks'
           }
-        })
-        .state('preliminaryStudy.milestones', {
-          url: '/milestones',
-          data: {
-            css: ['assets/libs/angular-gantt/assets/angular-gantt.css', 'assets/libs/angular-gantt/assets/angular-gantt-plugins.css']
-          },
-          templateUrl: "views/preliminaryStudy/preliminaryStudy.milestones.html"
         })
         .state('preliminaryStudy.effort', {
           url: '/effort',
-          templateUrl: "views/preliminaryStudy/preliminaryStudy.effort.html"
+          templateUrl: "views/preliminaryStudy/preliminaryStudy.effort.html",
+          data: {
+            pageTitle: 'Effort estimation'
+          }
         });
     }
   ]);

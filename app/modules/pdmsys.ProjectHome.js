@@ -22,21 +22,24 @@ angular.module('pdmsys.ProjectHome', [])
         url: '/dashboard',
         templateUrl: "views/projectHome/projectHome.dashboard.html",
         data: {
-          css: 'assets/css/input.css'
+          css: 'assets/css/input.css',
+          pageTitle: 'Dashboard'
         }
       })
       .state('projectHome.members', {
         url: '/members',
         templateUrl: "views/projectHome/projectHome.members.html",
         data: {
-          css: 'assets/css/input.css'
+          css: 'assets/css/input.css',
+          pageTitle: 'Project members'
         }
       })
       .state('projectHome.invitations', {
         url: '/invitations',
         templateUrl: "views/projectHome/projectHome.invitations.html",
         data: {
-          css: 'assets/css/input.css'
+          css: 'assets/css/input.css',
+          pageTitle: 'Project invitations'
         }
       });
     }

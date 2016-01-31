@@ -20,8 +20,9 @@
   <script src="assets/libs/ng-dialog/js/ngDialog.min.js"></script>
   <script src="assets/libs/Angular-swx-session-storage ($sessionStorage)/release/swx-session-storage.min.js"></script>
   <script src="assets/libs/ng-file-upload/ng-file-upload.min.js"></script>
+  <script src="assets/libs/angular-md5/angular-md5.js"></script>
 
-  <title>PDMSys</title>
+  <title ng-bind="$state.current.data.pageTitle + ' - Pdmsys'"></title>
 
 
 </head>
@@ -31,18 +32,6 @@
     <div ui-view name="navbar"></div>
     <div ui-view name="content"></div>
   </div>
-
-  <script src="assets/libs/angular-strap/dist/angular-strap.js"></script>
-  <script src="assets/libs/angular-strap/dist/angular-strap.tpl.js"></script>
-  <script src="assets/libs/angular-native-dragdrop/draganddrop.js"></script>
-  <script src="assets/libs/angular-ui-tree/dist/angular-ui-tree.js"></script>
-  <script src="assets/libs/moment/moment.js"></script>
-  <script src="assets/libs/angular-moment/angular-moment.js"></script>
-  <script src="assets/libs/angular-gantt/assets/angular-gantt.js"></script>
-  <script src="assets/libs/angular-gantt/assets/angular-gantt-plugins.js"></script>
-  <script src="assets/libs/moment-range/dist/moment-range.js"></script>
-  <script src="assets/libs/css-element-queries/src/ElementQueries.js"></script>
-  <script src="assets/libs/css-element-queries/src/ResizeSensor.js"></script>
 
   <script src="app/controllers/StartCtrl.js"></script>
   <script src="app/controllers/LoginCtrl.js"></script>
@@ -62,7 +51,6 @@
   <script src="app/controllers/UserprofileCtrl.js"></script>
   <script src="app/controllers/MiscellaneousCtrl.js"></script>
 
-  <script src="app/modules/pdmsys.milestoneGANTT.js"></script>
   <script src="app/modules/pdmsys.HomeModule.js"></script>
   <script src="app/modules/pdmsys.ProjectHome.js"></script>
   <script src="app/modules/pdmsys.PreliminaryStudy.js"></script>
