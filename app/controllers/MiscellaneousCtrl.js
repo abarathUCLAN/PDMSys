@@ -122,6 +122,8 @@ pdmsys.controller('MiscellaneousController',
     };
 
     $scope.insertReport = function(requirement) {
+      if(requirement.month == undefined || requirement.month == 0)
+        requirement.month = 1;
       miscellaneousFactory.insertReport($scope.projectId, requirement)
         .then(function(response) {
           $scope.showDeleteButton = true;

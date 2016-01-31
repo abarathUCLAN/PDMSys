@@ -49,8 +49,37 @@ pdmsys.controller('ProjectInvitationsCtrl',
       };
       if (newinvitation.type == undefined || newinvitation.type == '')
         newinvitation.type = 0;
-      $scope.invitations.invitations.push(newinvitation);
-      angular.copy({}, invitation);
+        $scope.invitations.invitations.push(newinvitation);
+      /*invitationFactory.addInvitationToProject($scope.projectId, newinvitation)
+      .then(function(response) {
+        newinvitation.id = response.data.id;
+        $scope.invitations.invitations.push(newinvitation);
+        angular.copy({}, invitation);
+      }, function() {
+        $scope.invitationMessage = "An error occured during the process.";
+      });*/
+    };
+
+    $scope.addInvitationHome = function(invitation) {
+      var newinvitation = {
+        firstname: invitation.firstname,
+        lastname: invitation.lastname,
+        email: invitation.email,
+        type: invitation.type,
+        id: 0
+      };
+      if (newinvitation.type == undefined || newinvitation.type == '')
+        newinvitation.type = 0;
+
+      invitationFactory.addInvitationToProject($scope.projectId, newinvitation)
+      .then(function(response) {
+        console.log(response);
+        newinvitation.id = response.data.id;
+        $scope.invitations.invitations.push(newinvitation);
+        angular.copy({}, invitation);
+      }, function() {
+        $scope.invitationMessage = "An error occured during the process.";
+      });
     };
 
     $scope.getProjectInvitations = function () {

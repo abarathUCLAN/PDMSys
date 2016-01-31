@@ -24,7 +24,8 @@ angular.module('pdmsys')
     dataFactory.downloadPresentation = function (presentationId) {
         return $http.get(urlBase + '/presentation/download/' + presentationId)
         .then(function() {
-          $window.open(urlBase + '/presentation/download/' + presentationId);
+          $window.open(urlBase + '/presentation/download/' + presentationId, '_blank', '');
+          //$window.open(urlBase + '/presentation/download/' + presentationId);
         }, function() {
         });
     };
@@ -56,7 +57,7 @@ angular.module('pdmsys')
         return $http.get(urlBase + '/styleGuide/' + projectId);
     };
 
-    
+
 
     dataFactory.insertReport = function (projectId, Report) {
         return $http.post(urlBase + '/report/' + projectId, Report);

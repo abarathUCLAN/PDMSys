@@ -37,7 +37,6 @@ pdmsys.controller('CreateProjectCtrl',
     $scope.createProject = function () {
       projectFactory.insertProject($scope.projectInformation)
       .then(function (response) {
-        console.log($scope.projectInvitations.length);
           if($scope.projectInvitations.length != undefined && $scope.projectInvitations.length > 0) {
             $scope.projectCreated = true;
             $scope.projectHomeButton = true;
@@ -52,6 +51,7 @@ pdmsys.controller('CreateProjectCtrl',
     };
 
     $scope.createInvitations = function(projectId) {
+      console.log("project id ist" + projectId);
       invitationFactory.insertInvitation(projectId, $scope.projectInvitations)
       .then(function (response) {
          $scope.projectHome();

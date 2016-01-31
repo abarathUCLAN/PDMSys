@@ -1,7 +1,7 @@
 'use strict';
 
 pdmsys.controller('UserprofileCtrl',
-  function UserprofileCtrl($scope, userFactory) {
+  function UserprofileCtrl($scope, userFactory, $state) {
 
     $scope.setting = {};
     $scope.statusMessage = undefined;

@@ -8,7 +8,7 @@
           <small>Criteria requirement:
             <input type="text" ng-model="acceptanceprotocol.requirement" required></input>
             <br> KO Criteria:
-            <input type="text" ng-model="acceptanceprotocol.criteriaName" required ></input>
+            <input type="text" ng-model="acceptanceprotocol.criteriaName" required></input>
             <br> KO Criteria:
             <textarea rows="5" cols="20" type="text" class="form-control" ng-model="acceptanceprotocol.criteria" required></textarea>
             <br> Fulfilled:
@@ -36,9 +36,11 @@
         <td>{{ pro.requirement }} </td>
         <td>{{ pro.criteriaName }} </td>
         <td>{{ pro.criteria }} </td>
-        <td>{{ pro.fulfilled }} </td>
+        <td>{{pro.fulfilled}} </td>
         <td>{{ pro.note }} </td>
-        <td ng-show="showDeleteButton && !isSpectator"><button class="btn btn-default" ng-click="deleteProtocol($index, pro)">Delete</button></td>
+        <td ng-show="showDeleteButton && !isSpectator">
+          <button class="btn btn-default" ng-click="deleteProtocol($index, pro)">Delete</button>
+        </td>
     </tbody>
   </table>
 </div>

@@ -7,7 +7,7 @@ pdmsys.controller('FunctionalSpecificationController',
     $scope.projectStatusMessage = undefined;
     $scope.showDeleteButton = false;
     $scope.functional = [];
-    $scope.implementation = {}
+    $scope.implementation = {};
 
 
     $scope.insertFunctionalRequirement = function(requirement) {
@@ -35,7 +35,7 @@ pdmsys.controller('FunctionalSpecificationController',
     $scope.deleteFunctionalRequirement = function(idx, requirement) {
       functionalSpecificationFactory.deleteFunctionalRequirement($scope.projectId, requirement.id)
         .then(function(response) {
-          $scope.implementation.splice(idx, 1);
+          $scope.functional.splice(idx, 1);
           $scope.projectStatusMessage = 'Functional requirement deleted.'
           if ($scope.implementation.length == 0)
             $scope.showDeleteButton = false;

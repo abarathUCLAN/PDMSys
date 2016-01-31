@@ -123,8 +123,14 @@ pdmsys.controller('PreliminaryStudyController',
       $scope.projectId = $stateParams.projectId;
       preliminaryStudyFactory.getEffortEstimation($scope.projectId)
         .then(function(response) {
-          $scope.showDeleteButton = true;
-          $scope.effort = JSON.parse(response.data);
+          if(response.data.content !== undefined) {
+            $scope.showDeleteButton = true;
+            $scope.effort = (JSON.parse(response.data.content)).content;
+          }
+          else {
+            $scope.showDeleteButton = true;
+            $scope.effort = JSON.parse(response.data);
+          }
         }, function() {
           $scope.showDeleteButton = false;
         });

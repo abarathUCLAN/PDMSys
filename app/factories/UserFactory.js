@@ -27,7 +27,7 @@ angular.module('pdmsys')
     };
 
     dataFactory.getUserData = function() {
-      return $http.get(urlBase);
+      return $http.get(urlBase + '/changeData');
     };
 
     dataFactory.logoutUser = function() {
