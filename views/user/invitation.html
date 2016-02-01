@@ -15,12 +15,31 @@
 
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input ng-model="registration.password" type="password"class="form-control" name="password" placeholder="Password" maxlength="15" required>
+                <input ng-model="registration.password" ng-pattern="passwordRegEx" type="password"class="form-control" ng-minlength="6" ng-maxlength="15" name="password" placeholder="Password"  required>
+              </div>
+
+              <div class="help-block" ng-messages="form.password.$error" ng-if="form.password.$touched">
+                <p ng-message="minlength">Your password is too short.</p>
+                <p ng-message="maxlength">Your password is too long.</p>
+                <p ng-message="pattern">Your password is too weak.</p>
+                <p ng-message="required">Your password is required.</p>
               </div>
 
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-repeat"></i></span>
                 <input ng-model="registration.passwordConfirm" match="registration.password" type="password" class="form-control" name="passwordConfirm" placeholder="Password Confirm" maxlength="15" required>
+              </div>
+
+              <div class="help-block" ng-messages="form.passwordConfirm.$error" ng-if="form.passwordConfirm.$touched">
+                <p ng-message="minlength">Your repeated password is too short.</p>
+                <p ng-message="maxlength">Your repeated password is too long.</p>
+                <p ng-message="required">Your repeated password is required.</p>
+              </div>
+
+              <div ng-show="form.passwordConfirm.$error.match && form.passwordConfirm.$touched">
+                <div class="help-block">
+                  Password fields do not match!
+                </div>
               </div>
 
               <div class="form-group">

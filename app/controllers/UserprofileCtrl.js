@@ -5,6 +5,7 @@ pdmsys.controller('UserprofileCtrl',
 
     $scope.setting = {};
     $scope.statusMessage = undefined;
+    $scope.passwordRegEx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,15}/;
 
     $scope.editUserData = function(data) {
       data.password = md5.createHash(data.password);

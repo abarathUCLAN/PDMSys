@@ -4,7 +4,7 @@ var pdmsys = angular.module('pdmsys', ['ui.router', 'validation.match', 'ngFileU
   'swxSessionStorage', 'satellizer', 'uiRouterStyles',
   'pdmsys.HomeModule', 'pdmsys.ProjectHome', 'pdmsys.PreliminaryStudy',
   'pdmsys.FunctionalSpecification', 'pdmsys.RequirementSpecification', 'pdmsys.Finalization',
-  'pdmsys.Miscellaneous', 'angular-md5'
+  'pdmsys.Miscellaneous', 'angular-md5', 'ngMessages'
 ]);
 
 pdmsys.run(

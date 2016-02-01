@@ -13,97 +13,67 @@
 
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input ng-model="registration.firstname" ng-pattern="nameRegEx" type="text" class="form-control" name="firstname" placeholder="Firstname" maxlength="20" required>
+            <input ng-model="registration.firstname" ng-pattern="nameRegEx" type="text" ng-minlength="2" class="form-control" name="firstname" placeholder="Firstname" maxlength="20" required>
           </div>
 
-          <!-- Firstname validation -->
-          <div name="firstnameValidation">
-            <div ng-show="form.$submitted || form.firstname.$touched">
-              <div class="alert alert-danger fade in" ng-show="form.firstname.$error.required">
-                A firstname is required.
-              </div>
-            </div>
-
-            <div ng-show="!form.firstname.$error.required">
-              <div class="alert alert-danger fade in" ng-show="form.firstname.$error.pattern">
-                Please fill in a valid firstname.
-              </div>
-            </div>
+          <div class="help-block" ng-messages="form.firstname.$error" ng-if="form.firstname.$touched">
+            <p ng-message="minlength">Your firstname is too short.</p>
+            <p ng-message="maxlength">Your firstname is too long.</p>
+            <p ng-message="required">Your firstname is required.</p>
+            <p ng-message="pattern">Your firstname is invalid.</p>
           </div>
-          <!-- Firstname validation end -->
 
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input ng-model="registration.lastname" ng-pattern="nameRegEx" type="text" class="form-control" name="lastname" placeholder="Lastname" maxlength="20" required>
+            <input ng-model="registration.lastname" ng-pattern="nameRegEx" ng-minlength="2" ng-maxlength="25" type="text" class="form-control" name="lastname" placeholder="Lastname" required>
           </div>
 
-          <!-- Lastname validation -->
-          <div name="lastnameValidation">
-            <div ng-show="form.$submitted || form.lastname.$touched">
-              <div class="alert alert-danger fade in" ng-show="form.lastname.$error.required">
-                A lastname is required.
-              </div>
-            </div>
-
-            <div ng-show="!form.lastname.$error.required">
-              <div class="alert alert-danger fade in" ng-show="form.lastname.$error.pattern">
-                Please fill in a valid lastname.
-              </div>
-            </div>
+          <div class="help-block" ng-messages="form.lastname.$error" ng-if="form.lastname.$touched">
+            <p ng-message="minlength">Your lastname is too short.</p>
+            <p ng-message="maxlength">Your lastname is too long.</p>
+            <p ng-message="required">Your lastname is required.</p>
+            <p ng-message="pattern">Your lastname is invalid.</p>
           </div>
-          <!-- Lastname validation end -->
 
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input ng-model="registration.password" type="password" ng-pattern="passwordRegEx" class="form-control" name="password" placeholder="Password" maxlength="15" required>
+            <input ng-model="registration.password" type="password" ng-pattern="passwordRegEx" ng-minlength="6" class="form-control" name="password" placeholder="Password" ng-maxlength="15" required>
           </div>
 
-          <!-- Password validation -->
-          <div name="passwordValidation">
-            <div ng-show="form.$submitted || form.password.$touched">
-              <div class="alert alert-danger fade in" ng-show="form.password.$error.required">
-                A password is required.
-              </div>
-            </div>
-
-            <div ng-show="!form.password.$error.required">
-              <div class="alert alert-danger fade in" ng-show="form.password.$error.pattern">
-                Password is not valid.
-              </div>
-            </div>
+          <div class="help-block" ng-messages="form.password.$error" ng-if="form.password.$touched">
+            <p ng-message="minlength">Your password is too short.</p>
+            <p ng-message="maxlength">Your password is too long.</p>
+            <p ng-message="pattern">Your password is too weak.</p>
+            <p ng-message="required">Your password is required.</p>
           </div>
-          <!-- Password validation end -->
 
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-repeat"></i></span>
-            <input ng-model="registration.passwordConfirm" match="registration.password" type="password" class="form-control" name="passwordConfirm" placeholder="Password Confirm" maxlength="15" required>
+            <input ng-model="registration.passwordConfirm" match="registration.password" ng-maxlength="15" ng-minlength="6" type="password" class="form-control" name="passwordConfirm" placeholder="Password Confirm" maxlength="15" required>
+          </div>
+
+          <div class="help-block" ng-messages="form.passwordConfirm.$error" ng-if="form.passwordConfirm.$touched">
+            <p ng-message="minlength">Your repeated password is too short.</p>
+            <p ng-message="maxlength">Your repeated password is too long.</p>
+            <p ng-message="required">Your repeated password is required.</p>
           </div>
 
           <div ng-show="form.passwordConfirm.$error.match && form.passwordConfirm.$touched">
-            <div class="alert alert-danger fade in">
+            <div class="help-block">
               Password fields do not match!
             </div>
           </div>
 
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <input ng-model="registration.email" type="email" class="form-control" name="email" placeholder="E-Mail" maxlength="50" required>
+            <input ng-model="registration.email" type="email" class="form-control" name="email" placeholder="E-Mail" ng-minlength="8" ng-maxlength="50" required>
           </div>
 
-
-          <!--Email Validation -->
-          <div name="emailValidation">
-            <div ng-show="form.$submitted || form.email.$touched">
-              <div class="alert alert-danger fade in" ng-show="form.email.$error.required">
-                An e-mail is required.
-              </div>
-            </div>
-
-            <div class="alert alert-danger fade in" ng-show="form.email.$error.email && form.email.$touched">
-              Please fill in a valid e-mail.
-            </div>
+          <div class="help-block" ng-messages="form.email.$error" ng-if="form.email.$touched">
+            <p ng-message="minlength">Your email is too short.</p>
+            <p ng-message="maxlength">Your email is too long.</p>
+            <p ng-message="required">Your email is required.</p>
           </div>
-          <!--Email Validation end-->
 
           <div class="form-group">
             <!-- Button -->
@@ -112,7 +82,9 @@
             </div>
           </div>
         </form>
-        <div ng-class="registrationClass()"><strong>{{ registerStatus }}</strong></div>
+        <div ng-class="registrationClass()">
+          <strong>{{ registerStatus }}</strong>
+        </div>
       </div>
     </div>
   </div>

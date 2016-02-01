@@ -9,50 +9,31 @@
 
       <div class="panel-body">
 
-        <form name="loginForm" class="form-horizontal" role="form" novalidate>
+        <form name="form" class="form-horizontal" role="form" novalidate>
 
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            <input ng-model="login.username" name="username" type="username" class="form-control" maxlength="50" placeholder="E-Mail" value="" required />
+            <input ng-model="login.username" name="username" type="username" class="form-control" ng-minlength="8" ng-maxlength="50" placeholder="E-Mail"required />
           </div>
 
-          <!--username validation  -->
-          <div name="usernameValidation">
-            <div ng-show="form.$submitted || form.username.$touched">
-              <div class="alert alert-danger fade in" ng-show="form.username.$error.required">
-                An e-mail is required.
-              </div>
-            </div>
-
-            <div class="alert alert-danger fade in" ng-show="form.username.$error.username && form.username.$touched">
-              Please fill in a valid e-mail.
-            </div>
+          <div class="help-block" ng-messages="form.username.$error" ng-if="form.username.$touched">
+            <p ng-message="minlength">Your email is too short.</p>
+            <p ng-message="maxlength">Your email is too long.</p>
+            <p ng-message="required">Your email is required.</p>
           </div>
-          <!--username validation end-->
 
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input ng-model="login.password" type="password" ng-pattern="passwordRegEx" maxlength="15" class="form-control" name="password" placeholder="Password" required />
+            <input ng-model="login.password" type="password" ng-pattern="passwordRegEx" ng-minlength="6" maxlength="15" class="form-control" name="password" placeholder="Password" required />
           </div>
 
-          <!--Password validation -->
-          <div name="passwordValidation">
-            <div ng-show="form.$submitted || form.password.$touched">
-              <div class="alert alert-danger fade in" ng-show="form.password.$error.required">
-                A password is required.
-              </div>
-            </div>
-
-            <div ng-show="!form.password.$error.required">
-              <div class="alert alert-danger fade in" ng-show="form.password.$error.pattern">
-                Password is not valid.
-              </div>
-            </div>
+          <div class="help-block" ng-messages="form.password.$error" ng-if="form.password.$touched">
+            <p ng-message="minlength">Your password is too short.</p>
+            <p ng-message="pattern">Your password is too weak.</p>
+            <p ng-message="required">Your password is required.</p>
           </div>
-          <!--Password validation end-->
 
           <div class="form-group">
-            <!-- Button -->
             <div class="col-sm-12 controls">
               <button type="submit" ng-Disabled="form.$invalid" ng-click="loginUser()" href="#" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-log-in"></i> Log in</button>
             </div>
