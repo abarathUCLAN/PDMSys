@@ -1,27 +1,82 @@
 <div class="form-group text-center cont" ng-init="getRisks()">
 
-  <form name="form" novalidate> <div class="form-group">
-    <div class="page-header">
-    <h3>Create new risk <br>
-       <small>Risk name:   <input type="text" ng-model="risk.name" required></input><br>
-       Risk content:</small></h3>
-      <textarea rows="5" cols="100" type="text" ng-model="risk.content" class="form-control" required></textarea>
-    </div>
+  <form name="form.form"  novalidate>
+    <div class="form-group">
+      <div class="page-header">
+        <h3>Create new risk <br>
+          <small>create a new risk for your project</small></h3>
+          </div>
+          <br>
+          <h5>Risk name:</h5>
+            <input type="text" ng-model="risk.name" name="name" ng-minlength="3" ng-maxlength="30" required></input>
+            <br>
+            <div class="help-block" ng-messages="form.form.name.$error" ng-if="form.form.name.$touched">
+              <p ng-message="minlength">Risk name is too short.</p>
+              <p ng-message="maxlength">Risk name is too long.</p>
+              <p ng-message="required">Risk name is required.</p>
+            </div>
+            <h5>Risk content:</h5>
+        </h3>
+        <textarea rows="5" cols="100" type="text" ng-model="risk.content" name="content" ng-minlength="5" class="form-control" required></textarea>
+        <div class="help-block" ng-messages="form.form.content.$error" ng-if="form.form.content.$touched">
+          <p ng-message="minlength">Risk content is too short.</p>
+          <p ng-message="required">Risk content is required.</p>
+        </div>
+
     </div>
     <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertRisk(risk)">Create risk</button>
   </form>
+
+  <div class="wrapit">
+      <div class="splice" ng-repeat="risk in projectRisks">
+        <h5>{{ risk.name }}</h5>
+
+      <!--  {{ need.content }}-->
+        <button class="splicebut" ng-click="openModalrisk(risk, $index)">Details</button>
+      <!--  <div ng-show="showDeleteButton && !isSpectator">
+          <button class="splicebut" ng-click="deleteNeed($index, need)">Delete</button>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="modal fade modaldown" tabindex="-1" role="dialog" id="myModal" >
+  <div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title">  {{ riskModal.name }}</h4>
+    </div>
+    <div class="modal-body">
+      <label>content</label><br/>
+
+  {{ riskModal.content }}
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <button  ng-show="showDeleteButton && !isSpectator" type="button" class="btn btn-primary" ng-click="deleteRisk(riskModal.index, riskModal)" data-dismiss="modal">Delete</button>
+    </div>
+  </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <!--
   <table class="table">
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>content</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="risk in projectRisks">
-      <td>{{ risk.name }} </td>
-      <td>{{ risk.content }} </td>
-      <td ng-show="showDeleteButton && !isSpectator"><button class="btn btn-default" ng-click="deleteRisk($index, risk)">Delete</button></td>
-  </tbody>
-</table>
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="risk in projectRisks">
+        <td>{{ risk.name }} </td>
+        <td>{{ risk.content }} </td>
+        <td ng-show="showDeleteButton && !isSpectator">
+          <button class="btn btn-default" ng-click="deleteRisk($index, risk)">Delete</button>
+        </td>
+    </tbody>
+  </table>
+
+
+  ---->
 </div>

@@ -1,7 +1,7 @@
 'use strict';
 
 pdmsys.controller('MiscellaneousController',
-  function MiscellaneousController($scope, miscellaneousFactory, $stateParams, Upload) {
+  function MiscellaneousController($scope, miscellaneousFactory, $stateParams, Upload, $rootScope) {
 
     $scope.projectId;
     $scope.projectStatusMessage = undefined;
@@ -10,17 +10,33 @@ pdmsys.controller('MiscellaneousController',
     $scope.changeRequests = [];
     $scope.styleGuides = [];
     $scope.reports = [];
+    $scope.form = {};
+    $scope.presentation = {};
+    $scope.change = {};
+    $scope.guide = {};
+    $scope.report = {};
+      $scope.changeModal = {};
+      $scope.guideModal = {};
+      $scope.presentationModal = {};
+
+    $rootScope.$on('$stateChangeSuccess',
+      function(event, toState, toParams, fromState, fromParams) {
+        $scope.projectStatusMessage = undefined;
+      });
+
 
     $scope.insertPresentation = function(presentation) {
       if (presentation !== undefined) {
         miscellaneousFactory.insertPresentation($scope.projectId, presentation)
-        .then(function (resp) {
-          $scope.projectStatusMessage = "Presentation created.";
-          $scope.showDeleteButton = true;
-          $scope.presentations.push(resp.data);
-        }, function (resp) {
-          $scope.projectStatusMessage = "Please choose another name for your file."
-        });
+          .then(function(resp) {
+            $scope.presentation = {};
+            $scope.form.form.$setUntouched();
+            $scope.projectStatusMessage = "Presentation created.";
+            $scope.showDeleteButton = true;
+            $scope.presentations.push(resp.data);
+          }, function(resp) {
+            $scope.projectStatusMessage = "Please choose another name for your file."
+          });
       } else {
         $scope.projectStatusMessage = "No file selected.";
       }
@@ -56,6 +72,8 @@ pdmsys.controller('MiscellaneousController',
     $scope.insertChangeRequest = function(requirement) {
       miscellaneousFactory.insertChangeRequest($scope.projectId, requirement)
         .then(function(response) {
+          $scope.change = {};
+          $scope.form.form.$setUntouched();
           $scope.showDeleteButton = true;
           $scope.projectStatusMessage = 'Change requests requirement saved.'
           $scope.changeRequests.push(response.data);
@@ -90,6 +108,8 @@ pdmsys.controller('MiscellaneousController',
     $scope.insertStyleGuide = function(requirement) {
       miscellaneousFactory.insertStyleGuide($scope.projectId, requirement)
         .then(function(response) {
+          $scope.guide = {};
+          $scope.form.form.$setUntouched();;
           $scope.showDeleteButton = true;
           $scope.projectStatusMessage = 'Style guides requirement saved.'
           $scope.styleGuides.push(response.data);
@@ -122,10 +142,12 @@ pdmsys.controller('MiscellaneousController',
     };
 
     $scope.insertReport = function(requirement) {
-      if(requirement.month == undefined || requirement.month == 0)
+      if (requirement.month == undefined || requirement.month == 0)
         requirement.month = 1;
       miscellaneousFactory.insertReport($scope.projectId, requirement)
         .then(function(response) {
+          $scope.report = {};
+          $scope.form.form.$setUntouched();
           $scope.showDeleteButton = true;
           $scope.projectStatusMessage = 'Reports requirement saved.'
           $scope.reports.push(response.data);
@@ -155,6 +177,36 @@ pdmsys.controller('MiscellaneousController',
         }, function() {
           $scope.projectStatusMessage = 'An error occured.';
         });
+    };
+
+
+    $scope.openModalchange = function(change, index){
+        $scope.changeModal = {};
+        $scope.changeModal = change;
+        $scope.changeModal.index = index;
+        $('#myModal').modal('show');
+    };
+
+    $scope.openModalguide = function(guide, index){
+        $scope.guideModal = {};
+        $scope.guideModal = guide;
+        $scope.guideModal.index = index;
+        $('#myModal').modal('show');
+    };
+
+    $scope.openModalreport = function(report, index){
+        $scope.reportModal = {};
+        $scope.reportModal = report;
+        $scope.reportModal.index = index;
+        $('#myModal').modal('show');
+    };
+
+
+    $scope.openModalpresentation = function(presentation, index){
+        $scope.presentationModal = {};
+        $scope.presentationModal = presentation;
+        $scope.presentationModal.index = index;
+        $('#myModal').modal('show');
     };
 
   });

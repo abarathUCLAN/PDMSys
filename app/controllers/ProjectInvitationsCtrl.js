@@ -4,6 +4,7 @@ pdmsys.controller('ProjectInvitationsCtrl',
   function ProjectInvitationsCtrl($scope, invitationFactory, $stateParams) {
 
     $scope.projectId = $stateParams.projectId;
+    $scope.nameRegEx = /^[a-z ,.'-]+$/i;
 
     $scope.invitations = {
       invitations: [],
@@ -13,6 +14,8 @@ pdmsys.controller('ProjectInvitationsCtrl',
     $scope.invitationMessage = undefined;
 
     $scope.getTemplate = function(invitation) {
+      if ($scope.projectId !== undefined && $scope.projectId > 0)
+        return 'views/templates/displayInvitationHomeTmp.html';
       if (invitation.id === $scope.invitations.selected.id) return 'views/templates/editInvitationTmp.html';
       else return 'views/templates/displayInvitationTmp.html';
     };
@@ -26,13 +29,15 @@ pdmsys.controller('ProjectInvitationsCtrl',
       $scope.reset();
     };
 
-    $scope.removeInvitation = function (idx, invitation) {
-      invitationFactory.deleteProjectInvitation($scope.projectId, {"email": invitation.email})
-      .then(function() {
-              $scope.invitations.invitations.splice( idx, 1 );
-      }, function() {
+    $scope.removeInvitation = function(idx, invitation) {
+      invitationFactory.deleteProjectInvitation($scope.projectId, {
+          "email": invitation.email
+        })
+        .then(function() {
+          $scope.invitations.invitations.splice(idx, 1);
+        }, function() {
 
-      });
+        });
     };
 
     $scope.reset = function() {
@@ -49,15 +54,7 @@ pdmsys.controller('ProjectInvitationsCtrl',
       };
       if (newinvitation.type == undefined || newinvitation.type == '')
         newinvitation.type = 0;
-        $scope.invitations.invitations.push(newinvitation);
-      /*invitationFactory.addInvitationToProject($scope.projectId, newinvitation)
-      .then(function(response) {
-        newinvitation.id = response.data.id;
-        $scope.invitations.invitations.push(newinvitation);
-        angular.copy({}, invitation);
-      }, function() {
-        $scope.invitationMessage = "An error occured during the process.";
-      });*/
+      $scope.invitations.invitations.push(newinvitation);
     };
 
     $scope.addInvitationHome = function(invitation) {
@@ -72,23 +69,22 @@ pdmsys.controller('ProjectInvitationsCtrl',
         newinvitation.type = 0;
 
       invitationFactory.addInvitationToProject($scope.projectId, newinvitation)
-      .then(function(response) {
-        console.log(response);
-        newinvitation.id = response.data.id;
-        $scope.invitations.invitations.push(newinvitation);
-        angular.copy({}, invitation);
-      }, function() {
-        $scope.invitationMessage = "An error occured during the process.";
-      });
+        .then(function(response) {
+          newinvitation.id = response.data.id;
+          $scope.invitations.invitations.push(newinvitation);
+          angular.copy({}, invitation);
+        }, function() {
+          $scope.invitationMessage = "An error occured during the process.";
+        });
     };
 
-    $scope.getProjectInvitations = function () {
+    $scope.getProjectInvitations = function() {
       invitationFactory.getProjectInvitations($scope.projectId)
-      .then(function (response) {
-        $scope.invitations.invitations = response.data;
-      } , function() {
+        .then(function(response) {
+          $scope.invitations.invitations = response.data;
+        }, function() {
 
-      });
+        });
     };
 
     $scope.changeOpenedViewTab = function() {

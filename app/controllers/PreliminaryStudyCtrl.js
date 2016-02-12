@@ -1,7 +1,7 @@
 'use strict';
 
 pdmsys.controller('PreliminaryStudyController',
-  function PreliminaryStudyController($scope, preliminaryStudyFactory, $stateParams) {
+  function PreliminaryStudyController($scope, preliminaryStudyFactory, $stateParams, $rootScope) {
 
     $scope.projectId;
     $scope.projectDescription = {};
@@ -10,7 +10,16 @@ pdmsys.controller('PreliminaryStudyController',
     $scope.projectRisks = [];
     $scope.effort = {};
     $scope.effortEstimationResult = undefined;
+    $scope.risk = {};
+    $scope.form = {};
     $scope.effortWeight = [1, 2, 3, 5, 10, 15, 2, 1, 1, 1, 1, 0.5, 0.5, 2, 1, 1, 1, 1, 1, 1.5, 0.5, 1, 0.5, 1, 2, -1, -1];
+    $scope.riskModal = {};
+
+    $rootScope.$on('$stateChangeSuccess',
+      function(event, toState, toParams, fromState, fromParams) {
+        $scope.projectDescriptionStatusMessage = undefined;
+      });
+
 
     $scope.$watch('effort', function() {
       var counter = 0;
@@ -38,8 +47,8 @@ pdmsys.controller('PreliminaryStudyController',
           }
         }
       });
-      if(!error) {
-        $scope.effortEstimationResult = (uucw + uaw) * (0.6 + (tcf/100)) * (1.4 + (-0.03 * ecf));
+      if (!error) {
+        $scope.effortEstimationResult = (uucw + uaw) * (0.6 + (tcf / 100)) * (1.4 + (-0.03 * ecf));
       }
     }, true);
 
@@ -75,6 +84,8 @@ pdmsys.controller('PreliminaryStudyController',
     $scope.insertRisk = function(risk) {
       preliminaryStudyFactory.insertRisk($scope.projectId, risk)
         .then(function(response) {
+          $scope.risk = {};
+          $scope.form.form.$setPristine();
           $scope.showDeleteButton = true;
           $scope.projectDescriptionStatusMessage = 'Risk saved.'
           $scope.projectRisks.push(response.data);
@@ -123,11 +134,10 @@ pdmsys.controller('PreliminaryStudyController',
       $scope.projectId = $stateParams.projectId;
       preliminaryStudyFactory.getEffortEstimation($scope.projectId)
         .then(function(response) {
-          if(response.data.content !== undefined) {
+          if (response.data.content !== undefined) {
             $scope.showDeleteButton = true;
             $scope.effort = (JSON.parse(response.data.content)).content;
-          }
-          else {
+          } else {
             $scope.showDeleteButton = true;
             $scope.effort = JSON.parse(response.data);
           }
@@ -144,10 +154,10 @@ pdmsys.controller('PreliminaryStudyController',
         }, function() {});
     };
 
-
-
-
-
-
-
+    $scope.openModalrisk = function(risk, index){
+        $scope.riskModal = {};
+        $scope.riskModal = risk;
+        $scope.riskModal.index = index;
+        $('#myModal').modal('show');
+    };
   });

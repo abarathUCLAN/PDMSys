@@ -3,15 +3,10 @@
 pdmsys.controller('CreateProjectCtrl',
   function CreateProjectCtrl($scope, projectFactory, invitationFactory, $state) {
     $scope.openedViewTab = 1;
-
     $scope.projectInformation = {};
-
     $scope.projectInvitations = undefined;
-
     $scope.projectCreated = false;
-
     $scope.projectHomeButton = false;
-
     $scope.projectId = undefined;
 
     $scope.viewsTabViewFnc = function(value) {

@@ -4,8 +4,6 @@
 <head>
   <link href="assets/libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/libs/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="assets/libs/ng-dialog/css/ngDialog.css" rel="stylesheet">
-  <link href="assets/libs/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet">
   <link href="assets/css/icons.css" rel="stylesheet">
   <link rel="shortcut icon" href="favicon.ico">
 
@@ -30,8 +28,11 @@
 
 <body ng-cloak>
   <div ng-controller="AuthorizationHandlerController">
-    <div ui-view name="navbar"></div>
+    <div class="row">
+    <div ui-view name="navbar"></div></div>
+    <div class="row">
     <div ui-view name="content"></div>
+  </div>
   </div>
 
   <script src="app/controllers/StartCtrl.js"></script>

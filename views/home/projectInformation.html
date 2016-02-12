@@ -8,17 +8,37 @@
     <form name="projectDetails" class="form-horizontal" role="form" novalidate>
       <div class="form-group">
         <label>Project name:</label>
-        <input type="text" class="form-control" minlength="2" maxlength="150" placeholder="Your project's name" ng-model="project.name" required>
+        <input type="text" class="form-control" name="name" ng-minlength="3" ng-maxlength="150" placeholder="Your project's name" ng-model="project.name" required>
       </div>
+
+      <div class="help-block" ng-messages="projectDetails.name.$error" ng-if="projectDetails.name.$touched">
+        <p ng-message="minlength">Project name is too short.</p>
+        <p ng-message="maxlength">Project name is too long.</p>
+        <p ng-message="required">Project name is required.</p>
+      </div>
+
       <div class="form-group">
         <label>Project description:</label>
-        <textarea rows="4" cols="50" ng-model="project.description" type="text" class="form-control" name="description" minlength="10" placeholder="Project's description (max. 300 characters)" maxlength="300" required>
+        <textarea rows="4" cols="50" ng-model="project.description" type="text" class="form-control" name="description" ng-minlength="10" placeholder="Project's description (max. 300 characters)" maxlength="300" required>
         </textarea>
       </div>
+
+      <div class="help-block" ng-messages="projectDetails.description.$error" ng-if="projectDetails.description.$touched">
+        <p ng-message="minlength">Project description is too short.</p>
+        <p ng-message="maxlength">Project description is too long.</p>
+        <p ng-message="required">Project description is required.</p>
+      </div>
+
       <div class="form-group">
         <label>Project acronym:</label>
-        <input type="text"  placeholder="Your project's acronym if it has one. For example 'Laser' - 'light amplification by stimulated emission of radiation'" class="form-control" ng-model="project.acronym">
+        <input type="text" name="acronym" ng-minlength="2" ng-maxlength="30"  placeholder="Your project's acronym if it has one. For example 'Laser' - 'light amplification by stimulated emission of radiation'" class="form-control" ng-model="project.acronym">
       </div>
+
+      <div class="help-block" ng-messages="projectDetails.acronym.$error" ng-if="projectDetails.acronym.$touched">
+        <p ng-message="minlength">Project acronym is too short.</p>
+        <p ng-message="maxlength">Project acronym is too long.</p>
+      </div>
+
       <div class="form-group">
         <!-- Button -->
         <div class="col-sm-12 controls">

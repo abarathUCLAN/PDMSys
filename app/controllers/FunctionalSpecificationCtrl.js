@@ -1,18 +1,28 @@
 'use strict';
 
 pdmsys.controller('FunctionalSpecificationController',
-  function FunctionalSpecificationController($scope, functionalSpecificationFactory, $stateParams) {
+  function FunctionalSpecificationController($scope, functionalSpecificationFactory, $stateParams, $rootScope) {
 
     $scope.projectId;
     $scope.projectStatusMessage = undefined;
     $scope.showDeleteButton = false;
     $scope.functional = [];
     $scope.implementation = {};
+    $scope.requirement = {};
+    $scope.form = {};
+    $scope.funcModal = {};
+
+    $rootScope.$on('$stateChangeSuccess',
+      function(event, toState, toParams, fromState, fromParams) {
+        $scope.projectStatusMessage = undefined;
+      });
 
 
     $scope.insertFunctionalRequirement = function(requirement) {
       functionalSpecificationFactory.insertFunctionalRequirement($scope.projectId, requirement)
         .then(function(response) {
+          $scope.requirement = {};
+          $scope.form.form.$setUntouched();
           $scope.showDeleteButton = true;
           $scope.projectStatusMessage = 'Functional requirement saved.'
           $scope.functional.push(response.data);
@@ -73,6 +83,13 @@ pdmsys.controller('FunctionalSpecificationController',
           $scope.showDeleteButton = false;
           $scope.implementation = {};
         }, function() {});
+    };
+
+    $scope.openModalfunc = function(func, index){
+        $scope.funcModal = {};
+        $scope.funcModal = func;
+        $scope.funcModal.index = index;
+        $('#myModal').modal('show');
     };
 
   });

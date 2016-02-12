@@ -1,18 +1,26 @@
 'use strict';
 
 pdmsys.controller('FinalizationController',
-  function FinalizationController($scope, finalizationFactory, $stateParams) {
+  function FinalizationController($scope, finalizationFactory, $stateParams, $rootScope) {
 
     $scope.projectId;
     $scope.projectStatusMessage = undefined;
     $scope.showDeleteButton = false;
     $scope.protocol = [];
     $scope.manual = {};
+    $scope.acceptanceprotocol = {};
+    $scope.proModal = {};
+
+    $rootScope.$on('$stateChangeSuccess',
+      function(event, toState, toParams, fromState, fromParams) {
+        $scope.projectStatusMessage = undefined;
+      });
 
 
     $scope.insertProtocol = function(protocol) {
       finalizationFactory.insertProtocol($scope.projectId, protocol)
         .then(function(response) {
+          $scope.acceptanceprotocol = {};
           $scope.showDeleteButton = true;
           $scope.projectStatusMessage = 'Protocol requirement saved.'
           $scope.protocol.push(response.data);
@@ -74,6 +82,13 @@ pdmsys.controller('FinalizationController',
           $scope.showDeleteButton = false;
           $scope.manual = {};
         }, function() {});
+    };
+
+    $scope.openModalpro = function(pro, index){
+        $scope.proModal = {};
+        $scope.proModal = pro;
+        $scope.proModal.index = index;
+        $('#myModal').modal('show');
     };
 
   });

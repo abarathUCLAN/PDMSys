@@ -34,5 +34,9 @@ angular.module('pdmsys')
         return $http.post(urlBase + '/removeProjectMember/' + projectId, email);
     };
 
+    dataFactory.getDashboardData = function (projectId) {
+        return $http.get(urlBase + '/dashboard/' + projectId);
+    };
+
     return dataFactory;
 }]);

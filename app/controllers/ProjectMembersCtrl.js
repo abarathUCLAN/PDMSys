@@ -7,6 +7,7 @@ pdmsys.controller('ProjectMembersController',
     $scope.userFoundMessage = undefined;
     $scope.projectId = $stateParams.projectId;
     $scope.test = {};
+    $scope.member = {};
 
     $scope.members = {
       members: [{}],
@@ -77,6 +78,7 @@ pdmsys.controller('ProjectMembersController',
         newmember.type = 0;
       projectFactory.addMemberToProject($scope.projectId, newmember)
       .then(function(response) {
+        $scope.member = {};
         $scope.userFoundMessage = 'User added.';
         newmember.id = response.data[0].id;
         $scope.members.members.push(newmember);

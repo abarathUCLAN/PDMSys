@@ -1,4 +1,4 @@
-<div class="gap container" ng-controller="ProjectHomeCtrl">
+<div class="gap container" ng-controller="ProjectHomeCtrl" ng-init="getDashboardData()">
   <ul class="cbp-ig-grid">
     <div align="center" class="grow" ng-repeat="documentCategory in documentCategories">
       <a ui-sref="{{ documentCategory.url }}">

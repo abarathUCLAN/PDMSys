@@ -1,7 +1,7 @@
 'use strict';
 
 pdmsys.controller('RequirementSpecificationController',
-  function RequirementSpecificationController($scope, requirementSpecificationFactory, $stateParams) {
+  function RequirementSpecificationController($scope, requirementSpecificationFactory, $stateParams, $rootScope) {
 
     $scope.projectId;
     $scope.projectStatusMessage = undefined;
@@ -16,6 +16,19 @@ pdmsys.controller('RequirementSpecificationController',
     $scope.projectTargetState = {};
     $scope.projectProductData = {};
     $scope.projectQuality = {};
+    $scope.form = {};
+    $scope.need = {};
+    $scope.nice = {};
+    $scope.non = {};
+      $scope.needModal = {};
+      $scope.niceModal = {};
+        $scope.nonModal = {};
+
+    $rootScope.$on('$stateChangeSuccess',
+      function(event, toState, toParams, fromState, fromParams) {
+        $scope.projectStatusMessage = undefined;
+      });
+
 
     $scope.insertProjectIntroduction = function(introduction) {
       requirementSpecificationFactory.insertProjectIntroduction($scope.projectId, {
@@ -51,6 +64,8 @@ pdmsys.controller('RequirementSpecificationController',
     $scope.insertNeedToHave = function(need) {
       requirementSpecificationFactory.insertNeedToHave($scope.projectId, need)
         .then(function(response) {
+          $scope.need = {};
+          $scope.form.form.$setUntouched();
           $scope.showDeleteButton = true;
           $scope.projectStatusMessage = 'Need saved.'
           $scope.projectNeeds.push(response.data);
@@ -83,8 +98,11 @@ pdmsys.controller('RequirementSpecificationController',
     };
 
     $scope.insertNiceToHave = function(nice) {
+      console.log(nice);
       requirementSpecificationFactory.insertNiceToHave($scope.projectId, nice)
         .then(function(response) {
+          $scope.nice = {};
+          $scope.form.form.$setUntouched();
           $scope.showDeleteButton = true;
           $scope.projectStatusMessage = 'Nice to have saved.'
           $scope.projectNices.push(response.data);
@@ -277,6 +295,8 @@ pdmsys.controller('RequirementSpecificationController',
     $scope.insertNonFunctionalRequirement = function(requirement) {
       requirementSpecificationFactory.insertNonFunctionalRequirement($scope.projectId, requirement)
         .then(function(response) {
+          $scope.non = {};
+          $scope.form.form.$setUntouched();
           $scope.showDeleteButton = true;
           $scope.projectStatusMessage = 'Non functional requirement saved.'
           $scope.nonFunctional.push(response.data);
@@ -337,6 +357,28 @@ pdmsys.controller('RequirementSpecificationController',
         $scope.showDeleteButton = false;
         $scope.projectQuality = {};
       }, function() {});
+    };
+
+    $scope.openModalneed = function(need, index){
+        $scope.needModal = {};
+        $scope.needModal = need;
+        $scope.needModal.index = index;
+        $('#myModal').modal('show');
+    };
+
+
+    $scope.openModalnice = function(nice, index){
+        $scope.niceModal = {};
+        $scope.niceModal = nice;
+        $scope.niceModal.index = index;
+        $('#myModal').modal('show');
+    };
+
+    $scope.openModalnon = function(non, index){
+        $scope.nonModal = {};
+        $scope.nonModal = non;
+        $scope.nonModal.index = index;
+        $('#myModal').modal('show');
     };
 
   });
