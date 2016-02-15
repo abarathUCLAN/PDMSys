@@ -10,6 +10,7 @@ pdmsys.controller('ProjectInvitationsCtrl',
       invitations: [],
       selected: {}
     };
+    $scope.form = {};
 
     $scope.invitationMessage = undefined;
 
@@ -73,6 +74,7 @@ pdmsys.controller('ProjectInvitationsCtrl',
           newinvitation.id = response.data.id;
           $scope.invitations.invitations.push(newinvitation);
           angular.copy({}, invitation);
+          $scope.form.form.$setUntouched();
         }, function() {
           $scope.invitationMessage = "An error occured during the process.";
         });

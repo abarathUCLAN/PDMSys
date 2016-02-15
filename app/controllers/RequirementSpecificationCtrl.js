@@ -98,7 +98,6 @@ pdmsys.controller('RequirementSpecificationController',
     };
 
     $scope.insertNiceToHave = function(nice) {
-      console.log(nice);
       requirementSpecificationFactory.insertNiceToHave($scope.projectId, nice)
         .then(function(response) {
           $scope.nice = {};
