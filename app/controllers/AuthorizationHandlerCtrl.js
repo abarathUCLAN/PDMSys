@@ -14,6 +14,8 @@ pdmsys.controller('AuthorizationHandlerController',
       if ($scope.projectId != 0) {
         projectFactory.getProjectRights($scope.projectId)
           .then(function(response) {
+            $scope.isAdmin = false;
+            $scope.isSpectator = false;
             if (response.data == 2) {
               $scope.isAdmin = true;
             } else if (response.data == 0) {
@@ -28,6 +30,7 @@ pdmsys.controller('AuthorizationHandlerController',
     $scope.logout = function() {
       $scope.isAdmin = false;
       $scope.isSpectator = false;
+      $scope.projectId = undefined;
       authorizationFactory.logout();
     };
 

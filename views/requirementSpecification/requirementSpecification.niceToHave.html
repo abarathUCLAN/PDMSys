@@ -1,85 +1,64 @@
 <div class="form-group text-center cont" ng-init="getNiceToHaves()">
+    <div ng-show="!isSpectator">
   <div class="page-header">
-    <form name="form.form" novalidate>
-      <h3>New nice to Have
-        <br>
-        <small>Create a new nice-to-have for your project.</small></h3>
-
-          </div>
-
-          <div class="form-group">
-          <h5>  name:</h5>
-            <input type="text" required ng-model="nice.name" name="name" ng-minlength="3" ng-maxlength="30"></input>
-            <br/>
-            <div class="help-block" ng-messages="form.name.$error" ng-if="form.name.$touched">
-              <p ng-message="minlength">Name is too short.</p>
-              <p ng-message="maxlength">Name is too long.</p>
-              <p ng-message="required">Name is required.</p>
-            </div>
-            <h5>content:</h5>
+    <h3>New nice to Have
+      <br>
+      <small>Create a new nice-to-have for your project.</small>
+    </h3>
+  </div>
+  <form name="form.form" novalidate>
+    <div class="form-group">
+      <h5> name:</h5>
+      <input type="text" required ng-model="nice.name" name="name" ng-minlength="3" ng-maxlength="30"></input>
+      <br/>
+      <div class="help-block" ng-messages="form.form.name.$error" ng-if="form.form.name.$touched">
+        <p ng-message="minlength">Name is too short.</p>
+        <p ng-message="maxlength">Name is too long.</p>
+        <p ng-message="required">Name is required.</p>
+      </div>
+      <h5>content:</h5>
 
       <textarea rows="5" cols="100" ng-model="nice.content" type="text" name="content" ng-minlength="5" class="form-control" required></textarea>
-      <div class="help-block" ng-messages="form.content.$error" ng-if="form.content.$touched">
+      <div class="help-block" ng-messages="form.form.content.$error" ng-if="form.form.content.$touched">
         <p ng-message="minlength">Content is too short.</p>
         <p ng-message="required">Content is required.</p>
       </div>
-      </div>
+    </div>
 
-      <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertNiceToHave(nice)">Submit</button>
-    </form>
+    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.form.$invalid" ng-click="insertNiceToHave(nice)">Submit</button>
+  </form>
+</div>
 
-    <div class="page-header">
-        <h4>Current nice to haves</h4>
-        </div>
+  <div class="page-header">
+    <h2>Current nice to haves:</h2>
+  </div>
   <div class="wrapit">
-      <div class="splice" ng-repeat="nice in projectNices">
-        <h5>{{ nice.name }}</h5>
+    <div class="splice" ng-repeat="nice in projectNices">
+      <h5>{{ nice.name }}</h5>
+      <button class="splicebut" ng-click="openModalnice(nice, $index)">Details</button>
+    </div>
+  </div>
 
-      <!--  {{ need.content }}-->
-        <button class="splicebut" ng-click="openModalnice(nice, $index)">Details</button>
-      <!--  <div ng-show="showDeleteButton && !isSpectator">
-          <button class="splicebut" ng-click="deleteNeed($index, need)">Delete</button>
-        </div> -->
+  <div class="modal fade modaldown" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title"> {{ niceModal.name }}</h4>
+        </div>
+        <div class="modal-body">
+          <label>content</label>
+          <br/> {{ niceModal.content }}
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" ng-show="showDeleteButton && isAdmin" ng-click="deleteNice(niceModal.index, niceModal)" data-dismiss="modal">Delete</button>
+        </div>
       </div>
     </div>
-
-    <div class="modal fade modaldown" tabindex="-1" role="dialog" id="myModal" >
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title">  {{ niceModal.name }}</h4>
-    </div>
-    <div class="modal-body">
-      <label>content</label><br/>
-
-{{ niceModal.content }}
-
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <button  type="button" class="btn btn-primary" ng-click="deleteNice(niceModal.index, niceModal)" data-dismiss="modal">Delete</button>
-    </div>
-  </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!--
-  <table class="table">
-    <thead>
-      <tr>
-        <th>name</th>
-        <th>content</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="nice in projectNices">
-        <td>{{ nice.name }} </td>
-        <td>{{ nice.content }} </td>
-        <td ng-show="showDeleteButton && !isSpectator">
-          <button class="btn btn-default" ng-click="deleteNice($index, nice)">Delete</button>
-        </td>
-    </tbody>
-  </table>
--->
+  </div>
 </div>
 </div>

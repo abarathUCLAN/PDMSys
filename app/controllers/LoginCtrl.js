@@ -15,7 +15,7 @@ pdmsys.controller('LoginCtrl',
     $scope.loginStatus = '';
 
     $scope.loginUser = function() {
-      $scope.login.password = md5.createHash($scope.login.password);
+  //    $scope.login.password = md5.createHash($scope.login.password);
       userFactory.loginUser($scope.login)
         .then(function(response) {
           $auth.setToken(response.data.access_token);

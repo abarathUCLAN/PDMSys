@@ -1,11 +1,11 @@
 <div class="container gap" ng-controller="UserprofileCtrl" ng-init="getUserData()">
-  <form name="form" novalidate>
+  <form name="form.form" novalidate>
     <div class="form-group">
       <label>Firstname:</label>
       <input type="text" class="form-control" ng-model="setting.firstname" ng-minlength="2" name="firstname" ng-maxlength="20" required>
     </div>
 
-    <div class="help-block" ng-messages="form.firstname.$error" ng-if="form.firstname.$touched">
+    <div class="help-block" ng-messages="form.form.firstname.$error" ng-if="form.form.firstname.$touched">
       <p ng-message="minlength">Your firstname is too short.</p>
       <p ng-message="maxlength">Your firstname is too long.</p>
       <p ng-message="required">Your firstname is required.</p>
@@ -17,7 +17,7 @@
       <input type="text" class="form-control" ng-minlength="2" ng-maxlength="25" ng-model="setting.lastname" required>
     </div>
 
-    <div class="help-block" ng-messages="form.lastname.$error" ng-if="form.lastname.$touched">
+    <div class="help-block" ng-messages="form.form.lastname.$error" ng-if="form.form.lastname.$touched">
       <p ng-message="minlength">Your lastname is too short.</p>
       <p ng-message="maxlength">Your lastname is too long.</p>
       <p ng-message="required">Your lastname is required.</p>
@@ -34,7 +34,7 @@
       <input ng-model="setting.password" type="password" ng-pattern="passwordRegEx" ng-minlength="6" class="form-control" name="password" placeholder="Password" ng-maxlength="15" required>
     </div>
 
-    <div class="help-block" ng-messages="form.password.$error" ng-if="form.password.$touched">
+    <div class="help-block" ng-messages="form.form.password.$error" ng-if="form.form.password.$touched">
       <p ng-message="minlength">Your password is too short.</p>
       <p ng-message="maxlength">Your password is too long.</p>
       <p ng-message="pattern">Your password is too weak.</p>
@@ -46,18 +46,18 @@
       <input ng-model="setting.passwordConfirm" match="setting.password" ng-maxlength="15" ng-minlength="6" type="password" class="form-control" name="passwordConfirm" placeholder="Password Confirm" maxlength="15" required>
     </div>
 
-    <div class="help-block" ng-messages="form.passwordConfirm.$error" ng-if="form.passwordConfirm.$touched">
+    <div class="help-block" ng-messages="form.form.passwordConfirm.$error" ng-if="form.form.passwordConfirm.$touched">
       <p ng-message="minlength">Your repeated password is too short.</p>
       <p ng-message="maxlength">Your repeated password is too long.</p>
       <p ng-message="required">Your repeated password is required.</p>
     </div>
 
-    <div ng-show="form.passwordConfirm.$error.match && form.passwordConfirm.$touched">
+    <div ng-show="form.form.passwordConfirm.$error.match && form.form.passwordConfirm.$touched">
       <div class="help-block">
         Password fields do not match!
       </div>
     </div>
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="editUserData(setting)">Save data</button>
+    <button class="btn btn-default" ng-Disabled="form.form.$invalid" ng-click="editUserData(setting)">Save data</button>
   </form>
   {{statusMessage}}
 </div>

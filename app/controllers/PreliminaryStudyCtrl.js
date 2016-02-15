@@ -85,7 +85,7 @@ pdmsys.controller('PreliminaryStudyController',
       preliminaryStudyFactory.insertRisk($scope.projectId, risk)
         .then(function(response) {
           $scope.risk = {};
-          $scope.form.form.$setPristine();
+          $scope.form.form.$setUntouched();
           $scope.showDeleteButton = true;
           $scope.projectDescriptionStatusMessage = 'Risk saved.'
           $scope.projectRisks.push(response.data);

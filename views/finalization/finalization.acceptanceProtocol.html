@@ -1,119 +1,96 @@
 <div class="form-group text-center cont" ng-init="getProtocol()">
 
-  <form name="form" novalidate>
+  <form name="form.form" ng-show="!isSpectator" novalidate>
     <div class="form-group">
       <div class="page-header">
         <h3>Create new acceptance criteria
           <br>
           <small>Create a new creteria to determine the success of your project.</small>
-</h3>
-          </div>
-          <h5>Criteria requirement:</h5>
-            <input type="text" ng-model="acceptanceprotocol.requirement" name="requirement" ng-minlength="2" ng-maxlength="30" required></input>
-            <div class="help-block" ng-messages="form.requirement.$error" ng-if="form.requirement.$touched">
-              <p ng-message="minlength" class="error">Requirement is too short.</p>
-              <p ng-message="maxlength" class="error">Requirement is too long.</p>
-              <p ng-message="required" class="error">Requirement is required.</p>
-            </div><br/>
-            <h5> KO Criteria:</h5>
-            <input type="text" name="criteriaName" ng-model="acceptanceprotocol.criteriaName" ng-minlength="5" required></input>
-            <div class="help-block" ng-messages="form.criteriaName.$error" ng-if="form.criteriaName.$touched">
-              <p ng-message="minlength" class="error">Criteria name is too short.</p>
-              <p ng-message="maxlength" class="error">Criteria name is too long.</p>
-              <p ng-message="required" class="error">Criteria name is required.</p>
-            </div>
-            <br> <h5>Approach:</h5>
-            <textarea rows="5" name="criteria" cols="20" type="text" class="form-control" ng-minlength="5" ng-model="acceptanceprotocol.criteria" required></textarea>
-            <div class="help-block" ng-messages="form.criteria.$error" ng-if="form.criteria.$touched">
-              <p ng-message="minlength" class="error">Criteria is too short.</p>
-              <p ng-message="maxlength" class="error">Criteria is too long.</p>
-              <p ng-message="required" class="error">Criteria is required.</p>
-            </div>
-            <br> <h5>Fulfilled:</h5>
-            <input type="checkbox" ng-model="acceptanceprotocol.fulfilled">
-            <br> Note:
-            <textarea rows="3" name="note" cols="20" ng-minlength="5" type="text" ng-model="acceptanceprotocol.note" class="form-control"></textarea>
-            <div class="help-block" ng-messages="form.note.$error" ng-if="form.note.$touched">
-              <p ng-message="minlength" class="error">Note is too short.</p>
-              <p ng-message="maxlength" class="error">Note is too long.</p>
-            </div>
-          </small>
+        </h3>
+      </div>
+      <h5>Criteria requirement:</h5>
+      <input type="text" ng-model="acceptanceprotocol.requirement" name="requirement" ng-minlength="2" ng-maxlength="30" required></input>
+      <div class="help-block" ng-messages="form.form.requirement.$error" ng-if="form.form.requirement.$touched">
+        <p ng-message="minlength" class="error">Requirement is too short.</p>
+        <p ng-message="maxlength" class="error">Requirement is too long.</p>
+        <p ng-message="required" class="error">Requirement is required.</p>
+      </div>
+      <br/>
+      <h5> KO Criteria:</h5>
+      <input type="text" name="criteriaName" ng-model="acceptanceprotocol.criteriaName" ng-minlength="5" required></input>
+      <div class="help-block" ng-messages="form.form.criteriaName.$error" ng-if="form.form.criteriaName.$touched">
+        <p ng-message="minlength" class="error">Criteria name is too short.</p>
+        <p ng-message="maxlength" class="error">Criteria name is too long.</p>
+        <p ng-message="required" class="error">Criteria name is required.</p>
+      </div>
+      <br>
+      <h5>Approach:</h5>
+      <textarea rows="5" name="criteria" cols="20" type="text" class="form-control" ng-minlength="5" ng-model="acceptanceprotocol.criteria" required></textarea>
+      <div class="help-block" ng-messages="form.form.criteria.$error" ng-if="form.form.criteria.$touched">
+        <p ng-message="minlength" class="error">Criteria is too short.</p>
+        <p ng-message="maxlength" class="error">Criteria is too long.</p>
+        <p ng-message="required" class="error">Criteria is required.</p>
+      </div>
+      <br>
+      <h5>Fulfilled:</h5>
+      <input type="checkbox" ng-model="acceptanceprotocol.fulfilled">
+      <br> Note:
+      <textarea rows="3" name="note" cols="20" ng-minlength="5" type="text" ng-model="acceptanceprotocol.note" class="form-control"></textarea>
+      <div class="help-block" ng-messages="form.form.note.$error" ng-if="form.form.note.$touched">
+        <p ng-message="minlength" class="error">Note is too short.</p>
+        <p ng-message="maxlength" class="error">Note is too long.</p>
+      </div>
+      </small>
 
 
     </div>
-    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertProtocol(acceptanceprotocol)">Submit</button>
+    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.form.$invalid" ng-click="insertProtocol(acceptanceprotocol)">Submit</button>
   </form>
 
-  <div class="wrapit">
-      <div class="splice" ng-repeat="pro in protocol">
-        <h5>{{ pro.name }}</h5>
+  <div class="page-header">
+    <h2>Acceptance criterias:</h2>
+  </div>
 
-      <!--  {{ need.content }}-->
-        <button class="splicebut" ng-click="openModalpro(pro, $index)">Details</button>
-      <!--  <div ng-show="showDeleteButton && !isSpectator">
-          <button class="splicebut" ng-click="deleteNeed($index, need)">Delete</button>
-        </div> -->
+  <div class="wrapit">
+    <div class="splice" ng-repeat="pro in protocol">
+      <h5>{{ pro.criteriaName }}</h5>
+      <button class="splicebut" ng-click="openModalpro(pro, $index)">Details</button>
+    </div>
+  </div>
+
+  <div class="modal fade modaldown" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title"> {{ proModal.criteriaName }}</h4>
+        </div>
+        <div class="modal-body">
+          <label>requirement</label>
+          <br/> {{ proModal.requirement }}
+          <label>name</label>
+          <br/> {{ proModal.criteriaName }}
+          <br/>
+          <label>content</label>
+          <br/> {{ proModal.criteria }}
+          <br/>
+
+          <label>fullfilled</label>
+          <br/> {{ proModal.fullfilled }}
+          <br/>
+
+          <label>note</label>
+          <br/> {{ proModal.note }}
+          <br/>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button ng-show="showDeleteButton && isAdmin" type="button" class="btn btn-primary" ng-click="deleteProtocol(proModal.index, proModal)" data-dismiss="modal">Delete</button>
+        </div>
       </div>
     </div>
-
-    <div class="modal fade modaldown" tabindex="-1" role="dialog" id="myModal" >
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title">  {{ proModal.criteriaName }}</h4>
-    </div>
-    <div class="modal-body">
-      <label>requirement</label><br/>
-
-{{ proModal.requirement }}
-<label>name</label><br/>
-
-{{ proModal.criteriaName }}<br/>
-<label>content</label><br/>
-
-{{ proModal.criteria }}<br/>
-
-<label>fullfilled</label><br/>
-
-{{ proModal.fullfilled }}<br/>
-
-<label>note</label><br/>
-
-{{ proModal.note }}<br/>
-
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <button  ng-show="showDeleteButton && !isSpectator" type="button" class="btn btn-primary" ng-click="deleteProtocol(proModal.index, proModal)" data-dismiss="modal">Delete</button>
-    </div>
-  </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-  <!--
-  <table class="table">
-    <thead>
-      <tr>
-        <th>requirement</th>
-        <th>name</th>
-        <th>content</th>
-        <th>fulfilled</th>
-        <th>note</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="pro in protocol">
-        <td>{{ pro.requirement }} </td>
-        <td>{{ pro.criteriaName }} </td>
-        <td>{{ pro.criteria }} </td>
-        <td>{{pro.fulfilled}} </td>
-        <td>{{ pro.note }} </td>
-        <td ng-show="showDeleteButton && !isSpectator">
-          <button class="btn btn-default" ng-click="deleteProtocol($index, pro)">Delete</button>
-        </td>
-    </tbody>
-  </table>
-
-  --->
+  </div>
 </div>

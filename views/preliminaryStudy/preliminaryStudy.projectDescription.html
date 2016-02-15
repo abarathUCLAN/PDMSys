@@ -11,7 +11,7 @@
     </div>
     <div ng-show="!isSpectator">
       <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertProjectDescription(projectDescription)">Submit</button>
-      <button class="btn btn-default" ng-show="showDeleteButton" ng-click="deleteProjectDescription()">Delete</button>
+      <button class="btn btn-default" ng-show="showDeleteButton && isAdmin" ng-click="deleteProjectDescription()">Delete</button>
     </div>
   </form>
 </div>

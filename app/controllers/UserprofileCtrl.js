@@ -4,6 +4,7 @@ pdmsys.controller('UserprofileCtrl',
   function UserprofileCtrl($scope, userFactory, $state, md5) {
 
     $scope.setting = {};
+    $scope.form = {};
     $scope.statusMessage = undefined;
     $scope.passwordRegEx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,15}/;
 
@@ -14,6 +15,7 @@ pdmsys.controller('UserprofileCtrl',
         $scope.statusMessage = 'Userdata updated.';
         $scope.setting.password = '';
         $scope.setting.passwordConfirm = '';
+        $scope.form.form.$setUntouched();
       }, function() {
         $scope.statusMessage = 'An error occured, please check your inputs.';
       });

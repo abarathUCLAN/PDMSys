@@ -17,7 +17,6 @@ pdmsys.controller('FunctionalSpecificationController',
         $scope.projectStatusMessage = undefined;
       });
 
-
     $scope.insertFunctionalRequirement = function(requirement) {
       functionalSpecificationFactory.insertFunctionalRequirement($scope.projectId, requirement)
         .then(function(response) {
@@ -54,7 +53,7 @@ pdmsys.controller('FunctionalSpecificationController',
         });
     };
 
-   $scope.insertProjectImplementation = function(implementation) {
+    $scope.insertProjectImplementation = function(implementation) {
       functionalSpecificationFactory.insertProjectImplementation($scope.projectId, {
           "content": implementation.content
         })
@@ -85,11 +84,11 @@ pdmsys.controller('FunctionalSpecificationController',
         }, function() {});
     };
 
-    $scope.openModalfunc = function(func, index){
-        $scope.funcModal = {};
-        $scope.funcModal = func;
-        $scope.funcModal.index = index;
-        $('#myModal').modal('show');
+    $scope.openModalfunc = function(func, index) {
+      $scope.funcModal = {};
+      $scope.funcModal = func;
+      $scope.funcModal.index = index;
+      $('#myModal').modal('show');
     };
 
   });

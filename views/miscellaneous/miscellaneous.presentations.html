@@ -1,92 +1,68 @@
 <div class="form-group text-center cont" ng-init="getPresentation()">
 
-  <form name="form.form" novalidate enctype="multipart/form-data">
+  <form name="form.form" ng-show="!isSpectator" novalidate enctype="multipart/form-data">
     <div class="form-group">
       <div class="page-header">
-        <h3>Upload new presentation<br/>
-        <small>Upload a new presentation for your project</small>
-      </h3>
-    </div>
-          <br>
-          <h5>Presentation name:</h5>
-            <input type="text" ng-model="presentation.name" name="name" ng-minlength="3" ng-maxlength="30"required ></input>
-            <br/>
-            <div class="help-block" ng-messages="form.form.name.$error" ng-if="form.form.name.$touched">
-              <p ng-message="minlength" class="error">Name is too short.</p>
-              <p ng-message="maxlength" class="error">Name is too long.</p>
-              <p ng-message="required" class="error">Name is required.</p>
-            </div>
-            <br> <h5>Presentation Content:</h5>
-            <textarea rows="5" cols="20" type="text" class="form-control" ng-model="presentation.content" name="content" ng-minlength="5" class="form-control" required></textarea>
-            <div class="help-block" ng-messages="form.form.content.$error" ng-if="form.form.content.$touched">
-              <p ng-message="minlength" class="error">Content is too short.</p>
-              <p ng-message="required" class="error">Content is required.</p>
-            </div>
-            <br> <h5>File:</h5>
-            <input type="file" ngf-select ng-model="presentation.file" name="file" ngf-max-size="10MB" required>
+        <h3>Upload new presentation
+          <br/>
+          <small>Upload a new presentation for your project</small>
+        </h3>
+      </div>
+      <br>
+      <h5>Presentation name:</h5>
+      <input type="text" ng-model="presentation.name" name="name" ng-minlength="3" ng-maxlength="30" required></input>
+      <br/>
+      <div class="help-block" ng-messages="form.form.name.$error" ng-if="form.form.name.$touched">
+        <p ng-message="minlength" class="error">Name is too short.</p>
+        <p ng-message="maxlength" class="error">Name is too long.</p>
+        <p ng-message="required" class="error">Name is required.</p>
+      </div>
+      <br>
+      <h5>Presentation Content:</h5>
+      <textarea rows="5" cols="20" type="text" class="form-control" ng-model="presentation.content" name="content" ng-minlength="5" class="form-control" required></textarea>
+      <div class="help-block" ng-messages="form.form.content.$error" ng-if="form.form.content.$touched">
+        <p ng-message="minlength" class="error">Content is too short.</p>
+        <p ng-message="required" class="error">Content is required.</p>
+      </div>
+      <br>
+      <h5>File:</h5>
+      <input type="file" ngf-select ng-model="presentation.file" name="file" ngf-max-size="10MB" required>
 
     </div>
-    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertPresentation(presentation)">Submit</button>
+    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.form.$invalid" ng-click="insertPresentation(presentation)">Submit</button>
   </form>
 
   <div class="page-header">
-      <h4>Current presentations</h4>
-      </div>
+    <h2>Current presentations:</h2>
+  </div>
   <div class="wrapit">
-      <div class="splice" ng-repeat="presentation in presentations">
-        <h5>{{ presentation.name }}</h5>
+    <div class="splice" ng-repeat="presentation in presentations">
+      <h5>{{ presentation.name }}</h5>
 
-      <!--  {{ need.content }}-->
-        <button class="splicebut" ng-click="openModalpresentation(presentation, $index)">Details</button>
-      <!--  <div ng-show="showDeleteButton && !isSpectator">
-          <button class="splicebut" ng-click="deleteNeed($index, need)">Delete</button>
-        </div> -->
+      <button class="splicebut" ng-click="openModalpresentation(presentation, $index)">Details</button>
+    </div>
+  </div>
+
+  <div class="modal fade modaldown" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title"> {{ presentationModal.name }}</h4>
+        </div>
+        <div class="modal-body">
+          <label>content</label>
+          <br/> {{ presentationModal.content }}
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button class="btn btn-default" ng-click="downloadPresentation(presentationModal.id)">Download {{ presentationModal.file}}</button>
+          <button ng-show="showDeleteButton && isAdmin" type="button" class="btn btn-primary" ng-click="deletePresentation(presentationModal.index, presentationModal)" data-dismiss="modal">Delete</button>
+        </div>
       </div>
     </div>
-
-    <div class="modal fade modaldown" tabindex="-1" role="dialog" id="myModal" >
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title">  {{ presentationModal.name }}</h4>
-    </div>
-    <div class="modal-body">
-      <label>content</label><br/>
-
-{{ presentationModal.content }}
-
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <button class="btn btn-default" ng-click="downloadPresentation(presentationModal.id)">Download {{ presentationModal.file}}</button>
-      <button  ng-show="showDeleteButton && !isSpectator" type="button" class="btn btn-primary" ng-click="deletePresentation(presentationModal.index, presentationModal)" data-dismiss="modal">Delete</button>
-    </div>
-  </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-  <!--
-  <table class="table">
-    <thead>
-      <tr>
-        <th>name</th>
-        <th>content</th>
-        <th>Download link</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="presentation in presentations">
-        <td>{{ presentation.name }} </td>
-        <td>{{ presentation.content }} </td>
-        <td>
-          <button class="btn btn-default" ng-click="downloadPresentation(presentation.id)">Download {{ presentation.file}}</button>
-        </td>
-        <td ng-show="showDeleteButton && !isSpectator">
-          <button class="btn btn-default" ng-click="deletePresentation($index, presentation)">Delete</button>
-        </td>
-    </tbody>
-  </table>
-
--->
+  </div>
 </div>

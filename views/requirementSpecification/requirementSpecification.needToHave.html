@@ -1,71 +1,70 @@
 <div class="form-group text-center cont" ng-init="getNeedToHave()">
-  <div class="page-header">
-    <form name="form.form" novalidate>
+  <div ng-show="!isSpectator">
+    <div class="page-header">
       <h3>New Need to have
         <br/>
-        <small>create a new need to have for your projects.</small></h3>
-          </div>
-
-          <div class="form-group">
-          <h5>  Name:</h5>
-            <input type="text" ng-model="need.name" name="name" ng-minlength="3" ng-maxlength="30" required></input>
-            <br>
-            <div class="help-block" ng-messages="form.name.$error" ng-if="form.name.$touched">
-              <p ng-message="minlength">Name is too short.</p>
-              <p ng-message="maxlength">Name is too long.</p>
-              <p ng-message="required">Name is required.</p>
-            </div>
-            <h5>Content:</h5>
-        </small>
+        <small>create a new need to have for your projects.</small>
       </h3>
+    </div>
+    <form name="form.form" novalidate>
 
-      <textarea rows="5" ng-model="need.content" cols="100" name="content" ng-minlength="5" class="form-control" required></textarea>
-      <div class="help-block" ng-messages="form.content.$error" ng-if="form.content.$touched">
-        <p ng-message="minlength">Content is too short.</p>
-        <p ng-message="required">Content is required.</p>
-      </div>
+      <div class="form-group">
+        <h5> Name:</h5>
+        <input type="text" ng-model="need.name" name="name" ng-minlength="3" ng-maxlength="30" required></input>
+        <br>
+        <div class="help-block" ng-messages="form.form.name.$error" ng-if="form.form.name.$touched">
+          <p ng-message="minlength">Name is too short.</p>
+          <p ng-message="maxlength">Name is too long.</p>
+          <p ng-message="required">Name is required.</p>
+        </div>
+        <h5>Content:</h5>
+        </small>
+        </h3>
+
+        <textarea rows="5" ng-model="need.content" cols="100" name="content" ng-minlength="5" class="form-control" required></textarea>
+        <div class="help-block" ng-messages="form.form.content.$error" ng-if="form.form.content.$touched">
+          <p ng-message="minlength">Content is too short.</p>
+          <p ng-message="required">Content is required.</p>
+        </div>
 
 
-      <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertNeedToHave(need)">Submit</button>
+        <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.form.$invalid" ng-click="insertNeedToHave(need)">Submit</button>
       </div>
     </form>
+  </div>
 
-    <div class="page-header">
-        <h4>Current need to haves</h4>
+  <div class="page-header">
+    <h2>Current need to haves:</h2>
+  </div>
+
+
+  <div class="wrapit">
+    <div class="splice" ng-repeat="need in projectNeeds">
+      <h5>{{ need.name }}</h5>
+      <button class="splicebut" ng-click="openModalneed(need, $index)">Details</button>
+    </div>
+  </div>
+
+  <div class="modal fade modaldown" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title"> {{ needModal.name }}</h4>
         </div>
+        <div class="modal-body">
+          <label>content</label>
+          <br/> {{ needModal.content }}
 
-
-    <div class="wrapit">
-        <div class="splice" ng-repeat="need in projectNeeds">
-          <h5>{{ need.name }}</h5>
-
-        <!--  {{ need.content }}-->
-          <button class="splicebut" ng-click="openModalneed(need, $index)">Details</button>
-        <!--  <div ng-show="showDeleteButton && !isSpectator">
-            <button class="splicebut" ng-click="deleteNeed($index, need)">Delete</button>
-          </div> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" ng-show="showDeleteButton && isAdmin" ng-click="deleteNeed(needModal.index, needModal)" data-dismiss="modal">Delete</button>
         </div>
       </div>
-
-      <div class="modal fade modaldown" tabindex="-1" role="dialog" id="myModal" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">  {{ needModal.name }}</h4>
-      </div>
-      <div class="modal-body">
-        <label>content</label><br/>
-
-{{ needModal.content }}
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button  type="button" class="btn btn-primary" ng-click="deleteNeed(needModal.index, needModal)" data-dismiss="modal">Delete</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
+  </div>
 
 </div>

@@ -10,8 +10,8 @@
       <textarea rows="25" cols="100" ng-model="implementation.content" type="text" class="form-control" required></textarea>
     </div>
     <div ng-show="!isSpectator">
-      <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertProjectImplementation(implementation)">Submit</button>
-      <button class="btn btn-default" ng-show="showDeleteButton" ng-click="deleteProjectImplementation()">Delete</button>
+      <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertProjectImplementation(implementation)">Submit</button>
+      <button class="btn btn-default" ng-show="showDeleteButton && isAdmin" ng-click="deleteProjectImplementation()">Delete</button>
     </div>
   </form>
 </div>

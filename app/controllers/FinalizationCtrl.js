@@ -8,6 +8,7 @@ pdmsys.controller('FinalizationController',
     $scope.showDeleteButton = false;
     $scope.protocol = [];
     $scope.manual = {};
+    $scope.form = {};
     $scope.acceptanceprotocol = {};
     $scope.proModal = {};
 
@@ -21,6 +22,7 @@ pdmsys.controller('FinalizationController',
       finalizationFactory.insertProtocol($scope.projectId, protocol)
         .then(function(response) {
           $scope.acceptanceprotocol = {};
+          $scope.form.form.$setUntouched();
           $scope.showDeleteButton = true;
           $scope.projectStatusMessage = 'Protocol requirement saved.'
           $scope.protocol.push(response.data);

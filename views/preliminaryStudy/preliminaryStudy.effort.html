@@ -272,8 +272,8 @@
   </form>
   <hr/>
   <div ng-show="!isSpectator">
-    <button class="btn btn-default" ng-Disabled="form.$invalid" ng-click="insertEffortEstimation()">Submit</button>
-    <button class="btn btn-default" ng-show="showDeleteButton && !isSpectator" ng-click="deleteEffortEstimation()">Reset</button>
+    <button class="btn btn-default" ng-show="!isSpectator" ng-Disabled="form.$invalid" ng-click="insertEffortEstimation()">Submit</button>
+    <button class="btn btn-default" ng-show="showDeleteButton && isAdmin" ng-click="deleteEffortEstimation()">Reset</button>
   </div>
   <label>Adjusted Use-Case-Points:
     <div>{{effortEstimationResult}}</div>

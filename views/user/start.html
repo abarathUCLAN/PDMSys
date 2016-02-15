@@ -3,8 +3,8 @@
 
   <header>
     <div align="center" class="navilein" >
-      <button ng-Disabled="!formButtonValue" ng-click="invertFormButtonValue()" type="button" class="butt">Login</button>
-      <button ng-Disabled="formButtonValue" ng-click="invertFormButtonValue()" type="button" class="butt">Register</button>
+      <button id="loginViewBtn" ng-Disabled="!formButtonValue" ng-click="invertFormButtonValue()" type="button" class="butt">Login</button>
+      <button id="registerViewBtn" ng-Disabled="formButtonValue" ng-click="invertFormButtonValue()" type="button" class="butt">Register</button>
     </div>
 <div class="login">
     <div ng-show="!formButtonValue" ui-view="login"></div>
